@@ -19,9 +19,9 @@ public class Telaprincipal extends javax.swing.JFrame {
      * Creates new form Telaprincipal
      */
     public Telaprincipal() {
-        
-        selecionaIMG(0);
-        initComponents(); //seleciona a imagem geral
+        initComponents();
+
+        selecionaSessaoGeral(); //seleciona a imagem geral
     }
 
     /**
@@ -207,9 +207,8 @@ public class Telaprincipal extends javax.swing.JFrame {
                 new Telaprincipal().setVisible(true);
             }
         });
-    }   
-    
-    
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -224,21 +223,31 @@ public class Telaprincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void selecionaIMG() {
-        
+
     }
 
     private void selecionaIMG(int selectedIndex) {
-        switch(selectedIndex){
+        switch (selectedIndex) {
             case 0:
-                    secao_geral_img_lb.setVisible(true);
-                    secao_retang_img_lb.setVisible(false);
-                    System.out.println(selectedIndex);
+                selecionaSessaoGeral();
+                break;
             case 1:
-                    secao_geral_img_lb.setVisible(false);
-                    secao_retang_img_lb.setVisible(true);
-                    System.out.println(selectedIndex);
+                selecionaSecaoRetangular();
+                break;
         }
-             
-    }    
-    
+
+    }
+
+    public void selecionaSessaoGeral() {
+        secao_geral_img_lb.setVisible(true);
+        secao_retang_img_lb.setVisible(false);
+    }
+
+    ;
+
+    private void selecionaSecaoRetangular() {
+        secao_geral_img_lb.setVisible(false);
+        secao_retang_img_lb.setVisible(true);
+    }
+
 }
