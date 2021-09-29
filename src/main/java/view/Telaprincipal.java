@@ -42,6 +42,9 @@ public class Telaprincipal extends javax.swing.JFrame {
         tipo_secao_cb = new javax.swing.JComboBox<>();
         secao_geral_img_lb = new javax.swing.JLabel();
         secao_retang_img_lb = new javax.swing.JLabel();
+        secao_T_img_lb = new javax.swing.JLabel();
+        secao_I_img_lb = new javax.swing.JLabel();
+        secao_L_img_lb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1320, 768));
@@ -69,47 +72,62 @@ public class Telaprincipal extends javax.swing.JFrame {
 
         secao_retang_img_lb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/resource/img/Seção_Retangular.jpg"))); // NOI18N
 
+        secao_T_img_lb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/resource/img/Seção_T.jpg"))); // NOI18N
+
+        secao_I_img_lb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/resource/img/Seção_I.jpg"))); // NOI18N
+
+        secao_L_img_lb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/resource/img/Seção_L.jpg"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
+                    .addComponent(tipo_secao_cb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(secao_retang_img_lb))
-                            .addComponent(secao_geral_img_lb))
-                        .addGap(40, 40, 40))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(tipo_secao_cb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(166, 166, 166))
+                            .addComponent(secao_T_img_lb)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(secao_I_img_lb))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(34, 34, 34)
+                .addComponent(secao_L_img_lb)
+                .addGap(98, 98, 98))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel2)))
+                .addGap(168, 168, 168)
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(secao_retang_img_lb))
+                    .addComponent(secao_geral_img_lb))
+                .addGap(206, 206, 206))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(tipo_secao_cb, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(secao_geral_img_lb, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(secao_retang_img_lb, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(551, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(secao_T_img_lb)
+                    .addComponent(secao_L_img_lb))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(secao_I_img_lb)
+                .addContainerGap(521, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout secao_transversalLayout = new javax.swing.GroupLayout(secao_transversal);
@@ -144,7 +162,7 @@ public class Telaprincipal extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addComponent(tab_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 1091, Short.MAX_VALUE)
+                    .addComponent(tab_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 1091, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -215,6 +233,9 @@ public class Telaprincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel secao_I_img_lb;
+    private javax.swing.JLabel secao_L_img_lb;
+    private javax.swing.JLabel secao_T_img_lb;
     private javax.swing.JLabel secao_geral_img_lb;
     private javax.swing.JLabel secao_retang_img_lb;
     private javax.swing.JPanel secao_transversal;
@@ -232,22 +253,57 @@ public class Telaprincipal extends javax.swing.JFrame {
                 selecionaSessaoGeral();
                 break;
             case 1:
+                desselecionaSecoes();
                 selecionaSecaoRetangular();
+                break;
+            case 2:
+                desselecionaSecoes();
+                selecionaSecaoT();
+                break;
+            case 3:
+                desselecionaSecoes();
+                selecionaSecaoI();
+                break;
+            case 4:
+                desselecionaSecoes();
+                selecionaSecaoL();
                 break;
         }
 
     }
 
     public void selecionaSessaoGeral() {
-        secao_geral_img_lb.setVisible(true);
-        secao_retang_img_lb.setVisible(false);
+        desselecionaSecoes();
+        secao_geral_img_lb.setVisible(true); 
     }
 
-    ;
-
     private void selecionaSecaoRetangular() {
-        secao_geral_img_lb.setVisible(false);
+        desselecionaSecoes();
         secao_retang_img_lb.setVisible(true);
+    }
+
+    private void selecionaSecaoT() {
+        desselecionaSecoes();
+        secao_T_img_lb.setVisible(true);
+    }
+
+    private void desselecionaSecoes() {
+        secao_geral_img_lb.setVisible(false);
+        secao_retang_img_lb.setVisible(false);
+        secao_T_img_lb.setVisible(false);
+        secao_I_img_lb.setVisible(false);
+        secao_L_img_lb.setVisible(false);
+        
+    }
+
+    private void selecionaSecaoI() {
+        desselecionaSecoes();
+        secao_I_img_lb.setVisible(true);
+    }
+
+    private void selecionaSecaoL() {
+        desselecionaSecoes();
+        secao_L_img_lb.setVisible(true);
     }
 
 }
