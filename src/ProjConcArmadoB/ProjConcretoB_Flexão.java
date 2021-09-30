@@ -5,7 +5,7 @@ public class ProjConcretoB_Flexão extends ProjConcretoB_PropGeomGAUSS
 {
   public void CalculaFlexão()
   {
-      double Material[];
+      Double Material[];
       Material = getMaterial();
       double fcd = Material[1];
       double fyd = Material[3];

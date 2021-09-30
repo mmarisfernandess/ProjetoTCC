@@ -57,11 +57,13 @@ public class ProjConcretoB_Interface extends JFrame {
 
     //Objeto "desenhar" da classe Desenho
     ProjConcretoB_Desenho desenhar;
+    
+    ProjConcretoB_Dados bDados;
 
     // VARIÁVEIS para o Material
     // Guardar 4 dados no vetor seção[4] = (fck, , , )
     // Variáveis obtidas das caixas de texto do Painel à direita
-    private double material[];
+    //private double material[];
 
     // VARIÁVEIS para a Solicitação
     // Guardar 4 dados no vetor seção[4] = (fck, , , )
@@ -96,6 +98,9 @@ public class ProjConcretoB_Interface extends JFrame {
     // VARIÁVEIS para a seção transversal
     private double SEÇÃO[];
 
+    // VARIÁVEIS para o material
+   // private double Material[];
+    
     // Variáveis para o detalhamento da armadura 
     private double DETALHAMENTO[];
 
@@ -153,6 +158,7 @@ public class ProjConcretoB_Interface extends JFrame {
     public ProjConcretoB_Interface() {
         super("TCC Mariana Fernandes - Dimensionamento em CA de seções retangulares e T sob flexão");
         SEÇÃO = new double[8];
+        bDados =  new ProjConcretoB_Dados();
 
         //--->>> 1o PASSO = BARRA DE MENU -------<<<<<<<
         /**
@@ -1058,7 +1064,7 @@ public class ProjConcretoB_Interface extends JFrame {
         FlowLayout layoutPainelMaterial[] = new FlowLayout[8];
 
         for (int i = 0; i <= 3; i++) {
-            CampoMaterial[i] = new JTextField("", 2);
+            CampoMaterial[i] = new JTextField("", 8);
             painelMaterial[i] = new JPanel();
 
             painelMaterial[i].add(LabelMaterial[i]);
@@ -1696,11 +1702,14 @@ public class ProjConcretoB_Interface extends JFrame {
                             CampoMaterial[i].addActionListener(
                                     new ActionListener() {
                                 public void actionPerformed(ActionEvent event) {
-                                    if (event.getSource() == CampoMaterial[0]) {
-                                        dados.setfck(Double.parseDouble(event.getActionCommand()));
+                                    if (event.getSource() == CampoMaterial[0]) {                                       
+                                        //bDados.getMaterial()[0] = Double.parseDouble(event.getActionCommand());
+                                        bDados.setfck(Double.parseDouble(event.getActionCommand()));
                                     }
                                     if (event.getSource() == CampoMaterial[1]) {
-                                        dados.setfyk(Double.parseDouble(event.getActionCommand()));
+                                        //bDados.getMaterial()[2] = Double.parseDouble(event.getActionCommand());
+                                        
+                                        bDados.setfyk(Double.parseDouble(event.getActionCommand()));
                                     }
                                 }
                             }
@@ -1868,6 +1877,21 @@ public class ProjConcretoB_Interface extends JFrame {
         }
         );
         //*********************************************************************/
+        
+        BotãoPropMaterial.addActionListener(
+                new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                if (bDados != null) {
+                     bDados.setfck(Double.parseDouble(CampoMaterial[0].getText()));
+                     bDados.setfyk(Double.parseDouble(CampoMaterial[1].getText()));
+                     
+                    CampoMaterial[2].setText(String.format("%.3f",bDados.getMaterial()[1]));
+                    CampoMaterial[3].setText(String.format("%.3f",bDados.getMaterial()[3]));
+                }
+            }
+        }
+        );
+        
 
     }// Fim do 1* método CONSTRUTOR
 //*********************************************************************/   
