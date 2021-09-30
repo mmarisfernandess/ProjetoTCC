@@ -1178,7 +1178,7 @@ public class ProjConcretoB_Interface extends JFrame {
 
         //******************* FIM DO painelBoxMaterial na esquerda (west)
         // ******************** ESFORÇOS SOLICITANTES - BOX VERTICAL ************************
-        JLabel LabelSolicitação[] = new JLabel[6]; //Vetor de Label
+        JLabel LabelSolicitação[] = new JLabel[5]; //Vetor de Label
 
         LabelSolicitação[0] = new JLabel("Msd = ");
 
@@ -1198,7 +1198,11 @@ public class ProjConcretoB_Interface extends JFrame {
 
             painelSolicitação[i].add(LabelSolicitação[i]);
             painelSolicitação[i].add(CampoSolicitação[i]);
-            painelSolicitação[i].add(LabelSolicitação[i + 2]);
+            
+            if(i==0){
+                painelSolicitação[i].add(LabelSolicitação[2]);
+            }
+            
 
             layoutPainelSolicitação[i] = new FlowLayout();
             layoutPainelSolicitação[i].setAlignment(FlowLayout.CENTER);
@@ -1211,31 +1215,26 @@ public class ProjConcretoB_Interface extends JFrame {
         // TÍTULOS DOS GRUPOS DE PAINÉIS
         LabelSolicitação[3] = new JLabel("CARREGAMENTO");
         LabelSolicitação[4] = new JLabel("Dados do Carregamento:");
+     
 
-        for (int i = 0; i <= 1; i++) {
-            painelSolicitação[i] = new JPanel();
-            painelSolicitação[i].add(LabelSolicitação[i + 2]);
-            painelSolicitação[i].setBackground(new java.awt.Color(231, 234, 240));
+//        // Painel dos dados que serão calculados - não editáveis
+//        LabelSolicitação[5] = new JLabel("Carregamento:");
+//        painelSolicitação[2] = new JPanel();
+//        painelSolicitação[2].add(LabelSolicitação[5]);
+//        painelSolicitação[2].setBackground(new java.awt.Color(231, 234, 240));
 
-        }
-
-        // Painel dos dados que serão calculados - não editáveis
-        LabelSolicitação[5] = new JLabel("Carregamento:");
-        painelSolicitação[4] = new JPanel();
-        painelSolicitação[4].add(LabelSolicitação[5]);
-        painelSolicitação[4].setBackground(new java.awt.Color(231, 234, 240));
-
-// PAINÉIS VISÍVEIS
+        // PAINÉIS VISÍVEIS
         for (int i = 0; i <= 1; i++) {
             painelSolicitação[i].setVisible(true);
         }
 
-        painelSolicitação[4].setVisible(true);
-        painelSolicitação[5].setVisible(true); // False nas Propriedades do material 
+        //painelSolicitação[2].setVisible(true);
+        //painelSolicitação[5].setVisible(true); // False nas Propriedades do material 
 
-        for (int i = 0; i <= 1; i++) {
-            CampoSolicitação[i].setEditable(false);
-        }
+      
+        // Painel não editável - visibilidade falsa 
+        CampoSolicitação[1].setEditable(false);
+        
 
         /**
          * **** ESPAÇADOR INVISÍVEL DO PAINEL DE CARREGAMENTO
@@ -1281,21 +1280,25 @@ public class ProjConcretoB_Interface extends JFrame {
          */
         Box verticalSolicitação = Box.createVerticalBox();
 
-        verticalSolicitação.add(painelSolicitaçãoInv);// Espaçador para padronizar tamanho        
-        verticalSolicitação.add(painelSolicitação[4]);// Material
-        verticalSolicitação.add(painelSolicitação[5]);// Tipo de Seção
+       
+        verticalSolicitação.add(painelSolicitaçãoInv);// Espaçador para padronizar tamanho   
+        verticalSolicitação.add(LabelSolicitação[3]);
+        verticalSolicitação.add(LabelSolicitação[4]);
+        verticalSolicitação.add(painelSolicitação[0]);// Material
+        verticalSolicitação.add(painelSolicitaçãoBotãoCalcCarreg);   // Botão = Calcula as propriedades do material  
+        verticalSolicitação.add(painelSolicitação[1]);// Tipo de Seção
 
         //verticalSolicitação.add(painelSolicitaçãolabelMenuSolicitação); // Label Figuras das seções                        
-        verticalSolicitação.add(painelSolicitação[2]);//Dimensões das Seções        
-        for (int i = 0; i <= 1; i++) {
-            verticalSolicitação.add(painelSolicitação[i]); // Dimensões das seções
-        }
-        verticalSolicitação.add(painelSolicitaçãoBotãoCalcCarreg); // Botão = Calcula as propriedades do material        
-        verticalSolicitação.add(painelSolicitação[3]); // Propridades do material
+       // verticalSolicitação.add(painelSolicitação[2]);//Dimensões das Seções        
+       // for (int i = 0; i <= 1; i++) {
+       //     verticalSolicitação.add(painelSolicitação[i]); // Dimensões das seções
+        //}
+        // Botão = Calcula as propriedades do material        
+       // verticalSolicitação.add(painelSolicitação[3]); // Propridades do material
 
-        for (int i = 2; i <= 3; i++) {
-            verticalSolicitação.add(painelSolicitação[i]); // Propriedades do material      
-        }
+//        for (int i = 2; i <= 3; i++) {
+//            verticalSolicitação.add(painelSolicitação[i]); // Propriedades do material      
+//        }
         painelBoxSolicitação.add(verticalSolicitação);
         /**
          * ***************************************************************************
