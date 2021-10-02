@@ -91,8 +91,8 @@ public class ProjConcretoB_Interface extends JFrame {
     // KATRI   ************* DATA: 16/08/21 ***********************************
     // COPIADO DO CProtendido
     private JButton botão[];
-    private String NomeBotão[] = {"Seção Transversal", "Material", "Carregamento",
-        "Detalhamento", "ELU - Flexão"};
+    private String NomeBotão[] = {"Seção Transversal", "Material", "Detalhamento",
+        "Carregamento", "ELU - Flexão"};
     // 5 Botões
     // KATRI   ************* DATA: 16/08/21 ************************************
 
@@ -1929,39 +1929,12 @@ public class ProjConcretoB_Interface extends JFrame {
                     }// Fim dos eventos do botão[1] // Material
                     //******************************************************************
 
-                    //************************************************************************
-                    if (event.getSource() == botão[2]) // Solicitação
-                    {
-                        painelBoxSeção.setVisible(false);
-                        painelBoxMaterial.setVisible(false);
-                        add(painelBoxSolicitação, BorderLayout.EAST);
-                        painelBoxSolicitação.setVisible(true);
-                        painelBoxDetalhamento.setVisible(false);
-                        painelBoxFlexão.setVisible(false);
-                        //**************************************************************                        
-                        // Ação de evento das caixas de texto (campo de texto)
-                        for (int i = 0; i < CampoSolicitação.length; i++) {
-                            CampoSolicitação[i].addActionListener(
-                                    new ActionListener() {
-                                public void actionPerformed(ActionEvent event) {
-//                                    if (event.getSource() == CampoMaterial[0]) {
-//                                        //bDados.getMaterial()[0] = Double.parseDouble(event.getActionCommand());
-//                                        bDados.setfck(Double.parseDouble(event.getActionCommand()));
-//                                    }
-//                                    if (event.getSource() == CampoMaterial[1]) {
-//                                        //bDados.getMaterial()[2] = Double.parseDouble(event.getActionCommand());
-//
-//                                        bDados.setfyk(Double.parseDouble(event.getActionCommand()));
-//                                    }
-                                }
-                            }
-                            ); // Fim do ActionListener
-                        } // Fim do for das caixas de texto   
-                        //************************************************************        
-                    }// Fim dos eventos do botão[2] // Solicitação
-                    //*********************************************************** 
-
-                    if (event.getSource() == botão[3]) // Detalhamento
+                    
+                    
+                    
+                    
+                    
+                    if (event.getSource() == botão[2]) // Detalhamento
                     {
                         painelBoxMaterial.setVisible(false);
                         painelBoxSeção.setVisible(false);
@@ -1994,6 +1967,46 @@ public class ProjConcretoB_Interface extends JFrame {
                             ); // Fim do ActionListener CampoDetalhamento[i]
                         } // Fim do for
                     }// Fim if dos eventos do botão[4] // Detalhamento
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    //************************************************************************
+                    if (event.getSource() == botão[3]) // Solicitação
+                    {
+                        painelBoxSeção.setVisible(false);
+                        painelBoxMaterial.setVisible(false);
+                        add(painelBoxSolicitação, BorderLayout.EAST);
+                        painelBoxSolicitação.setVisible(true);
+                        painelBoxDetalhamento.setVisible(false);
+                        painelBoxFlexão.setVisible(false);
+                        //**************************************************************                        
+                        // Ação de evento das caixas de texto (campo de texto)
+                        for (int i = 0; i < CampoSolicitação.length; i++) {
+                            CampoSolicitação[i].addActionListener(
+                                    new ActionListener() {
+                                public void actionPerformed(ActionEvent event) {
+//                                    if (event.getSource() == CampoMaterial[0]) {
+//                                        //bDados.getMaterial()[0] = Double.parseDouble(event.getActionCommand());
+//                                        bDados.setfck(Double.parseDouble(event.getActionCommand()));
+//                                    }
+//                                    if (event.getSource() == CampoMaterial[1]) {
+//                                        //bDados.getMaterial()[2] = Double.parseDouble(event.getActionCommand());
+//
+//                                        bDados.setfyk(Double.parseDouble(event.getActionCommand()));
+//                                    }
+                                }
+                            }
+                            ); // Fim do ActionListener
+                        } // Fim do for das caixas de texto   
+                        //************************************************************        
+                    }// Fim dos eventos do botão[2] // Solicitação
+                    //*********************************************************** 
+
+                   
 
                     if (event.getSource() == botão[4]) // ELU - FLEXÃO
                     {

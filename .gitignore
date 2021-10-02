@@ -13,3 +13,11 @@ build/classes/ProjetoInterfaceConcreto/ProjConcretoB_Interface$8$3.class
 build/classes/ProjetoInterfaceConcreto/ProjConcretoB_Interface$8.class
 build/classes/ProjetoInterfaceConcreto/ProjConcretoB_Interface$9.class
 /dist/
+*.class
+build/classes/.netbeans_update_resources
+build/classes/.netbeans_automatic_build
+*.class
+*.class
+build/classes/main/java/view/Telaprincipal$1.class
+build/classes/main/java/view/Telaprincipal.class
+build/classes/ProjConcArmado/ProjConcretoA_Test.class
