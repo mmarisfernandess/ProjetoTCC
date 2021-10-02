@@ -121,6 +121,8 @@ public class ProjConcretoB_Dados {
         return Material;
     }
 
+    
+    
     // Md, Nd, e = Md/Nd (retorna o valor), Msd (retorna o valor), miSd (retorna o valor)
     public double[] getSolicitação() {
         return Solicitação;

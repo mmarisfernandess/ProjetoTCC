@@ -44,7 +44,10 @@ public class ProjConcretoB_Desenho extends JPanel implements MouseListener, Mous
     private ProjConcretoB_Arquivo dados;
     // Para desenhar seção e diagrama de deformação
     private int IcodeDesenhar; 
-    //IcodeDeformação; // VER DEPOIS &&&&&&&&&&&
+    private int IcodeDeformação;
+    private int IcodeArmadura;
+    
+    private double bw, h, dlinha;
     
     //******************************************************
     // 1*MÉTODO ******** Método Construtor   **********************
@@ -66,8 +69,11 @@ public class ProjConcretoB_Desenho extends JPanel implements MouseListener, Mous
        CampoXA = CampoX;
        CampoYA = CampoY;
        
-       IcodeDesenhar = 0; //**** VER DEPOIS &&&&&&&&&&&&&&
-       //IcodeDeformação = 0;
+       IcodeDesenhar = 0; 
+       IcodeDeformação = 0;
+       IcodeArmadura = 0;
+       
+       
     }    
     //********************************************************************
     // 2*MÉTODO ******** Método paintComponent (PARA DESENHAR)************
@@ -93,13 +99,36 @@ public class ProjConcretoB_Desenho extends JPanel implements MouseListener, Mous
         
         if(IcodeDesenhar==1)
         {
-             g2d.setColor(Color.BLACK);
+            g2d.setColor(Color.BLACK);
             // Chama o método desenhaEixos
             desenhaEixos(g2d);  
             g2d.setStroke(new BasicStroke(3.0f));
             DesenharSeção(g2d); 
         }
+        
+         if(IcodeDeformação==1)
+        { 
+            g2d.setStroke(new BasicStroke(3.0f));
+            DesenharDiagramaDeformação(g2d); 
+        }
   
+         
+         if(IcodeArmadura==1)
+        { 
+            g2d.setStroke(new BasicStroke(3.0f));
+            DesenharArmadura(g2d); 
+        }
+         
+         
+    }
+    
+    
+    
+    
+    public void desenhaEixos(Graphics g2d)
+    {
+        g2d.drawLine(centroX, centroY, iXD((Ximax-Ximin)/2*0.85), centroY);
+        g2d.drawLine(centroX, centroY, centroX, iYD((Yimax-Yimin)/2*0.85));
     }
     
     
@@ -138,13 +167,95 @@ public class ProjConcretoB_Desenho extends JPanel implements MouseListener, Mous
     }
     
     
-    public void desenhaEixos(Graphics g2d)
+    
+    public void DesenharDeformação()
     {
-        g2d.drawLine(centroX, centroY, iXD((Ximax-Ximin)/2*0.85), centroY);
-        g2d.drawLine(centroX, centroY, centroX, iYD((Yimax-Yimin)/2*0.85));
+        IcodeDeformação = 1;
+        repaint();
     }
     
     
+    public void DesenharDiagramaDeformação(Graphics2D g2d) 
+    {
+        double SeçãoHerda[] = dados.getSEÇÃO();
+        bw = SeçãoHerda[0];
+        h = SeçãoHerda[1];
+        dlinha = SeçãoHerda[2];
+        dlinha = 4.0; // 4 cm
+        
+       // g2d.translate(iXD(1.5*bw), 0);
+        
+        // Esd   e Ecd obter da programação da MARIANA
+        //double Esd =  9.0/1000.;
+        //double Ecd = 3.5/1000.;    
+        
+        double Esd =  2.0/1000.;
+        double Ecd = 3.5/1000.;  
+        
+        double []xx,yy;
+        xx = new double[5];   yy = new double[5];
+        xx[0]=   2.0*bw; 
+        yy[0]= - h/2;
+        
+        xx[1]=(2.0*bw - Esd*1000.0); // Escala do diagrama]
+        yy[1]= - h/2;
+        
+        xx[2]=(2.0*bw + Ecd*1000.0);          
+        yy[2]= + h/2;
+        
+        xx[3]=2.0*bw;  
+        yy[3]= + h/2;
+        
+        xx[4]=2.0*bw; 
+        yy[4]=- h/2;
+        
+        g2d.setColor(Color.GREEN);
+         int[]Px,Py;          
+         Px = new int[5];
+         Py = new int[5];
+         for(int i=0;i<5;i++)
+        {
+           Px[i]=iXD(xx[i]); 
+           Py[i]=iYD(yy[i]); 
+        }
+        g2d.drawPolyline(Px, Py, 5);   
+    }
+    
+    
+    
+    
+     public void DesenharBarrasAço()
+    {
+        IcodeArmadura = 1;
+        repaint();
+    }
+    
+   
+     
+    public void DesenharArmadura(Graphics2D g2d) 
+    {
+        g2d.setColor(Color.BLUE);
+        
+        
+        double x1 = bw/4 - bw/16;
+        double y1 = -h/2 + dlinha - bw/16;
+        double x2 = bw/4 - bw/16 + bw/8;
+        double y2 = - h/2 + dlinha - bw/16 + bw/8;  
+        
+        int A1x = iXD(x1);
+        int A1y = iYD(y1);
+        int A2x = iXD(x1);
+        int A2y = iYD(y1);
+        
+        g2d.fillOval(A1x, A1y, A2x, A2y);
+    }
+    
+    
+    
+    
+    
+/******************************************************************************/    
+
     
     
     

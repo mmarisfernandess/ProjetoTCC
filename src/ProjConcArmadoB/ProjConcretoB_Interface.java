@@ -57,14 +57,15 @@ public class ProjConcretoB_Interface extends JFrame {
 
     //Objeto "desenhar" da classe Desenho
     ProjConcretoB_Desenho desenhar;
-    
+
     ProjConcretoB_Dados bDados;
+
+    Carregamento carregamento;
 
     // VARIÁVEIS para o Material
     // Guardar 4 dados no vetor seção[4] = (fck, , , )
     // Variáveis obtidas das caixas de texto do Painel à direita
     //private double material[];
-
     // VARIÁVEIS para a Solicitação
     // Guardar 4 dados no vetor seção[4] = (fck, , , )
     // Variáveis obtidas das caixas de texto do Painel à direita
@@ -99,8 +100,7 @@ public class ProjConcretoB_Interface extends JFrame {
     private double SEÇÃO[];
 
     // VARIÁVEIS para o material
-   // private double Material[];
-    
+    // private double Material[];
     // Variáveis para o detalhamento da armadura 
     private double DETALHAMENTO[];
 
@@ -109,6 +109,7 @@ public class ProjConcretoB_Interface extends JFrame {
     // Caixa de combinação para armazenar nomes de ícones(figuras = fotos = imagens)
     private JComboBox menuSeçãoJComboBox;
     private JComboBox menuDetalhamentoJComboBox;
+    private JComboBox menuCarregamentoFlexãoJComboBox;
 
     // Cria vetor de nomes das imagens para depois carregá-las
     private String nomesImagens[] = {"SeçãoGen.jpg", "Seção_Retangular.jpg",
@@ -147,6 +148,9 @@ public class ProjConcretoB_Interface extends JFrame {
         "Armadura simples (1 camada)",
         "Armadura dupla"};
 
+    private static final String[] nomesCarregamentoFlexão = {"Selecione um tipo de flexão", "Flexão simples",
+        "Flexão composta"};
+
     private JLabel labelMenuSeção; // Rótulo para exibir a imagem selecionada     
     private String nomeSeçãoInterface;
     private JLabel labelMenuDetalhamento;
@@ -158,7 +162,8 @@ public class ProjConcretoB_Interface extends JFrame {
     public ProjConcretoB_Interface() {
         super("TCC Mariana Fernandes - Dimensionamento em CA de seções retangulares e T sob flexão");
         SEÇÃO = new double[8];
-        bDados =  new ProjConcretoB_Dados();
+        bDados = new ProjConcretoB_Dados();
+        carregamento = new Carregamento();
 
         //--->>> 1o PASSO = BARRA DE MENU -------<<<<<<<
         /**
@@ -1090,12 +1095,11 @@ public class ProjConcretoB_Interface extends JFrame {
 
         }
 
-        // Painel dos dados que serão calculados - não editáveis
-        LabelMaterial[10] = new JLabel("Propriedades do Material:");
-        painelMaterial[6] = new JPanel();
-        painelMaterial[6].add(LabelMaterial[10]);
-        painelMaterial[6].setBackground(new java.awt.Color(231, 234, 240));
-
+//        // Painel dos dados que serão calculados - não editáveis
+//        LabelMaterial[10] = new JLabel("Propriedades do Material:");
+//        painelMaterial[6] = new JPanel();
+//        painelMaterial[6].add(LabelMaterial[10]);
+//        painelMaterial[6].setBackground(new java.awt.Color(231, 234, 240));
         // PAINÉIS VISÍVEIS
         for (int i = 0; i <= 3; i++) {
             painelMaterial[i].setVisible(true);
@@ -1184,31 +1188,37 @@ public class ProjConcretoB_Interface extends JFrame {
 
         //******************* FIM DO painelBoxMaterial na esquerda (west)
         // ******************** ESFORÇOS SOLICITANTES - BOX VERTICAL ************************
-        JLabel LabelSolicitação[] = new JLabel[5]; //Vetor de Label
+        JLabel LabelSolicitação[] = new JLabel[9]; //Vetor de Label
 
-        LabelSolicitação[0] = new JLabel("Msd = ");
+        LabelSolicitação[0] = new JLabel("     Md = ");
+        LabelSolicitação[1] = new JLabel("    Nd = ");
+        LabelSolicitação[2] = new JLabel("e = ");
+        LabelSolicitação[3] = new JLabel("    Msd = ");
 
-        // Painel não editável 
-        LabelSolicitação[1] = new JLabel("µsd =  ");
+        JTextField CampoSolicitação[] = new JTextField[4];
 
-        JTextField CampoSolicitação[] = new JTextField[2];
+        LabelSolicitação[4] = new JLabel("kNm");
+        LabelSolicitação[5] = new JLabel("kN");
+        LabelSolicitação[6] = new JLabel("kNm");
 
-        LabelSolicitação[2] = new JLabel("MPa");
+        JPanel painelSolicitação[] = new JPanel[6];
+        FlowLayout layoutPainelSolicitação[] = new FlowLayout[4];
 
-        JPanel painelSolicitação[] = new JPanel[8];
-        FlowLayout layoutPainelSolicitação[] = new FlowLayout[8];
-
-        for (int i = 0; i <= 1; i++) {
-            CampoSolicitação[i] = new JTextField("",1);
+        for (int i = 0; i <= 3; i++) {
+            CampoSolicitação[i] = new JTextField("", 8);
             painelSolicitação[i] = new JPanel();
+            if (i <= 3) {
+                painelSolicitação[i].add(LabelSolicitação[i]);
+                painelSolicitação[i].add(CampoSolicitação[i]);
 
-            painelSolicitação[i].add(LabelSolicitação[i]);
-            painelSolicitação[i].add(CampoSolicitação[i]);
-            
-            if(i==0){
-                painelSolicitação[i].add(LabelSolicitação[2]);
+                if (i == 2) {
+                } else if (i == 3) {
+                    painelSolicitação[i].add(LabelSolicitação[i + 3]);
+                } else {
+                    painelSolicitação[i].add(LabelSolicitação[i + 4]);
+                }
+
             }
-            
 
             layoutPainelSolicitação[i] = new FlowLayout();
             layoutPainelSolicitação[i].setAlignment(FlowLayout.CENTER);
@@ -1219,28 +1229,39 @@ public class ProjConcretoB_Interface extends JFrame {
 
 // ************* ESTRUTURAÇÃO DOS PAINÉIS ********************
         // TÍTULOS DOS GRUPOS DE PAINÉIS
-        LabelSolicitação[3] = new JLabel("CARREGAMENTO");
-        LabelSolicitação[4] = new JLabel("Dados do Carregamento:");
-     
+        LabelSolicitação[7] = new JLabel("CARREGAMENTO");
+        LabelSolicitação[8] = new JLabel("Dados do Carregamento:");
 
-//        // Painel dos dados que serão calculados - não editáveis
-//        LabelSolicitação[5] = new JLabel("Carregamento:");
-//        painelSolicitação[2] = new JPanel();
-//        painelSolicitação[2].add(LabelSolicitação[5]);
-//        painelSolicitação[2].setBackground(new java.awt.Color(231, 234, 240));
+        for (int i = 4; i <= 5; i++) {
+            painelSolicitação[i] = new JPanel();
+            painelSolicitação[i].add(LabelSolicitação[i + 3]);
+            painelSolicitação[i].setBackground(new java.awt.Color(231, 234, 240));
 
-        // PAINÉIS VISÍVEIS
-        for (int i = 0; i <= 1; i++) {
-            painelSolicitação[i].setVisible(true);
         }
 
-        //painelSolicitação[2].setVisible(true);
-        //painelSolicitação[5].setVisible(true); // False nas Propriedades do material 
-
-      
+        // PAINÉIS VISÍVEIS
+        for (int i = 0; i <= 3; i++) {
+            painelSolicitação[i].setVisible(true);
+        }
         // Painel não editável - visibilidade falsa 
+        CampoSolicitação[0].setEditable(false);
         CampoSolicitação[1].setEditable(false);
-        
+        CampoSolicitação[2].setEditable(false);
+        CampoSolicitação[3].setEditable(false);
+
+        // MENU DE ESCOLHA DO TIPO DE FLEXÃO - SIMPLES OU COMPOSTA  *********
+        //******************************************************************
+        // Inicializa objeto JComboBox, para o vetor nomesSeção
+        menuCarregamentoFlexãoJComboBox = new JComboBox(nomesCarregamentoFlexão);
+        menuCarregamentoFlexãoJComboBox.setMaximumRowCount(3); // Exibe 2 linhas (2 armaduras)
+
+        JPanel painelCarregamentoFlexãoJComboBox = new JPanel();
+        painelCarregamentoFlexãoJComboBox.setBackground(new java.awt.Color(231, 234, 240));
+        // Coloca em um painel 
+        painelCarregamentoFlexãoJComboBox.add(menuCarregamentoFlexãoJComboBox);
+        /**
+         * ***************************************************************************
+         */
 
         /**
          * **** ESPAÇADOR INVISÍVEL DO PAINEL DE CARREGAMENTO
@@ -1262,20 +1283,22 @@ public class ProjConcretoB_Interface extends JFrame {
          * **** BOTÃO para Calcular Propriedades do Carregamento
          * ***************************************************
          */
-        JButton BotãoCalcCarreg = new JButton("Calcular µsd");
-        JPanel painelSolicitaçãoBotãoCalcCarreg = new JPanel();
+        JButton BotãoCalcExcentricidade = new JButton("Calcular excentricidade");
+        BotãoCalcExcentricidade.setEnabled(false);
+        BotãoCalcExcentricidade.setText("Selecione uma flexão");
+        JPanel painelSolicitaçãoBotãoCalcExcentricidade = new JPanel();
 
-        painelSolicitaçãoBotãoCalcCarreg.add(BotãoCalcCarreg);
+        painelSolicitaçãoBotãoCalcExcentricidade.add(BotãoCalcExcentricidade);
 
-        painelSolicitaçãoBotãoCalcCarreg.setVisible(true);
-        painelSolicitaçãoBotãoCalcCarreg.setBackground(new java.awt.Color(231, 234, 240));
-        painelSolicitaçãoBotãoCalcCarreg.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
-        painelSolicitaçãoBotãoCalcCarreg.setLayout(new FlowLayout());
+        painelSolicitaçãoBotãoCalcExcentricidade.setVisible(true);
+        painelSolicitaçãoBotãoCalcExcentricidade.setBackground(new java.awt.Color(231, 234, 240));
+        painelSolicitaçãoBotãoCalcExcentricidade.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+        painelSolicitaçãoBotãoCalcExcentricidade.setLayout(new FlowLayout());
         /**
          * ***************************************************************************
          */
 
-//*********** PAINEL PRINCIPAL DE PROPRIEDADES DO MATERIAL *******
+//*********** PAINEL PRINCIPAL DE PROPRIEDADES DO CARREGAMENTO *******
         JPanel painelBoxSolicitação = new JPanel();
         painelBoxSolicitação.setBackground(new java.awt.Color(231, 234, 240));
 //****************************************************************
@@ -1286,38 +1309,52 @@ public class ProjConcretoB_Interface extends JFrame {
          */
         Box verticalSolicitação = Box.createVerticalBox();
 
-       
         verticalSolicitação.add(painelSolicitaçãoInv);// Espaçador para padronizar tamanho   
-        verticalSolicitação.add(LabelSolicitação[3]);
-        verticalSolicitação.add(LabelSolicitação[4]);
+        verticalSolicitação.add(painelSolicitação[4]);
+        verticalSolicitação.add(painelSolicitação[5]);
+        verticalSolicitação.add(painelCarregamentoFlexãoJComboBox);
         verticalSolicitação.add(painelSolicitação[0]);// Material
-        verticalSolicitação.add(painelSolicitaçãoBotãoCalcCarreg);   // Botão = Calcula as propriedades do material  
-        verticalSolicitação.add(painelSolicitação[1]);// Tipo de Seção
+        verticalSolicitação.add(painelSolicitação[1]);
+        verticalSolicitação.add(painelSolicitaçãoBotãoCalcExcentricidade);   // Botão = Calcula as propriedades do material  
+        verticalSolicitação.add(painelSolicitação[2]);// Tipo de Seção
+        verticalSolicitação.add(painelSolicitação[3]);
 
-        //verticalSolicitação.add(painelSolicitaçãolabelMenuSolicitação); // Label Figuras das seções                        
-       // verticalSolicitação.add(painelSolicitação[2]);//Dimensões das Seções        
-       // for (int i = 0; i <= 1; i++) {
-       //     verticalSolicitação.add(painelSolicitação[i]); // Dimensões das seções
-        //}
-        // Botão = Calcula as propriedades do material        
-       // verticalSolicitação.add(painelSolicitação[3]); // Propridades do material
-
-//        for (int i = 2; i <= 3; i++) {
-//            verticalSolicitação.add(painelSolicitação[i]); // Propriedades do material      
-//        }
         painelBoxSolicitação.add(verticalSolicitação);
         /**
          * ***************************************************************************
          */
 
         /**
-         * **** ADIÇÃO DO PAINEL PRINCIPAL DE PROPRIEDADES DAS SEÇÕES A DIREITA
-         * ********
+         * **** ADIÇÃO DO PAINEL PRINCIPAL DE PROPRIEDADES DO CARREGAMENTO À
+         * DIREITA ********
          */
         add(painelBoxSolicitação, BorderLayout.EAST);
         /**
          * ***************************************************************************
          */
+        
+        menuCarregamentoFlexãoJComboBox.addItemListener(
+                new ItemListener() {
+            public void itemStateChanged(ItemEvent event) {
+                
+                BotãoCalcExcentricidade.setEnabled(true);
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    //labelMenuDetalhamento.setIcon(icons[menuCarregamentoFlexãoJComboBox.getSelectedIndex()]);
+                    if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1) {
+                        CampoSolicitação[0].setEditable(false);
+                        CampoSolicitação[1].setEditable(false);
+                        CampoSolicitação[3].setEditable(true);
+                        BotãoCalcExcentricidade.setText("Calcular Msd");
+                    } else {
+                        CampoSolicitação[0].setEditable(true);
+                        CampoSolicitação[1].setEditable(true);
+                        CampoSolicitação[3].setEditable(false);
+                        BotãoCalcExcentricidade.setText("Calcular excentricidade");
+                    }
+                }
+            }
+        }
+        );
 
         //******************* FIM DO painelBoxSolicitação na esquerda (west)
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1348,7 +1385,7 @@ public class ProjConcretoB_Interface extends JFrame {
         FlowLayout layoutPainelDetalhamento[] = new FlowLayout[10];
 
         for (int i = 0; i <= 4; i++) {
-            CampoDetalhamento[i] = new JTextField("", 3);
+            CampoDetalhamento[i] = new JTextField("", 4);
             painelDetalhamento[i] = new JPanel();
 
             painelDetalhamento[i].add(LabelDetalhamento[i]);
@@ -1572,7 +1609,7 @@ public class ProjConcretoB_Interface extends JFrame {
         );
 
         /**
-         * **** PAINEL PRINCIPAL DE PROPRIEDADES DAS SEÇÕES
+         * **** PAINEL PRINCIPAL DE PROPRIEDADES DO DETALHAMENTO
          * **************************
          */
         JPanel painelBoxDetalhamento = new JPanel();
@@ -1582,8 +1619,8 @@ public class ProjConcretoB_Interface extends JFrame {
          */
 
         /**
-         * **** ESTRUTURA VERTICAL DO PAINEL PRINCIPAL DE PROPRIEDADES DAS
-         * SEÇÕES ****
+         * **** ESTRUTURA VERTICAL DO PAINEL PRINCIPAL DE PROPRIEDADES DO
+         * DETALHAMENTO ****
          */
         Box verticalDetalhamento = Box.createVerticalBox();
         verticalDetalhamento.add(Box.createVerticalStrut(5));
@@ -1612,14 +1649,185 @@ public class ProjConcretoB_Interface extends JFrame {
          */
 
         /**
-         * **** ADIÇÃO DO PAINEL PRINCIPAL DE PROPRIEDADES DAS SEÇÕES A DIREITA
-         * ********
+         * **** ADIÇÃO DO PAINEL PRINCIPAL DE PROPRIEDADES DO DETALHAMENTO À
+         * DIREITA ********
          */
         add(painelBoxDetalhamento, BorderLayout.EAST);
         /**
          * ***************************************************************************
          */
 
+        //*************************** BOX ELU – FLEXÃO **************************
+// ******************** PAINEL PROPRIEDADES DA FLEXÃO ***************
+        JLabel LabelFlexão[] = new JLabel[8]; //Vetor de Label
+
+        // Painéis com dados que serão calculados e fornecidos (não editáveis)
+        LabelFlexão[0] = new JLabel("µsd = ");
+        LabelFlexão[1] = new JLabel("Domínio = ");
+        LabelFlexão[2] = new JLabel("As = ");
+        LabelFlexão[3] = new JLabel("cm2");
+
+        JTextField CampoFlexão[] = new JTextField[3];
+
+        JPanel painelFlexão[] = new JPanel[8];
+        FlowLayout layoutPainelFlexão[] = new FlowLayout[8];
+
+        for (int i = 0; i <= 2; i++) {
+            CampoFlexão[i] = new JTextField("", 8);
+            painelFlexão[i] = new JPanel();
+
+            painelFlexão[i].add(LabelFlexão[i]);
+            painelFlexão[i].add(CampoFlexão[i]);
+
+            layoutPainelFlexão[i] = new FlowLayout();
+            layoutPainelFlexão[i].setAlignment(FlowLayout.CENTER);
+            painelFlexão[i].setLayout(layoutPainelFlexão[i]);
+            painelFlexão[i].setBackground(new java.awt.Color(231, 234, 240));
+
+        }
+
+        painelFlexão[2].add(LabelFlexão[3]);
+
+        // ************* ESTRUTURAÇÃO DOS PAINÉIS ********************
+        // TÍTULOS DOS GRUPOS DE PAINÉIS
+        LabelFlexão[4] = new JLabel("ELU – FLEXÃO");
+        LabelFlexão[5] = new JLabel("");
+
+        for (int i = 4; i <= 5; i++) {
+            painelFlexão[i] = new JPanel();
+            painelFlexão[i].add(LabelFlexão[i]);
+            painelFlexão[i].setBackground(new java.awt.Color(231, 234, 240));
+        }
+
+//         Painel dos dados que serão calculados - não editáveis
+        LabelFlexão[6] = new JLabel("      ");
+        LabelFlexão[7] = new JLabel("                 ");
+        painelFlexão[0].add(LabelFlexão[6]);
+        painelFlexão[1].add(LabelFlexão[7]);
+//        painelFlexão[3] = new JPanel();
+//        painelFlexão[3].add(LabelFlexão[6]);
+//        painelFlexão[3].setBackground(new java.awt.Color(231, 234, 240));
+
+        // PAINÉIS VISÍVEIS
+        for (int i = 0; i <= 2; i++) {
+            painelFlexão[i].setVisible(true);
+        }
+
+        painelFlexão[4].setVisible(true);
+        painelFlexão[5].setVisible(true); // False nas Propriedades do material 
+
+        for (int i = 0; i <= 2; i++) {
+            CampoFlexão[i].setEditable(false);
+        }
+
+        /**
+         * **** ESPAÇADOR INVISÍVEL DO PAINEL DE MATERIAL
+         * *******************************
+         */
+        JTextField CampoFlexãoInv = new JTextField("", 25);
+        CampoFlexãoInv.setBackground(new java.awt.Color(231, 234, 240));
+        CampoFlexãoInv.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+        CampoFlexãoInv.setEditable(false);
+
+        JPanel painelFlexãoInv = new JPanel();
+
+        painelFlexãoInv.setBackground(new java.awt.Color(231, 234, 240));
+        painelFlexãoInv.add(CampoFlexãoInv);
+        /**
+         * ***************************************************************************
+         */
+
+        /**
+         * **** BOTÃO para Calcular o Domínio de Funcionamento
+         * ***************************************************
+         */
+        JButton BotãoFlexãomiSd = new JButton("Calcular µsd");
+        JPanel painelFlexãoBotãoFlexãomiSd = new JPanel();
+
+        painelFlexãoBotãoFlexãomiSd.add(BotãoFlexãomiSd);
+
+        painelFlexãoBotãoFlexãomiSd = this.adicionarLayoutBotao(painelFlexãoBotãoFlexãomiSd);
+//        painelFlexãoBotãoFlexãomiSd.setVisible(true);
+//        painelFlexãoBotãoFlexãomiSd.setBackground(new java.awt.Color(231, 234, 240));
+//        painelFlexãoBotãoFlexãomiSd.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+//        painelFlexãoBotãoFlexãomiSd.setLayout(new FlowLayout());
+        /**
+         * ***************************************************************************
+         */
+
+        /**
+         * **** BOTÃO para Calcular o Domínio de Funcionamento
+         * ***************************************************
+         */
+        JButton BotãoCalcDomínioFlexão = new JButton("Domínio de funcionamento da seção");
+        JPanel painelFlexãoBotãoCalcDomínioFlexão = new JPanel();
+
+        painelFlexãoBotãoCalcDomínioFlexão.add(BotãoCalcDomínioFlexão);
+
+        painelFlexãoBotãoCalcDomínioFlexão.setVisible(true);
+        painelFlexãoBotãoCalcDomínioFlexão.setBackground(new java.awt.Color(231, 234, 240));
+        painelFlexãoBotãoCalcDomínioFlexão.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+        painelFlexãoBotãoCalcDomínioFlexão.setLayout(new FlowLayout());
+        /**
+         * ***************************************************************************
+         */
+
+        /**
+         * **** BOTÃO para Calcular Armadura de Flexão
+         * ***************************************************
+         */
+        JButton BotãoCalcArmaduraFlexão = new JButton("Calcular a armadura");
+        JPanel painelFlexãoBotãoCalcArmaduraFlexão = new JPanel();
+
+        painelFlexãoBotãoCalcArmaduraFlexão.add(BotãoCalcArmaduraFlexão);
+
+        painelFlexãoBotãoCalcArmaduraFlexão = this.adicionarLayoutBotao(painelFlexãoBotãoCalcArmaduraFlexão);
+        /**
+         * ***************************************************************************
+         */
+
+//*********** PAINEL PRINCIPAL DE PROPRIEDADES DO MATERIAL *******
+        JPanel painelBoxFlexão = new JPanel();
+        painelBoxFlexão.setBackground(new java.awt.Color(231, 234, 240));
+//****************************************************************
+
+        /**
+         * **** ESTRUTURA VERTICAL DO PAINEL PRINCIPAL DE PROPRIEDADES DAS
+         * SEÇÕES ****
+         */
+        Box verticalFlexão = Box.createVerticalBox();
+
+        verticalFlexão.add(painelFlexãoInv);// Espaçador para padronizar tamanho        
+        verticalFlexão.add(painelFlexão[4]);// Material
+
+        //verticalMaterial.add(painelMateriallabelMenuMaterial); // Label Figuras das seções                        
+        verticalFlexão.add(painelFlexão[5]);//Dimensões das Seções        
+        verticalFlexão.add(painelFlexãoBotãoFlexãomiSd);
+        verticalFlexão.add(painelFlexão[0]);
+        verticalFlexão.add(painelFlexãoBotãoCalcDomínioFlexão); // Botão = Calcula as propriedades do material   
+        verticalFlexão.add(painelFlexão[1]);
+        verticalFlexão.add(painelFlexãoBotãoCalcArmaduraFlexão); // Botão = Calcula as propriedades do material 
+        verticalFlexão.add(painelFlexão[2]);
+//        verticalFlexão.add(painelFlexão[3]); // Propridades do material
+
+//        for (int i = 0; i <= 2; i++) {
+//            verticalFlexão.add(painelFlexão[i]); // Propriedades do material      
+//        }
+        painelBoxFlexão.add(verticalFlexão);
+        /**
+         * ***************************************************************************
+         */
+
+        /**
+         * **** ADIÇÃO DO PAINEL PRINCIPAL DE PROPRIEDADES DAS SEÇÕES A DIREITA
+         * ********
+         */
+        add(painelBoxFlexão, BorderLayout.EAST);
+        /**
+         * ***************************************************************************
+         */
+
+        //******************* FIM DO painelBoxFlexão na direita (east)
         //*********************************** KATRI DATA: 18.08.2021 ***********************************
         ////---->>>>> Adiciona AÇÃO DE EVENTOS aos botões do TOPO (NORTH)       
         for (int i = 0; i < botão.length; i++) {
@@ -1633,6 +1841,7 @@ public class ProjConcretoB_Interface extends JFrame {
                         painelBoxSeção.setVisible(true);
                         painelBoxSolicitação.setVisible(false);
                         painelBoxDetalhamento.setVisible(false);
+                        painelBoxFlexão.setVisible(false);
                         //**************************************************************                        
                         // Ação de evento das caixas de texto (campo de texto)
                         for (int i = 0; i < CampoSeção.length; i++) {
@@ -1696,19 +1905,20 @@ public class ProjConcretoB_Interface extends JFrame {
                         painelBoxSeção.setVisible(false);
                         painelBoxSolicitação.setVisible(false);
                         painelBoxDetalhamento.setVisible(false);
+                        painelBoxFlexão.setVisible(false);
                         //**************************************************************                        
                         // Ação de evento das caixas de texto (campo de texto)
                         for (int i = 0; i < CampoMaterial.length; i++) {
                             CampoMaterial[i].addActionListener(
                                     new ActionListener() {
                                 public void actionPerformed(ActionEvent event) {
-                                    if (event.getSource() == CampoMaterial[0]) {                                       
+                                    if (event.getSource() == CampoMaterial[0]) {
                                         //bDados.getMaterial()[0] = Double.parseDouble(event.getActionCommand());
                                         bDados.setfck(Double.parseDouble(event.getActionCommand()));
                                     }
                                     if (event.getSource() == CampoMaterial[1]) {
                                         //bDados.getMaterial()[2] = Double.parseDouble(event.getActionCommand());
-                                        
+
                                         bDados.setfyk(Double.parseDouble(event.getActionCommand()));
                                     }
                                 }
@@ -1727,22 +1937,22 @@ public class ProjConcretoB_Interface extends JFrame {
                         add(painelBoxSolicitação, BorderLayout.EAST);
                         painelBoxSolicitação.setVisible(true);
                         painelBoxDetalhamento.setVisible(false);
+                        painelBoxFlexão.setVisible(false);
                         //**************************************************************                        
                         // Ação de evento das caixas de texto (campo de texto)
                         for (int i = 0; i < CampoSolicitação.length; i++) {
                             CampoSolicitação[i].addActionListener(
                                     new ActionListener() {
                                 public void actionPerformed(ActionEvent event) {
-                                    if (event.getSource() == CampoSolicitação[0]) {
-                                        solicitação[0] = Double.parseDouble(event.getActionCommand());
-                                        //dados.setSeçãoGrafica(solicitação);                  
-                                    }
-                                    if (event.getSource() == CampoSolicitação[1]) {
-                                        solicitação[1] = Double.parseDouble(event.getActionCommand());
-                                    }
-                                    if (event.getSource() == CampoSolicitação[2]) {
-                                        solicitação[2] = Double.parseDouble(event.getActionCommand());
-                                    }
+//                                    if (event.getSource() == CampoMaterial[0]) {
+//                                        //bDados.getMaterial()[0] = Double.parseDouble(event.getActionCommand());
+//                                        bDados.setfck(Double.parseDouble(event.getActionCommand()));
+//                                    }
+//                                    if (event.getSource() == CampoMaterial[1]) {
+//                                        //bDados.getMaterial()[2] = Double.parseDouble(event.getActionCommand());
+//
+//                                        bDados.setfyk(Double.parseDouble(event.getActionCommand()));
+//                                    }
                                 }
                             }
                             ); // Fim do ActionListener
@@ -1758,6 +1968,7 @@ public class ProjConcretoB_Interface extends JFrame {
                         painelBoxSolicitação.setVisible(false);
                         add(painelBoxDetalhamento, BorderLayout.EAST);
                         painelBoxDetalhamento.setVisible(true);
+                        painelBoxFlexão.setVisible(false);
                         //**************************************************************                        
                         // Ação de evento das caixas de texto (campo de texto)
                         for (int i = 0; i < CampoDetalhamento.length; i++) {
@@ -1784,6 +1995,40 @@ public class ProjConcretoB_Interface extends JFrame {
                         } // Fim do for
                     }// Fim if dos eventos do botão[4] // Detalhamento
 
+                    if (event.getSource() == botão[4]) // ELU - FLEXÃO
+                    {
+                        painelBoxMaterial.setVisible(false);
+                        painelBoxSeção.setVisible(false);
+                        painelBoxSolicitação.setVisible(false);
+                        painelBoxDetalhamento.setVisible(false);
+                        painelBoxFlexão.setVisible(true);
+                        add(painelBoxFlexão, BorderLayout.EAST);
+                        //**************************************************************                        
+                        // Ação de evento das caixas de texto (campo de texto)
+                        for (int i = 0; i < CampoFlexão.length; i++) {
+                            CampoFlexão[i].addActionListener(
+                                    new ActionListener() {
+                                public void actionPerformed(ActionEvent event) {
+                                    if (event.getSource() == CampoFlexão[0]) // c nom
+                                    {  // Está na classe Dados
+                                        dados.setcNom(Double.parseDouble(event.getActionCommand()));
+                                    }
+
+                                    if (event.getSource() == CampoDetalhamento[1]) // ϕt
+                                    {
+                                        dados.setfiT(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoDetalhamento[2]) // ϕ
+                                    {
+                                        dados.setfi(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    //********************************************************
+                                } // Fim do método actionPerformed     
+                            } // Fim da classe interna anônima       
+                            ); // Fim do ActionListener CampoDetalhamento[i]
+                        } // Fim do for
+                    }// Fim if dos eventos do botão[4] // ELU – FLEXÃO
+
                 }
             }
             );
@@ -1803,8 +2048,10 @@ public class ProjConcretoB_Interface extends JFrame {
                         dados.setPoligonalGAUSS();// Na classe PropGeomGAUSS
                         dados.setPropGeométricas();// Na classe PropGeomGAUSS
                         dados.setPoligonalCG();// Na classe PropGeomGAUSS                         
+
                         desenhar.DesenharPoligonal();   // Na classe Desenho  
-                        //desenhar.desenharDeformação();
+                        desenhar.DesenharDeformação();
+                        desenhar.DesenharBarrasAço();
                     }
                 }
                 //****************************************************************
@@ -1877,21 +2124,41 @@ public class ProjConcretoB_Interface extends JFrame {
         }
         );
         //*********************************************************************/
-        
+
         BotãoPropMaterial.addActionListener(
                 new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 if (bDados != null) {
-                     bDados.setfck(Double.parseDouble(CampoMaterial[0].getText()));
-                     bDados.setfyk(Double.parseDouble(CampoMaterial[1].getText()));
-                     
-                    CampoMaterial[2].setText(String.format("%.3f",bDados.getMaterial()[1]));
-                    CampoMaterial[3].setText(String.format("%.3f",bDados.getMaterial()[3]));
+                    bDados.setfck(Double.parseDouble(CampoMaterial[0].getText()));
+                    bDados.setfyk(Double.parseDouble(CampoMaterial[1].getText()));
+
+                    CampoMaterial[2].setText(String.format("%.3f", bDados.getMaterial()[1]));
+                    CampoMaterial[3].setText(String.format("%.3f", bDados.getMaterial()[3]));
                 }
             }
         }
         );
-        
+        BotãoCalcExcentricidade.addActionListener(
+                new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                if (carregamento != null && menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 2) {
+                    carregamento.calculaExentricidade(
+                            Double.parseDouble(CampoSolicitação[0].getText()),
+                            Double.parseDouble(CampoSolicitação[1].getText())
+                    );
+                    CampoSolicitação[2].setText(String.format("%.3f", carregamento.e));                    
+                } else if(menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1){
+//                     carregamento.calculaMicroSD(
+//                             Double.parseDouble(CampoSolicitação[0].getText()),
+//                             SEÇÃO[0],
+//                             d,
+//                             Double.parseDouble(CampoMaterial[2].getText()));                                      
+//
+//                    CampoSolicitação[2].setText(String.format("%.3f", carregamento.e));
+                }
+            }
+        }
+        );
 
     }// Fim do 1* método CONSTRUTOR
 //*********************************************************************/   
@@ -1921,6 +2188,14 @@ public class ProjConcretoB_Interface extends JFrame {
         }
         return fileName;
     }// Fim do método getFileOrDirectory
+
+    private JPanel adicionarLayoutBotao(JPanel painelBotao) {
+        painelBotao.setVisible(true);
+        painelBotao.setBackground(new java.awt.Color(231, 234, 240));
+        painelBotao.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+        painelBotao.setLayout(new FlowLayout());
+        return painelBotao;
+    }
     /**
      * **********************************************************************
      */
