@@ -1251,6 +1251,7 @@ public class ProjConcretoB_Interface extends JFrame {
         CampoSolicitação[1].setEditable(false);
         CampoSolicitação[2].setEditable(false);
         CampoSolicitação[3].setEditable(false);
+        CampoSolicitação[4].setEditable(false);
 
         // MENU DE ESCOLHA DO TIPO DE FLEXÃO - SIMPLES OU COMPOSTA  *********
         //******************************************************************
@@ -1338,24 +1339,48 @@ public class ProjConcretoB_Interface extends JFrame {
          * ***************************************************************************
          */
 
+
+
         menuCarregamentoFlexãoJComboBox.addItemListener(
                 new ItemListener() {
                     public void itemStateChanged(ItemEvent event) {
-
+                        CampoSolicitação[0].setEditable(true);
+                        CampoSolicitação[1].setEditable(true);
+                        CampoSolicitação[2].setEditable(true);
                         BotãoCalcExcentricidade.setEnabled(true);
                         if (event.getStateChange() == ItemEvent.SELECTED) {
                             //labelMenuDetalhamento.setIcon(icons[menuCarregamentoFlexãoJComboBox.getSelectedIndex()]);
                             if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1) {
+                                painelSolicitação[0].setVisible(false);
+                                painelSolicitação[1].setVisible(false);
+                                painelSolicitação[3].setVisible(false);
+
+                                painelSolicitação[2].setVisible(true);
+                                painelSolicitação[4].setVisible(true);
+                                BotãoCalcExcentricidade.setText("Calcular µsd");
+                            } else if(menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 2){
+                                painelSolicitação[0].setVisible(true);
+                                painelSolicitação[1].setVisible(true);
+                                painelSolicitação[2].setVisible(false);
+
+                                painelSolicitação[3].setVisible(true);
+                                painelSolicitação[4].setVisible(true);
+                                BotãoCalcExcentricidade.setText("Calcular excentricidade");
+                            }else{
                                 CampoSolicitação[0].setEditable(false);
                                 CampoSolicitação[1].setEditable(false);
-                                CampoSolicitação[3].setEditable(true);
-                                BotãoCalcExcentricidade.setText("Calcular Msd");
-                            } else {
-                                CampoSolicitação[0].setEditable(true);
-                                CampoSolicitação[1].setEditable(true);
+                                CampoSolicitação[2].setEditable(false);
                                 CampoSolicitação[3].setEditable(false);
-                                BotãoCalcExcentricidade.setText("Calcular excentricidade");
+                                CampoSolicitação[4].setEditable(false);
+
+                                painelSolicitação[0].setVisible(true);
+                                painelSolicitação[1].setVisible(true);
+                                painelSolicitação[2].setVisible(true);
+                                painelSolicitação[3].setVisible(true);
+                                painelSolicitação[4].setVisible(true);
+                                BotãoCalcExcentricidade.setText("Selecione uma flexão");
                             }
+
                         }
                     }
                 }
