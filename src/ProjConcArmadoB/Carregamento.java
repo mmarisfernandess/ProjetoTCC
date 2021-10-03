@@ -17,9 +17,9 @@ public class Carregamento {
         e = md/nd;
     }
     
-    public Double calculaMicroSD(Double msd, Double bw, Double d, Double fcd){
+    public Double calculaMicroSD(Double momento, Double bw, Double d, Double fcd){
         // Calcular o parâmetro miSd = Msd/bw*d2*fcd = Solicitação[1] = mid
-        this.microSD = msd*1000/(bw*(d*d)*fcd);
+        this.microSD = momento*1000/(bw*(d*d)*fcd);
         return microSD;
     }
 }
