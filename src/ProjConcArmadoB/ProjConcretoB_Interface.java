@@ -2135,6 +2135,10 @@ public class ProjConcretoB_Interface extends JFrame {
         BotãoPropGeom.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent event) {
+                        dados.setbw(Double.parseDouble(CampoSeção[0].getText()));
+                        SEÇÃO[0] = Double.parseDouble(CampoSeção[0].getText());
+                        dados.seth(Double.parseDouble(CampoSeção[1].getText()));
+                        SEÇÃO[1] = Double.parseDouble(CampoSeção[1].getText());
                         if (dados != null) {
                             // Calcula as propriedades geométricas
                             // Está na classe de PropGeomGAUSS
@@ -2152,6 +2156,7 @@ public class ProjConcretoB_Interface extends JFrame {
                             CampoSeção[13].setText(String.format("%.2f", PropSeção[5]));
 
                         }
+
                     }
                 }
         );
