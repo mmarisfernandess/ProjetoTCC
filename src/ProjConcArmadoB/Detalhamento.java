@@ -21,8 +21,9 @@ public class Detalhamento {
         return dLinha;
     }
     public Double calculaD(Double h){
-        this.d = h - this.dLinha;
-        return d;
+        Long d = Math.round(h - this.dLinha);
+        this.d = Double.parseDouble(d.toString());
+        return this.d;
     }
     public Double calculaD(Double h, Double dLinha){
         this.d = h - dLinha;

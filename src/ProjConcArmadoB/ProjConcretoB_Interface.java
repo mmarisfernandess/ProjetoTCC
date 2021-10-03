@@ -100,7 +100,7 @@ public class ProjConcretoB_Interface extends JFrame {
     // KATRI   ************* DATA: 16/08/21 ************************************
 
     // VARIÁVEIS para a seção transversal
-    private double SEÇÃO[];
+    private Double SEÇÃO[];
 
     // VARIÁVEIS para o material
     // private double Material[];
@@ -164,7 +164,7 @@ public class ProjConcretoB_Interface extends JFrame {
     // 1o método Construtor - para programar todo o layout da janela
     public ProjConcretoB_Interface() {
         super("TCC Mariana Fernandes - Dimensionamento em CA de seções retangulares e T sob flexão");
-        SEÇÃO = new double[8];
+        SEÇÃO = new Double[8];
         bDados = new ProjConcretoB_Dados();
         carregamento = new Carregamento();
         detalhamento = new Detalhamento();
@@ -2158,8 +2158,8 @@ public class ProjConcretoB_Interface extends JFrame {
                             CampoDetalhamento[3].setText(String.format("%.3f", detalhamento.dLinha));
 
                             detalhamento.calculaD(Double.parseDouble(CampoSeção[1].getText()));
-                            Long d = Math.round(detalhamento.d);
-                            CampoDetalhamento[4].setText(String.format("%.3f", Double.parseDouble(d.toString())));
+
+                            CampoDetalhamento[4].setText(String.format("%.3f",detalhamento.d));
                         }
                     }
                 }
@@ -2175,13 +2175,20 @@ public class ProjConcretoB_Interface extends JFrame {
                             );
                             CampoSolicitação[2].setText(String.format("%.3f", carregamento.e));
                         } else if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1) {
-//                     carregamento.calculaMicroSD(
-//                             Double.parseDouble(CampoSolicitação[0].getText()),
-//                             SEÇÃO[0],
-//                             d,
-//                             Double.parseDouble(CampoMaterial[2].getText()));                                      
-//
-//                    CampoSolicitação[2].setText(String.format("%.3f", carregamento.e));
+                            Double microSd = carregamento.calculaMicroSD(
+                                    Double.parseDouble(CampoSolicitação[3].getText()),
+                                    SEÇÃO[0],
+                                    detalhamento.d,
+                                    Double.parseDouble(CampoMaterial[2].getText().replace(",", ".")));
+
+                            /*System.out.println(CampoSolicitação[3].getText());
+                            System.out.println(SEÇÃO[0]);
+                            System.out.println(detalhamento.d);
+                            System.out.println(Double.parseDouble(CampoMaterial[2].getText()));
+                            System.out.println(carregamento.microSD);*/
+
+                            String resutadoFinal = String.format(microSd.toString());
+                            CampoSolicitação[2].setText(String.format("%.3f", microSd));
                         }
                     }
                 }
