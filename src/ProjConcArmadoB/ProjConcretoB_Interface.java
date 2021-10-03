@@ -1357,6 +1357,7 @@ public class ProjConcretoB_Interface extends JFrame {
                                 painelSolicitação[2].setVisible(true);
                                 painelSolicitação[4].setVisible(true);
                                 BotãoCalcExcentricidade.setText("Calcular µsd");
+                                CampoSolicitação[4].setText("");
                             } else if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 2) {
                                 painelSolicitação[0].setVisible(true);
                                 painelSolicitação[1].setVisible(true);
@@ -1364,7 +1365,8 @@ public class ProjConcretoB_Interface extends JFrame {
 
                                 painelSolicitação[3].setVisible(true);
                                 painelSolicitação[4].setVisible(true);
-                                BotãoCalcExcentricidade.setText("Calcular excentricidade");
+                                BotãoCalcExcentricidade.setText("Calcular excentricidade e µsd");
+                                CampoSolicitação[4].setText("");
                             } else {
                                 CampoSolicitação[0].setEditable(false);
                                 CampoSolicitação[1].setEditable(false);
@@ -1378,6 +1380,7 @@ public class ProjConcretoB_Interface extends JFrame {
                                 painelSolicitação[3].setVisible(true);
                                 painelSolicitação[4].setVisible(true);
                                 BotãoCalcExcentricidade.setText("Selecione uma flexão");
+                                CampoSolicitação[4].setText("");
                             }
 
                         }
