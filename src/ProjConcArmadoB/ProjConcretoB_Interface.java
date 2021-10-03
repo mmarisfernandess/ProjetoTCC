@@ -1192,37 +1192,33 @@ public class ProjConcretoB_Interface extends JFrame {
 
         //******************* FIM DO painelBoxMaterial na esquerda (west)
         // ******************** ESFORÇOS SOLICITANTES - BOX VERTICAL ************************
-        JLabel LabelSolicitação[] = new JLabel[9]; //Vetor de Label
+        JLabel LabelSolicitação[] = new JLabel[12]; //Vetor de Label
 
         LabelSolicitação[0] = new JLabel("     Md = ");
         LabelSolicitação[1] = new JLabel("    Nd = ");
-        LabelSolicitação[2] = new JLabel("e = ");
-        LabelSolicitação[3] = new JLabel("    Msd = ");
+        LabelSolicitação[2] = new JLabel("    Msd = ");
+        LabelSolicitação[3] = new JLabel("e = ");
+        LabelSolicitação[4] = new JLabel("µsd = ");
 
-        JTextField CampoSolicitação[] = new JTextField[4];
+        JTextField CampoSolicitação[] = new JTextField[5];
 
-        LabelSolicitação[4] = new JLabel("kNm");
-        LabelSolicitação[5] = new JLabel("kN");
-        LabelSolicitação[6] = new JLabel("kNm");
+        LabelSolicitação[5] = new JLabel("kNm");
+        LabelSolicitação[6] = new JLabel("kN");
+        LabelSolicitação[7] = new JLabel("kNm");
 
-        JPanel painelSolicitação[] = new JPanel[6];
-        FlowLayout layoutPainelSolicitação[] = new FlowLayout[4];
+        JPanel painelSolicitação[] = new JPanel[9];
+        FlowLayout layoutPainelSolicitação[] = new FlowLayout[9];
 
-        for (int i = 0; i <= 3; i++) {
+        for (int i = 0; i <= 4; i++) {
             CampoSolicitação[i] = new JTextField("", 8);
             painelSolicitação[i] = new JPanel();
-            if (i <= 3) {
                 painelSolicitação[i].add(LabelSolicitação[i]);
                 painelSolicitação[i].add(CampoSolicitação[i]);
 
-                if (i == 2) {
-                } else if (i == 3) {
-                    painelSolicitação[i].add(LabelSolicitação[i + 3]);
-                } else {
-                    painelSolicitação[i].add(LabelSolicitação[i + 4]);
-                }
-
-            }
+                if (i == 3 || i == 4) {
+                }else{                    
+                    painelSolicitação[i].add(LabelSolicitação[i + 5]);
+                }            
 
             layoutPainelSolicitação[i] = new FlowLayout();
             layoutPainelSolicitação[i].setAlignment(FlowLayout.CENTER);
@@ -1233,15 +1229,18 @@ public class ProjConcretoB_Interface extends JFrame {
 
 // ************* ESTRUTURAÇÃO DOS PAINÉIS ********************
         // TÍTULOS DOS GRUPOS DE PAINÉIS
-        LabelSolicitação[7] = new JLabel("CARREGAMENTO");
-        LabelSolicitação[8] = new JLabel("Dados do Carregamento:");
+        LabelSolicitação[8] = new JLabel("CARREGAMENTO");
+        LabelSolicitação[9] = new JLabel("Dados do Carregamento:");
 
-        for (int i = 4; i <= 5; i++) {
+        for (int i = 5; i <= 6; i++) {
             painelSolicitação[i] = new JPanel();
             painelSolicitação[i].add(LabelSolicitação[i + 3]);
             painelSolicitação[i].setBackground(new java.awt.Color(231, 234, 240));
 
         }
+        
+        LabelSolicitação[10] = new JLabel("  ");
+        painelSolicitação[4].add(LabelSolicitação[10]);
 
         // PAINÉIS VISÍVEIS
         for (int i = 0; i <= 3; i++) {
@@ -1314,14 +1313,16 @@ public class ProjConcretoB_Interface extends JFrame {
         Box verticalSolicitação = Box.createVerticalBox();
 
         verticalSolicitação.add(painelSolicitaçãoInv);// Espaçador para padronizar tamanho   
-        verticalSolicitação.add(painelSolicitação[4]);
         verticalSolicitação.add(painelSolicitação[5]);
+        verticalSolicitação.add(painelSolicitação[6]);
         verticalSolicitação.add(painelCarregamentoFlexãoJComboBox);
         verticalSolicitação.add(painelSolicitação[0]);// Material
         verticalSolicitação.add(painelSolicitação[1]);
-        verticalSolicitação.add(painelSolicitaçãoBotãoCalcExcentricidade);   // Botão = Calcula as propriedades do material  
         verticalSolicitação.add(painelSolicitação[2]);// Tipo de Seção
+        verticalSolicitação.add(painelSolicitaçãoBotãoCalcExcentricidade);   // Botão = Calcula as propriedades do material  
+
         verticalSolicitação.add(painelSolicitação[3]);
+        verticalSolicitação.add(painelSolicitação[4]);
 
         painelBoxSolicitação.add(verticalSolicitação);
         /**
