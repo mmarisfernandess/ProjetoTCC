@@ -29,7 +29,7 @@ public class DrawingPanel extends JPanel implements Scrollable {
     public Dimension getPreferredScrollableViewportSize() {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
-        return new Dimension(298, d.height - 210);
+        return new Dimension(298, d.height - 198);
     }
 
     @Override

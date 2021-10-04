@@ -1034,9 +1034,12 @@ public class ProjConcretoB_Interface extends JFrame {
 
         verticalSeção.setMaximumSize(new Dimension(298, 800));
         verticalSeção.setBackground(new java.awt.Color(178, 199, 224));
-
-        final JScrollPane scroll = new JScrollPane( new DrawingPanel(verticalSeção));
+        DrawingPanel painelSecaoScroll = new DrawingPanel(verticalSeção);
+        painelSecaoScroll.setBackground(new java.awt.Color(231,234,240));
+      
+        final JScrollPane scroll = new JScrollPane(painelSecaoScroll);
         scroll.setBackground(new java.awt.Color(19, 20, 21));
+        scroll.setBorder(new LineBorder(new java.awt.Color(231,234,240)));
         scroll.setVisible(true);
         painelBoxSeção.add(scroll);
 
