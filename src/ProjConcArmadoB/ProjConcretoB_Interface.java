@@ -4,44 +4,28 @@ package ProjConcArmadoB;
 // 2a classe - Interface
 // Importa janela (classe JFrame)
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 //Painel para desenhar - importa classe JPanel
-import javax.swing.JPanel;
-import javax.swing.JButton;
 
 // Gerenciadores de layout do JFrame (janela)
-import java.awt.BorderLayout; // Norte, Sul, Leste, Oeste
-import java.awt.FlowLayout; // Sentido da esquerda para a direita
+import java.awt.*;
 
 // Bibliotecas de Menus
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JMenuBar;
 
 // Caixa de diálogo
-import javax.swing.JOptionPane;
 
 // Biblioteca para gerenciar arquivos
 import java.io.File;
-import javax.swing.JFileChooser;
 
 // Cores
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import javax.swing.Box; // Estrutura vertical para colocação dos painéis em linha
 import javax.swing.border.LineBorder; // Linhas de borda
 import javax.swing.border.TitledBorder;
-import javax.swing.JComboBox;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 // Classe ProjConcretoB_Interface herda a classe JFrame
 public class ProjConcretoB_Interface extends JFrame {
@@ -1007,7 +991,14 @@ public class ProjConcretoB_Interface extends JFrame {
          * **************************
          */
         JPanel painelBoxSeção = new JPanel();
-        painelBoxSeção.setBackground(new java.awt.Color(231, 234, 240));
+
+
+
+        //setLayout(new BorderLayout());
+        //add(scroll, BorderLayout.CENTER);
+        /*setSize(300, 300);
+        setVisible(true);
+        painelBoxSeção.setBackground(new java.awt.Color(231, 234, 240));*/
         /**
          * ***************************************************************************
          */
@@ -1017,6 +1008,9 @@ public class ProjConcretoB_Interface extends JFrame {
          * SEÇÕES ****
          */
         Box verticalSeção = Box.createVerticalBox();
+      /*  verticalSeção.pack();
+        verticalSeção.setLocationRelativeTo(null);*/
+        verticalSeção.setVisible(true);
         verticalSeção.add(Box.createVerticalStrut(5));
         verticalSeção.add(painelSeçãoInv);// Espaçador para padronizar tamanho        
         verticalSeção.add(painelSeção[14]);// SEÇÂO TRANSVERSAL
@@ -1030,14 +1024,22 @@ public class ProjConcretoB_Interface extends JFrame {
         for (int i = 0; i <= 7; i++) {
             verticalSeção.add(painelSeção[i]); // Dimensões das seções
         }
-        verticalSeção.add(painelSeçãoBotãoDesSeção); // Botão = Desenha a seção        
-        verticalSeção.add(painelSeçãoBotãoPropGeom); // Botão = Calcula as Prop.Geom.        
+        verticalSeção.add(painelSeçãoBotãoDesSeção); // Botão = Desenha a seção
+        verticalSeção.add(painelSeçãoBotãoPropGeom); // Botão = Calcula as Prop.Geom.
         verticalSeção.add(painelSeção[17]); // Propridades Geométricas
 
         for (int i = 8; i <= 13; i++) {
             verticalSeção.add(painelSeção[i]);// Prop.= A, Ycg, Xcg, Ixx, Iyy, Ixy        
         }
-        painelBoxSeção.add(verticalSeção);
+
+        verticalSeção.setMaximumSize(new Dimension(298, 800));
+        verticalSeção.setBackground(new java.awt.Color(178, 199, 224));
+
+        final JScrollPane scroll = new JScrollPane( new DrawingPanel(verticalSeção));
+        scroll.setBackground(new java.awt.Color(19, 20, 21));
+        scroll.setVisible(true);
+        painelBoxSeção.add(scroll);
+
         /**
          * ***************************************************************************
          */
@@ -1046,6 +1048,7 @@ public class ProjConcretoB_Interface extends JFrame {
          * **** ADIÇÃO DO PAINEL PRINCIPAL DE PROPRIEDADES DAS SEÇÕES A DIREITA
          * ********
          */
+
         add(painelBoxSeção, BorderLayout.EAST);
         /**
          * ***************************************************************************
