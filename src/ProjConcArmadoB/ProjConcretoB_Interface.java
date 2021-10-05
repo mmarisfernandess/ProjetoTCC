@@ -3,18 +3,14 @@ package ProjConcArmadoB;
 
 // 2a classe - Interface
 // Importa janela (classe JFrame)
-
 import javax.swing.*;
 
 //Painel para desenhar - importa classe JPanel
-
 // Gerenciadores de layout do JFrame (janela)
 import java.awt.*;
 
 // Bibliotecas de Menus
-
 // Caixa de diálogo
-
 // Biblioteca para gerenciar arquivos
 import java.io.File;
 
@@ -79,7 +75,7 @@ public class ProjConcretoB_Interface extends JFrame {
     // COPIADO DO CProtendido
     private JButton botão[];
     private String NomeBotão[] = {"Seção Transversal", "Material", "Detalhamento",
-            "Carregamento", "ELU - Flexão"};
+        "Carregamento", "ELU - Flexão"};
     // 5 Botões
     // KATRI   ************* DATA: 16/08/21 ************************************
 
@@ -97,22 +93,23 @@ public class ProjConcretoB_Interface extends JFrame {
     private JComboBox menuSeçãoJComboBox;
     private JComboBox menuDetalhamentoJComboBox;
     private JComboBox menuCarregamentoFlexãoJComboBox;
+    private JComboBox menuCarregamentoFlexãoCompostaJComboBox;
 
     // Cria vetor de nomes das imagens para depois carregá-las
     private String nomesImagens[] = {"SeçãoGen.jpg", "Seção_Retangular.jpg",
-            "Seção_T.jpg", "Seção_I.jpg",
-            "Seção_L.jpg"};
+        "Seção_T.jpg", "Seção_I.jpg",
+        "Seção_L.jpg"};
 
     private Icon icons[] = {new ImageIcon(getClass().getResource(nomesImagens[0])),
-            new ImageIcon(getClass().getResource(nomesImagens[1])),
-            new ImageIcon(getClass().getResource(nomesImagens[2])),
-            new ImageIcon(getClass().getResource(nomesImagens[3])),
-            new ImageIcon(getClass().getResource(nomesImagens[4]))};
+        new ImageIcon(getClass().getResource(nomesImagens[1])),
+        new ImageIcon(getClass().getResource(nomesImagens[2])),
+        new ImageIcon(getClass().getResource(nomesImagens[3])),
+        new ImageIcon(getClass().getResource(nomesImagens[4]))};
 
     private static final String[] nomesSeção = {"  Selecione uma Seção  ",
-            "Seção Retangular",
-            "Seção T", "Seção I",
-            "Seção L"};
+        "Seção Retangular",
+        "Seção T", "Seção I",
+        "Seção L"};
 
     /* private String nomesImagensDet[]= { "  Detalhamento_viga.jpg ",
                                         "Armadura_simples.jpg",
@@ -124,19 +121,21 @@ public class ProjConcretoB_Interface extends JFrame {
                                         "Seção_L3.jpg" };
      */
     private String nomesImagensDet[] = {"Detalhamento__viga.jpg",
-            "Armadura__simples.jpg",
-            "Armadura__dupla.jpg"};
+        "Armadura__simples.jpg",
+        "Armadura__dupla.jpg"};
 
     private Icon iconsDetalhamento[] = {new ImageIcon(getClass().getResource(nomesImagensDet[0])),
-            new ImageIcon(getClass().getResource(nomesImagensDet[1])),
-            new ImageIcon(getClass().getResource(nomesImagensDet[2]))};
+        new ImageIcon(getClass().getResource(nomesImagensDet[1])),
+        new ImageIcon(getClass().getResource(nomesImagensDet[2]))};
 
     private static final String[] nomesDetalhamento = {"Selecione uma disposição de armadura",
-            "Armadura simples (1 camada)",
-            "Armadura dupla"};
+        "Armadura simples (1 camada)",
+        "Armadura dupla"};
 
     private static final String[] nomesCarregamentoFlexão = {"Selecione um tipo de flexão", "Flexão simples",
-            "Flexão composta"};
+        "Flexão composta"};
+    private static final String[] nomesCarregamentoFlexãoComposta = {"Selecione um caso de flexão composta", "Flexo-tração",
+        "Flexo-compressão"};
 
     private JLabel labelMenuSeção; // Rótulo para exibir a imagem selecionada     
     private String nomeSeçãoInterface;
@@ -242,32 +241,32 @@ public class ProjConcretoB_Interface extends JFrame {
         //--->>>> TRATAMENTO DE EVENTOS DO MENU ARQUIVO: "NOVO"----<<<   
         novoItem.addActionListener(
                 new ActionListener() {//Exibe uma caixa de diálogo de mensagem quando o usuário selecionar NOVO
-                    public void actionPerformed(ActionEvent event) {
-                        // Para zerar os dados na classe DADOS de uma rodada anterior do programa
-                        // de um exemplo anterior
-                        // MUDOU - NOVA VERSÃO RETIRAR &&&&&&&
+            public void actionPerformed(ActionEvent event) {
+                // Para zerar os dados na classe DADOS de uma rodada anterior do programa
+                // de um exemplo anterior
+                // MUDOU - NOVA VERSÃO RETIRAR &&&&&&&
                 /*seçãoA[0]=0.0; dados.putBase(seçãoA[0]); // base = bw
            seçãoA[1]=0.0; dados.putAltura(seçãoA[1]); // altura 
            seçãoA[2]=0.0; dados.putdLinha(seçãoA[2]); // d'
            seçãoA[3]=0.0; dados.putd(seçãoA[3]); // d
                  */
-                        //??????????????????????????????????????????????
-                        //CampoSeçãoA[0].setText(String.format("%.2f",seçãoA[0]));
-                        //CampoSeçãoA[1].setText(String.format("%.2f",seçãoA[1]));
-                        //CampoSeçãoA[2].setText(String.format("%.2f",seçãoA[2]));
-                        //CampoSeçãoA[3].setText(String.format("%.2f",seçãoA[3]));
+                //??????????????????????????????????????????????
+                //CampoSeçãoA[0].setText(String.format("%.2f",seçãoA[0]));
+                //CampoSeçãoA[1].setText(String.format("%.2f",seçãoA[1]));
+                //CampoSeçãoA[2].setText(String.format("%.2f",seçãoA[2]));
+                //CampoSeçãoA[3].setText(String.format("%.2f",seçãoA[3]));
 
-                        // Para colocar nas caixas de texto à esquerda
-                        // TESTE TEMPORÁRIO NOME - ZERO - DATA: 02.08.2021
-                        // double nome = 55.0;
-                        // CampoSeção[0].setText(String.format("%.2f",seção[0]));
-                        Flag = 0;
-                        String mensagemTela_02 = String.format(
-                                "Seção Transversal\n"
-                                        + "Digite os dados da seção pelo painel à esquerda");
-                        JOptionPane.showMessageDialog(null, mensagemTela_02);
-                    }
-                }
+                // Para colocar nas caixas de texto à esquerda
+                // TESTE TEMPORÁRIO NOME - ZERO - DATA: 02.08.2021
+                // double nome = 55.0;
+                // CampoSeção[0].setText(String.format("%.2f",seção[0]));
+                Flag = 0;
+                String mensagemTela_02 = String.format(
+                        "Seção Transversal\n"
+                        + "Digite os dados da seção pelo painel à esquerda");
+                JOptionPane.showMessageDialog(null, mensagemTela_02);
+            }
+        }
         );// Fim do parênteses do new actionPerformed do MENU NOVO
 //--->>>>>> FIM DO TRATAMENTO DE EVENTO DO MENU ARQUIVO: NOVO
 
@@ -275,33 +274,33 @@ public class ProjConcretoB_Interface extends JFrame {
         salvarItem.addActionListener // Adiciona a interface ActionListener
                 (
                         new ActionListener() // Classe anônima 
-                        { // Exibe uma caixa de diálogo de mensagem quando o usuário selecionar SALVAR
-                            public void actionPerformed(ActionEvent event) // Método obrigatório
+                { // Exibe uma caixa de diálogo de mensagem quando o usuário selecionar SALVAR
+                    public void actionPerformed(ActionEvent event) // Método obrigatório
+                    {
+                        // Chama o 2o método desta classe e retorna o nome do arquivo
+                        name = getFileOrDirectory();
+                        if (name.exists()) // Verifica se o arquivo já existe no diretório
+                        { // O nome do arquivo existe
+                            String AvisoArquivo = JOptionPane.showInputDialog("O arquivo já existe. Deseja substituí-lo?"
+                                    + "1-SIM, 2-NÃO");
+                            int escolhaArquivo = Integer.parseInt(AvisoArquivo);
+                            if (escolhaArquivo == 1) // O arquivo será substituído por outro
                             {
-                                // Chama o 2o método desta classe e retorna o nome do arquivo
-                                name = getFileOrDirectory();
-                                if (name.exists()) // Verifica se o arquivo já existe no diretório
-                                { // O nome do arquivo existe
-                                    String AvisoArquivo = JOptionPane.showInputDialog("O arquivo já existe. Deseja substituí-lo?"
-                                            + "1-SIM, 2-NÃO");
-                                    int escolhaArquivo = Integer.parseInt(AvisoArquivo);
-                                    if (escolhaArquivo == 1) // O arquivo será substituído por outro
-                                    {
-                                        String mensagemTela_04 = String.format("Escolha = %s=> O arquivo será salvo e o"
-                                                + " Aplicativo não será fechado.", AvisoArquivo);
-                                        JOptionPane.showMessageDialog(null, mensagemTela_04);
-                                        // Coloca na classe ProjConcretoB_Arquivo os nomes "in e out"
-                                        // para nomear os arquivos de entrada e saída
-                                        dados.NovoArquivoEntrada(name); // Está na classe ****Arquivo
-                                        dados.gravarArquivo();
-                                        dados.gravarDados();
-                                        dados.fecharArquivo();
-                                    }
+                                String mensagemTela_04 = String.format("Escolha = %s=> O arquivo será salvo e o"
+                                        + " Aplicativo não será fechado.", AvisoArquivo);
+                                JOptionPane.showMessageDialog(null, mensagemTela_04);
+                                // Coloca na classe ProjConcretoB_Arquivo os nomes "in e out"
+                                // para nomear os arquivos de entrada e saída
+                                dados.NovoArquivoEntrada(name); // Está na classe ****Arquivo
+                                dados.gravarArquivo();
+                                dados.gravarDados();
+                                dados.fecharArquivo();
+                            }
 
-                                }
+                        }
 
-                            } // Fim do método actionPerformed
-                        } // Fecha chave do ActionListener
+                    } // Fim do método actionPerformed
+                } // Fecha chave do ActionListener
                 ); // Fecha parênteses        
 //--->>>>>> FIM DO TRATAMENTO DE EVENTO DO MENU ARQUIVO: SALVAR
 
@@ -393,26 +392,26 @@ public class ProjConcretoB_Interface extends JFrame {
         for (int i = 0; i < CampoLimites.length; i++) {
             CampoLimites[i].addActionListener(
                     new ActionListener() {
-                        public void actionPerformed(ActionEvent event) {
-                            if (event.getSource() == CampoLimites[0]) {
-                                XXimin = Double.parseDouble(event.getActionCommand());
-                                desenhar.LimitesXimin(XXimin);
-                            }
-                            if (event.getSource() == CampoLimites[1]) {
-                                XXimax = Double.parseDouble(event.getActionCommand());
-                                desenhar.LimitesXimax(XXimax);
-                            }
-                            if (event.getSource() == CampoLimites[2]) {
-                                YYimin = Double.parseDouble(event.getActionCommand());
-                                desenhar.LimitesYimin(YYimin);
-                            }
-                            if (event.getSource() == CampoLimites[3]) {
-                                YYimax = Double.parseDouble(event.getActionCommand());
-                                desenhar.LimitesYimax(YYimax);
-                                repaint();
-                            }
-                        }
+                public void actionPerformed(ActionEvent event) {
+                    if (event.getSource() == CampoLimites[0]) {
+                        XXimin = Double.parseDouble(event.getActionCommand());
+                        desenhar.LimitesXimin(XXimin);
                     }
+                    if (event.getSource() == CampoLimites[1]) {
+                        XXimax = Double.parseDouble(event.getActionCommand());
+                        desenhar.LimitesXimax(XXimax);
+                    }
+                    if (event.getSource() == CampoLimites[2]) {
+                        YYimin = Double.parseDouble(event.getActionCommand());
+                        desenhar.LimitesYimin(YYimin);
+                    }
+                    if (event.getSource() == CampoLimites[3]) {
+                        YYimax = Double.parseDouble(event.getActionCommand());
+                        desenhar.LimitesYimax(YYimax);
+                        repaint();
+                    }
+                }
+            }
             );
         }
         // >>>>>>>>>>>>>>> Fim do Tratamento de evento         
@@ -576,48 +575,48 @@ public class ProjConcretoB_Interface extends JFrame {
 // Data: 28-07-20 *****************************************
         metroTamanho.addActionListener( // Abre parenteses = início da chamada do addActionListener  
                 new ActionListener() // Corpo da classe ANONIMA interna private
-                {// Abre chaves = início da classe ANONIMA
-                    // método actionPerformed ( ActionEvent event)
-                    public void actionPerformed(ActionEvent event) {
-                        if (event.getSource() == metroTamanho) {
-                            System.out.printf("dentro do metroTamanho1\n");
-                            NumPixelPorMetro = Double.parseDouble(event.getActionCommand());
-                            System.out.printf("NumPixelPorMetro = \n", NumPixelPorMetro);
-                            desenhar.putEscala(NumPixelPorMetro);
-                        }
-                        desenhar.RecalculaEscala();
-                    }// Fim do metodo actionPerformed
-                } // fecha chaves =Fim da classe interna anonima
+        {// Abre chaves = início da classe ANONIMA
+            // método actionPerformed ( ActionEvent event)
+            public void actionPerformed(ActionEvent event) {
+                if (event.getSource() == metroTamanho) {
+                    System.out.printf("dentro do metroTamanho1\n");
+                    NumPixelPorMetro = Double.parseDouble(event.getActionCommand());
+                    System.out.printf("NumPixelPorMetro = \n", NumPixelPorMetro);
+                    desenhar.putEscala(NumPixelPorMetro);
+                }
+                desenhar.RecalculaEscala();
+            }// Fim do metodo actionPerformed
+        } // fecha chaves =Fim da classe interna anonima
         );// Fim do parenteses = fim da chamada addAcionListener 
         // ********* Fim da adição de evento ao campo "metroTamanho" do controle de zoom
 
         // ********* Adição de evento ao campo H" do controle de zoom **********
         H.addActionListener( // Abre parenteses = início da chamada do addActionListener  
                 new ActionListener() // Corpo da classe ANONIMA interna private
-                {// Abre chaves = início da classe ANONIMA
-                    // método actionPerformed ( ActionEvent event)
-                    public void actionPerformed(ActionEvent event) {
-                        if (event.getSource() == H) {
-                            desenhar.putLarguraH(Double.parseDouble(event.getActionCommand()));
-                        }
-                        desenhar.RecalculaEscala();
-                    }// Fim do metodo actionPerformed
-                } // fecha chaves =Fim da classe interna anonima
+        {// Abre chaves = início da classe ANONIMA
+            // método actionPerformed ( ActionEvent event)
+            public void actionPerformed(ActionEvent event) {
+                if (event.getSource() == H) {
+                    desenhar.putLarguraH(Double.parseDouble(event.getActionCommand()));
+                }
+                desenhar.RecalculaEscala();
+            }// Fim do metodo actionPerformed
+        } // fecha chaves =Fim da classe interna anonima
         );// Fim do parenteses = fim da chamada addAcionListener 
         // ********* Fim da  adição de evento ao campo H" do controle de zoom **********
 
         // ********* Adição de evento ao campo V" do controle de zoom **********        
         V.addActionListener( // Abre parenteses = início da chamada do addActionListener  
                 new ActionListener() // Corpo da classe ANONIMA interna private
-                {// Abre chaves = início da classe ANONIMA
-                    // método actionPerformed ( ActionEvent event)
-                    public void actionPerformed(ActionEvent event) {
-                        if (event.getSource() == V) {
-                            desenhar.putAlturaV(Double.parseDouble(event.getActionCommand()));
-                        }
-                        desenhar.RecalculaEscala();
-                    }// Fim do metodo actionPerformed
-                } // fecha chaves =Fim da classe interna anonima
+        {// Abre chaves = início da classe ANONIMA
+            // método actionPerformed ( ActionEvent event)
+            public void actionPerformed(ActionEvent event) {
+                if (event.getSource() == V) {
+                    desenhar.putAlturaV(Double.parseDouble(event.getActionCommand()));
+                }
+                desenhar.RecalculaEscala();
+            }// Fim do metodo actionPerformed
+        } // fecha chaves =Fim da classe interna anonima
         );// Fim do parenteses = fim da chamada addAcionListener 
         // ********* Fim da  adição de evento ao campo V" do controle de zoom ******            
         // **** KATRI ***** DATA: 17/08/21 ****************  
@@ -804,182 +803,182 @@ public class ProjConcretoB_Interface extends JFrame {
          */
         menuSeçãoJComboBox.addItemListener(
                 new ItemListener() {
-                    public void itemStateChanged(ItemEvent event) {
-                        if (event.getStateChange() == ItemEvent.SELECTED) {
-                            labelMenuSeção.setIcon(icons[menuSeçãoJComboBox.getSelectedIndex()]);
-                            for (int i = 0; i <= 13; i++) {
-                                painelSeção[i].setVisible(false);
+            public void itemStateChanged(ItemEvent event) {
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    labelMenuSeção.setIcon(icons[menuSeçãoJComboBox.getSelectedIndex()]);
+                    for (int i = 0; i <= 13; i++) {
+                        painelSeção[i].setVisible(false);
+                    }
+
+                    switch (menuSeçãoJComboBox.getSelectedIndex()) {
+                        case 0:
+                            painelSeçãolabelMenuSeção.setVisible(true);
+                            // Definição do tipo de Seção
+                            nomeSeçãoInterface = "";
+                            painelSeção[16].setVisible(false);
+                            painelSeção[17].setVisible(false);
+                            for (int i = 0; i <= 7; i++) {
+                                CampoSeção[i].setText(String.format(""));
                             }
 
-                            switch (menuSeçãoJComboBox.getSelectedIndex()) {
-                                case 0:
-                                    painelSeçãolabelMenuSeção.setVisible(true);
-                                    // Definição do tipo de Seção
-                                    nomeSeçãoInterface = "";
-                                    painelSeção[16].setVisible(false);
-                                    painelSeção[17].setVisible(false);
-                                    for (int i = 0; i <= 7; i++) {
-                                        CampoSeção[i].setText(String.format(""));
-                                    }
+                            painelSeçãoBotãoDesSeção.setVisible(false);
+                            painelSeçãoBotãoPropGeom.setVisible(false);
 
-                                    painelSeçãoBotãoDesSeção.setVisible(false);
-                                    painelSeçãoBotãoPropGeom.setVisible(false);
+                            CampoSeção[8].setText(String.format(""));
+                            CampoSeção[9].setText(String.format(""));
+                            CampoSeção[10].setText(String.format(""));
+                            CampoSeção[11].setText(String.format(""));
+                            CampoSeção[12].setText(String.format(""));
+                            CampoSeção[13].setText(String.format(""));
 
-                                    CampoSeção[8].setText(String.format(""));
-                                    CampoSeção[9].setText(String.format(""));
-                                    CampoSeção[10].setText(String.format(""));
-                                    CampoSeção[11].setText(String.format(""));
-                                    CampoSeção[12].setText(String.format(""));
-                                    CampoSeção[13].setText(String.format(""));
-
-                                    break;
-                                case 1:
-                                    // Caso o tipo de seção selecionado seja diferente do atual
-                                    // Os campos de texto são limpos
-                                    if (!"SEÇÃO RETANGULAR".equals(nomeSeçãoInterface)) {
-                                        for (int i = 0; i <= 7; i++) {
-                                            CampoSeção[i].setText(String.format(""));
-                                            painelSeção[i].setVisible(false);
-                                        }
-                                    }
-
-                                    painelSeçãolabelMenuSeção.setVisible(true);
-
-                                    nomeSeçãoInterface = "SEÇÃO RETANGULAR";
-                                    painelSeção[0].setVisible(true);
-                                    painelSeção[1].setVisible(true);
-                                    painelSeção[14].setVisible(true);
-                                    painelSeção[15].setVisible(true);
-                                    painelSeção[16].setVisible(true);
-                                    painelSeção[17].setVisible(true);
-
-                                    painelSeçãoBotãoDesSeção.setVisible(true);
-                                    painelSeçãoBotãoPropGeom.setVisible(true);
-                                    for (int i = 8; i <= 13; i++) {
-                                        painelSeção[i].setVisible(true);
-                                    }
-
-                                    CampoSeção[8].setText(String.format(""));
-                                    CampoSeção[9].setText(String.format(""));
-                                    CampoSeção[10].setText(String.format(""));
-                                    CampoSeção[11].setText(String.format(""));
-                                    CampoSeção[12].setText(String.format(""));
-                                    CampoSeção[13].setText(String.format(""));
-
-                                    break;
-
-                                case 2:
-                                    if (!"SEÇÃO T".equals(nomeSeçãoInterface)) {
-                                        for (int i = 0; i <= 7; i++) {
-                                            CampoSeção[i].setText(String.format(""));
-                                            painelSeção[i].setVisible(false);
-                                        }
-                                    }
-
-                                    painelSeçãolabelMenuSeção.setVisible(true);
-
-                                    nomeSeçãoInterface = "SEÇÃO T";
-                                    painelSeção[2].setVisible(true);
-                                    painelSeção[1].setVisible(true);
-                                    painelSeção[0].setVisible(true);
-                                    painelSeção[3].setVisible(true);
-                                    painelSeção[14].setVisible(true);
-                                    painelSeção[15].setVisible(true);
-                                    painelSeção[16].setVisible(true);
-                                    painelSeção[17].setVisible(true);
-                                    painelSeçãoBotãoPropGeom.setVisible(true);
-                                    for (int i = 8; i <= 13; i++) {
-                                        painelSeção[i].setVisible(true);
-                                    }
-
-                                    painelSeçãoBotãoDesSeção.setVisible(true);
-                                    painelSeçãoBotãoPropGeom.setVisible(true);
-
-                                    CampoSeção[8].setText(String.format(""));
-                                    CampoSeção[9].setText(String.format(""));
-                                    CampoSeção[10].setText(String.format(""));
-                                    CampoSeção[11].setText(String.format(""));
-                                    CampoSeção[12].setText(String.format(""));
-                                    CampoSeção[13].setText(String.format(""));
-
-                                    break;
-                                case 3:
-                                    if (!"SEÇÃO I".equals(nomeSeçãoInterface)) {
-                                        for (int i = 0; i <= 7; i++) {
-                                            CampoSeção[i].setText(String.format(""));
-                                            painelSeção[i].setVisible(false);
-                                        }
-                                    }
-
-                                    painelSeçãolabelMenuSeção.setVisible(true);
-
-                                    nomeSeçãoInterface = "SEÇÃO I";
-                                    painelSeção[1].setVisible(true);
-                                    painelSeção[4].setVisible(true);
-                                    painelSeção[5].setVisible(true);
-                                    painelSeção[6].setVisible(true);
-                                    painelSeção[7].setVisible(true);
-                                    painelSeção[0].setVisible(true);
-                                    painelSeção[14].setVisible(true);
-                                    painelSeção[15].setVisible(true);
-                                    painelSeção[16].setVisible(true);
-                                    painelSeção[17].setVisible(true);
-                                    painelSeçãoBotãoPropGeom.setVisible(true);
-                                    for (int i = 8; i <= 13; i++) {
-                                        painelSeção[i].setVisible(true);
-                                    }
-
-                                    painelSeçãoBotãoDesSeção.setVisible(true);
-                                    painelSeçãoBotãoPropGeom.setVisible(true);
-
-                                    CampoSeção[8].setText(String.format(""));
-                                    CampoSeção[9].setText(String.format(""));
-                                    CampoSeção[10].setText(String.format(""));
-                                    CampoSeção[11].setText(String.format(""));
-                                    CampoSeção[12].setText(String.format(""));
-                                    CampoSeção[13].setText(String.format(""));
-
-                                    break;
-
-                                case 4:
-                                    if (!"SEÇÃO L".equals(nomeSeçãoInterface)) {
-                                        for (int i = 0; i <= 7; i++) {
-                                            CampoSeção[i].setText(String.format(""));
-                                            painelSeção[i].setVisible(false);
-                                        }
-                                    }
-
-                                    painelSeçãolabelMenuSeção.setVisible(true);
-
-                                    nomeSeçãoInterface = "SEÇÃO L";
-                                    painelSeção[1].setVisible(true);
-                                    painelSeção[2].setVisible(true);
-                                    painelSeção[0].setVisible(true);
-                                    painelSeção[3].setVisible(true);
-                                    painelSeção[14].setVisible(true);
-                                    painelSeção[15].setVisible(true);
-                                    painelSeção[16].setVisible(true);
-                                    painelSeção[17].setVisible(true);
-
-                                    painelSeçãoBotãoDesSeção.setVisible(true);
-                                    painelSeçãoBotãoPropGeom.setVisible(true);
-
-                                    for (int i = 8; i <= 13; i++) {
-                                        painelSeção[i].setVisible(true);
-                                    }
-
-                                    CampoSeção[8].setText(String.format(""));
-                                    CampoSeção[9].setText(String.format(""));
-                                    CampoSeção[10].setText(String.format(""));
-                                    CampoSeção[11].setText(String.format(""));
-                                    CampoSeção[12].setText(String.format(""));
-                                    CampoSeção[13].setText(String.format(""));
-
-                                    break;
+                            break;
+                        case 1:
+                            // Caso o tipo de seção selecionado seja diferente do atual
+                            // Os campos de texto são limpos
+                            if (!"SEÇÃO RETANGULAR".equals(nomeSeçãoInterface)) {
+                                for (int i = 0; i <= 7; i++) {
+                                    CampoSeção[i].setText(String.format(""));
+                                    painelSeção[i].setVisible(false);
+                                }
                             }
-                        }
+
+                            painelSeçãolabelMenuSeção.setVisible(true);
+
+                            nomeSeçãoInterface = "SEÇÃO RETANGULAR";
+                            painelSeção[0].setVisible(true);
+                            painelSeção[1].setVisible(true);
+                            painelSeção[14].setVisible(true);
+                            painelSeção[15].setVisible(true);
+                            painelSeção[16].setVisible(true);
+                            painelSeção[17].setVisible(true);
+
+                            painelSeçãoBotãoDesSeção.setVisible(true);
+                            painelSeçãoBotãoPropGeom.setVisible(true);
+                            for (int i = 8; i <= 13; i++) {
+                                painelSeção[i].setVisible(true);
+                            }
+
+                            CampoSeção[8].setText(String.format(""));
+                            CampoSeção[9].setText(String.format(""));
+                            CampoSeção[10].setText(String.format(""));
+                            CampoSeção[11].setText(String.format(""));
+                            CampoSeção[12].setText(String.format(""));
+                            CampoSeção[13].setText(String.format(""));
+
+                            break;
+
+                        case 2:
+                            if (!"SEÇÃO T".equals(nomeSeçãoInterface)) {
+                                for (int i = 0; i <= 7; i++) {
+                                    CampoSeção[i].setText(String.format(""));
+                                    painelSeção[i].setVisible(false);
+                                }
+                            }
+
+                            painelSeçãolabelMenuSeção.setVisible(true);
+
+                            nomeSeçãoInterface = "SEÇÃO T";
+                            painelSeção[2].setVisible(true);
+                            painelSeção[1].setVisible(true);
+                            painelSeção[0].setVisible(true);
+                            painelSeção[3].setVisible(true);
+                            painelSeção[14].setVisible(true);
+                            painelSeção[15].setVisible(true);
+                            painelSeção[16].setVisible(true);
+                            painelSeção[17].setVisible(true);
+                            painelSeçãoBotãoPropGeom.setVisible(true);
+                            for (int i = 8; i <= 13; i++) {
+                                painelSeção[i].setVisible(true);
+                            }
+
+                            painelSeçãoBotãoDesSeção.setVisible(true);
+                            painelSeçãoBotãoPropGeom.setVisible(true);
+
+                            CampoSeção[8].setText(String.format(""));
+                            CampoSeção[9].setText(String.format(""));
+                            CampoSeção[10].setText(String.format(""));
+                            CampoSeção[11].setText(String.format(""));
+                            CampoSeção[12].setText(String.format(""));
+                            CampoSeção[13].setText(String.format(""));
+
+                            break;
+                        case 3:
+                            if (!"SEÇÃO I".equals(nomeSeçãoInterface)) {
+                                for (int i = 0; i <= 7; i++) {
+                                    CampoSeção[i].setText(String.format(""));
+                                    painelSeção[i].setVisible(false);
+                                }
+                            }
+
+                            painelSeçãolabelMenuSeção.setVisible(true);
+
+                            nomeSeçãoInterface = "SEÇÃO I";
+                            painelSeção[1].setVisible(true);
+                            painelSeção[4].setVisible(true);
+                            painelSeção[5].setVisible(true);
+                            painelSeção[6].setVisible(true);
+                            painelSeção[7].setVisible(true);
+                            painelSeção[0].setVisible(true);
+                            painelSeção[14].setVisible(true);
+                            painelSeção[15].setVisible(true);
+                            painelSeção[16].setVisible(true);
+                            painelSeção[17].setVisible(true);
+                            painelSeçãoBotãoPropGeom.setVisible(true);
+                            for (int i = 8; i <= 13; i++) {
+                                painelSeção[i].setVisible(true);
+                            }
+
+                            painelSeçãoBotãoDesSeção.setVisible(true);
+                            painelSeçãoBotãoPropGeom.setVisible(true);
+
+                            CampoSeção[8].setText(String.format(""));
+                            CampoSeção[9].setText(String.format(""));
+                            CampoSeção[10].setText(String.format(""));
+                            CampoSeção[11].setText(String.format(""));
+                            CampoSeção[12].setText(String.format(""));
+                            CampoSeção[13].setText(String.format(""));
+
+                            break;
+
+                        case 4:
+                            if (!"SEÇÃO L".equals(nomeSeçãoInterface)) {
+                                for (int i = 0; i <= 7; i++) {
+                                    CampoSeção[i].setText(String.format(""));
+                                    painelSeção[i].setVisible(false);
+                                }
+                            }
+
+                            painelSeçãolabelMenuSeção.setVisible(true);
+
+                            nomeSeçãoInterface = "SEÇÃO L";
+                            painelSeção[1].setVisible(true);
+                            painelSeção[2].setVisible(true);
+                            painelSeção[0].setVisible(true);
+                            painelSeção[3].setVisible(true);
+                            painelSeção[14].setVisible(true);
+                            painelSeção[15].setVisible(true);
+                            painelSeção[16].setVisible(true);
+                            painelSeção[17].setVisible(true);
+
+                            painelSeçãoBotãoDesSeção.setVisible(true);
+                            painelSeçãoBotãoPropGeom.setVisible(true);
+
+                            for (int i = 8; i <= 13; i++) {
+                                painelSeção[i].setVisible(true);
+                            }
+
+                            CampoSeção[8].setText(String.format(""));
+                            CampoSeção[9].setText(String.format(""));
+                            CampoSeção[10].setText(String.format(""));
+                            CampoSeção[11].setText(String.format(""));
+                            CampoSeção[12].setText(String.format(""));
+                            CampoSeção[13].setText(String.format(""));
+
+                            break;
                     }
                 }
+            }
+        }
         );
         /**
          * ***************************************************************************
@@ -992,8 +991,6 @@ public class ProjConcretoB_Interface extends JFrame {
          */
         JPanel painelBoxSeção = new JPanel();
 
-
-
         //setLayout(new BorderLayout());
         //add(scroll, BorderLayout.CENTER);
         /*setSize(300, 300);
@@ -1002,13 +999,12 @@ public class ProjConcretoB_Interface extends JFrame {
         /**
          * ***************************************************************************
          */
-
         /**
          * **** ESTRUTURA VERTICAL DO PAINEL PRINCIPAL DE PROPRIEDADES DAS
          * SEÇÕES ****
          */
         Box verticalSeção = Box.createVerticalBox();
-      /*  verticalSeção.pack();
+        /*  verticalSeção.pack();
         verticalSeção.setLocationRelativeTo(null);*/
         verticalSeção.setVisible(true);
         verticalSeção.add(Box.createVerticalStrut(5));
@@ -1035,23 +1031,21 @@ public class ProjConcretoB_Interface extends JFrame {
         verticalSeção.setMaximumSize(new Dimension(298, 800));
         verticalSeção.setBackground(new java.awt.Color(178, 199, 224));
         DrawingPanel painelSecaoScroll = new DrawingPanel(verticalSeção);
-        painelSecaoScroll.setBackground(new java.awt.Color(231,234,240));
-      
+        painelSecaoScroll.setBackground(new java.awt.Color(231, 234, 240));
+
         final JScrollPane scroll = new JScrollPane(painelSecaoScroll);
         scroll.setBackground(new java.awt.Color(19, 20, 21));
-        scroll.setBorder(new LineBorder(new java.awt.Color(231,234,240)));
+        scroll.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
         scroll.setVisible(true);
         painelBoxSeção.add(scroll);
 
         /**
          * ***************************************************************************
          */
-
         /**
          * **** ADIÇÃO DO PAINEL PRINCIPAL DE PROPRIEDADES DAS SEÇÕES A DIREITA
          * ********
          */
-
         add(painelBoxSeção, BorderLayout.EAST);
         /**
          * ***************************************************************************
@@ -1198,66 +1192,68 @@ public class ProjConcretoB_Interface extends JFrame {
 
         //******************* FIM DO painelBoxMaterial na esquerda (west)
         // ******************** ESFORÇOS SOLICITANTES - BOX VERTICAL ************************
-        JLabel LabelSolicitação[] = new JLabel[12]; //Vetor de Label
+        JLabel LabelCarregamento[] = new JLabel[17]; //Vetor de Label
 
-        LabelSolicitação[0] = new JLabel("     Md = ");
-        LabelSolicitação[1] = new JLabel("    Nd = ");
-        LabelSolicitação[2] = new JLabel("    Msd = ");
-        LabelSolicitação[3] = new JLabel("e = ");
-        LabelSolicitação[4] = new JLabel("µsd = ");
+        LabelCarregamento[0] = new JLabel("     Md = ");
+        LabelCarregamento[1] = new JLabel("    Nd = ");
+        LabelCarregamento[2] = new JLabel("    Msd = ");
+        LabelCarregamento[3] = new JLabel("    X = ");
+        LabelCarregamento[4] = new JLabel("e = ");
+        LabelCarregamento[5] = new JLabel("es = ");
+        LabelCarregamento[6] = new JLabel("µsd = ");
 
-        JTextField CampoSolicitação[] = new JTextField[5];
+        JTextField CampoCarregamento[] = new JTextField[7];
 
-        LabelSolicitação[5] = new JLabel("kNm");
-        LabelSolicitação[6] = new JLabel("kN");
-        LabelSolicitação[7] = new JLabel("kNm");
+        LabelCarregamento[7] = new JLabel("kNm");
+        LabelCarregamento[8] = new JLabel("kN");
+        LabelCarregamento[9] = new JLabel("kNm");
+        LabelCarregamento[10] = new JLabel("m");
+        LabelCarregamento[11] = new JLabel("m");
+        LabelCarregamento[12] = new JLabel("m");
+        LabelCarregamento[13] = new JLabel("");
 
-        JPanel painelSolicitação[] = new JPanel[9];
-        FlowLayout layoutPainelSolicitação[] = new FlowLayout[9];
+        JPanel painelCarregamento[] = new JPanel[13];
+        FlowLayout layoutPainelCarregamento[] = new FlowLayout[9];
 
-        for (int i = 0; i <= 4; i++) {
-            CampoSolicitação[i] = new JTextField("", 8);
-            painelSolicitação[i] = new JPanel();
-            painelSolicitação[i].add(LabelSolicitação[i]);
-            painelSolicitação[i].add(CampoSolicitação[i]);
+        for (int i = 0; i <= 6; i++) {
+            CampoCarregamento[i] = new JTextField("", 8);
+            painelCarregamento[i] = new JPanel();
+            painelCarregamento[i].add(LabelCarregamento[i]);
+            painelCarregamento[i].add(CampoCarregamento[i]);
 
-            if (i == 3 || i == 4) {
-            } else {
-                painelSolicitação[i].add(LabelSolicitação[i + 5]);
-            }
+            painelCarregamento[i].add(LabelCarregamento[i + 7]);
 
-            layoutPainelSolicitação[i] = new FlowLayout();
-            layoutPainelSolicitação[i].setAlignment(FlowLayout.CENTER);
-            painelSolicitação[i].setLayout(layoutPainelSolicitação[i]);
-            painelSolicitação[i].setBackground(new java.awt.Color(231, 234, 240));
+            layoutPainelCarregamento[i] = new FlowLayout();
+            layoutPainelCarregamento[i].setAlignment(FlowLayout.CENTER);
+            painelCarregamento[i].setLayout(layoutPainelCarregamento[i]);
+            painelCarregamento[i].setBackground(new java.awt.Color(231, 234, 240));
 
         }
 
 // ************* ESTRUTURAÇÃO DOS PAINÉIS ********************
         // TÍTULOS DOS GRUPOS DE PAINÉIS
-        LabelSolicitação[8] = new JLabel("CARREGAMENTO");
-        LabelSolicitação[9] = new JLabel("Dados do Carregamento:");
+        LabelCarregamento[14] = new JLabel("CARREGAMENTO");
+        LabelCarregamento[15] = new JLabel("Dados do Carregamento:");
 
-        for (int i = 5; i <= 6; i++) {
-            painelSolicitação[i] = new JPanel();
-            painelSolicitação[i].add(LabelSolicitação[i + 3]);
-            painelSolicitação[i].setBackground(new java.awt.Color(231, 234, 240));
+        for (int i = 7; i <= 8; i++) {
+            painelCarregamento[i] = new JPanel();
+            painelCarregamento[i].add(LabelCarregamento[i + 7]);
+            painelCarregamento[i].setBackground(new java.awt.Color(231, 234, 240));
 
         }
 
-        LabelSolicitação[10] = new JLabel("  ");
-        painelSolicitação[4].add(LabelSolicitação[10]);
-
+        //LabelCarregamento[16] = new JLabel("  ");
+        // painelCarregamento[4].add(LabelCarregamento[10]);
         // PAINÉIS VISÍVEIS
         for (int i = 0; i <= 3; i++) {
-            painelSolicitação[i].setVisible(true);
+            painelCarregamento[i].setVisible(true);
         }
         // Painel não editável - visibilidade falsa 
-        CampoSolicitação[0].setEditable(false);
-        CampoSolicitação[1].setEditable(false);
-        CampoSolicitação[2].setEditable(false);
-        CampoSolicitação[3].setEditable(false);
-        CampoSolicitação[4].setEditable(false);
+        CampoCarregamento[0].setEditable(false);
+        CampoCarregamento[1].setEditable(false);
+        CampoCarregamento[2].setEditable(false);
+        CampoCarregamento[3].setEditable(false);
+        CampoCarregamento[4].setEditable(false);
 
         // MENU DE ESCOLHA DO TIPO DE FLEXÃO - SIMPLES OU COMPOSTA  *********
         //******************************************************************
@@ -1265,10 +1261,18 @@ public class ProjConcretoB_Interface extends JFrame {
         menuCarregamentoFlexãoJComboBox = new JComboBox(nomesCarregamentoFlexão);
         menuCarregamentoFlexãoJComboBox.setMaximumRowCount(3); // Exibe 2 linhas (2 armaduras)
 
+        menuCarregamentoFlexãoCompostaJComboBox = new JComboBox(nomesCarregamentoFlexãoComposta);
+        menuCarregamentoFlexãoCompostaJComboBox.setMaximumRowCount(3); // Exibe 2 linhas (2 armaduras)
+
         JPanel painelCarregamentoFlexãoJComboBox = new JPanel();
         painelCarregamentoFlexãoJComboBox.setBackground(new java.awt.Color(231, 234, 240));
         // Coloca em um painel 
         painelCarregamentoFlexãoJComboBox.add(menuCarregamentoFlexãoJComboBox);
+
+        JPanel painelCarregamentoFlexãoCompostaJComboBox = new JPanel();
+        painelCarregamentoFlexãoCompostaJComboBox.setBackground(new java.awt.Color(231, 234, 240));
+        // Coloca em um painel 
+        painelCarregamentoFlexãoCompostaJComboBox.add(menuCarregamentoFlexãoCompostaJComboBox);
         /**
          * ***************************************************************************
          */
@@ -1277,14 +1281,14 @@ public class ProjConcretoB_Interface extends JFrame {
          * **** ESPAÇADOR INVISÍVEL DO PAINEL DE CARREGAMENTO
          * *******************************
          */
-        JTextField CampoSolicitaçãoInv = new JTextField("", 25);
-        CampoSolicitaçãoInv.setBackground(new java.awt.Color(231, 234, 240));
-        CampoSolicitaçãoInv.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
-        CampoSolicitaçãoInv.setEditable(false);
+        JTextField CampoCarregamentoInv = new JTextField("", 25);
+        CampoCarregamentoInv.setBackground(new java.awt.Color(231, 234, 240));
+        CampoCarregamentoInv.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+        CampoCarregamentoInv.setEditable(false);
 
-        JPanel painelSolicitaçãoInv = new JPanel();
-        painelSolicitaçãoInv.setBackground(new java.awt.Color(231, 234, 240));
-        painelSolicitaçãoInv.add(CampoSolicitaçãoInv);
+        JPanel painelCarregamentoInv = new JPanel();
+        painelCarregamentoInv.setBackground(new java.awt.Color(231, 234, 240));
+        painelCarregamentoInv.add(CampoCarregamentoInv);
         /**
          * ***************************************************************************
          */
@@ -1296,42 +1300,44 @@ public class ProjConcretoB_Interface extends JFrame {
         JButton BotãoCalcExcentricidade = new JButton("Calcular excentricidade");
         BotãoCalcExcentricidade.setEnabled(false);
         BotãoCalcExcentricidade.setText("Selecione uma flexão");
-        JPanel painelSolicitaçãoBotãoCalcExcentricidade = new JPanel();
+        JPanel painelCarregamentoBotãoCalcExcentricidade = new JPanel();
 
-        painelSolicitaçãoBotãoCalcExcentricidade.add(BotãoCalcExcentricidade);
+        painelCarregamentoBotãoCalcExcentricidade.add(BotãoCalcExcentricidade);
 
-        painelSolicitaçãoBotãoCalcExcentricidade.setVisible(true);
-        painelSolicitaçãoBotãoCalcExcentricidade.setBackground(new java.awt.Color(231, 234, 240));
-        painelSolicitaçãoBotãoCalcExcentricidade.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
-        painelSolicitaçãoBotãoCalcExcentricidade.setLayout(new FlowLayout());
+        painelCarregamentoBotãoCalcExcentricidade.setVisible(true);
+        painelCarregamentoBotãoCalcExcentricidade.setBackground(new java.awt.Color(231, 234, 240));
+        painelCarregamentoBotãoCalcExcentricidade.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+        painelCarregamentoBotãoCalcExcentricidade.setLayout(new FlowLayout());
         /**
          * ***************************************************************************
          */
 
 //*********** PAINEL PRINCIPAL DE PROPRIEDADES DO CARREGAMENTO *******
-        JPanel painelBoxSolicitação = new JPanel();
-        painelBoxSolicitação.setBackground(new java.awt.Color(231, 234, 240));
+        JPanel painelBoxCarregameto = new JPanel();
+        painelBoxCarregameto.setBackground(new java.awt.Color(231, 234, 240));
 //****************************************************************
 
         /**
          * **** ESTRUTURA VERTICAL DO PAINEL PRINCIPAL DE PROPRIEDADES DAS
          * SEÇÕES ****
          */
-        Box verticalSolicitação = Box.createVerticalBox();
+        Box verticalCarregamento = Box.createVerticalBox();
 
-        verticalSolicitação.add(painelSolicitaçãoInv);// Espaçador para padronizar tamanho   
-        verticalSolicitação.add(painelSolicitação[5]);
-        verticalSolicitação.add(painelSolicitação[6]);
-        verticalSolicitação.add(painelCarregamentoFlexãoJComboBox);
-        verticalSolicitação.add(painelSolicitação[0]);// Material
-        verticalSolicitação.add(painelSolicitação[1]);
-        verticalSolicitação.add(painelSolicitação[2]);// Tipo de Seção
-        verticalSolicitação.add(painelSolicitaçãoBotãoCalcExcentricidade);   // Botão = Calcula as propriedades do material  
+        verticalCarregamento.add(painelCarregamentoInv);// Espaçador para padronizar tamanho   
+        verticalCarregamento.add(painelCarregamento[7]);
+        verticalCarregamento.add(painelCarregamento[8]);
+        verticalCarregamento.add(painelCarregamentoFlexãoJComboBox);
+        verticalCarregamento.add(painelCarregamentoFlexãoCompostaJComboBox);
+        verticalCarregamento.add(painelCarregamento[0]);// Material
+        verticalCarregamento.add(painelCarregamento[1]);
+        verticalCarregamento.add(painelCarregamento[2]);// Tipo de Seção
+        verticalCarregamento.add(painelCarregamento[3]);
+        verticalCarregamento.add(painelCarregamentoBotãoCalcExcentricidade);   // Botão = Calcula as propriedades do material         
+        verticalCarregamento.add(painelCarregamento[4]);
+        verticalCarregamento.add(painelCarregamento[5]);
+        verticalCarregamento.add(painelCarregamento[6]);
 
-        verticalSolicitação.add(painelSolicitação[3]);
-        verticalSolicitação.add(painelSolicitação[4]);
-
-        painelBoxSolicitação.add(verticalSolicitação);
+        painelBoxCarregameto.add(verticalCarregamento);
         /**
          * ***************************************************************************
          */
@@ -1340,58 +1346,128 @@ public class ProjConcretoB_Interface extends JFrame {
          * **** ADIÇÃO DO PAINEL PRINCIPAL DE PROPRIEDADES DO CARREGAMENTO À
          * DIREITA ********
          */
-        add(painelBoxSolicitação, BorderLayout.EAST);
+        add(painelBoxCarregameto, BorderLayout.EAST);
+        painelCarregamento[0].setVisible(false);
+        painelCarregamento[1].setVisible(false);
+        painelCarregamento[2].setVisible(false);
+        painelCarregamento[3].setVisible(false);
+        painelCarregamento[4].setVisible(false);
+        painelCarregamento[5].setVisible(false);
+        painelCarregamento[6].setVisible(false);
+        painelCarregamentoFlexãoCompostaJComboBox.setVisible(false);
+        BotãoCalcExcentricidade.setVisible(false);
+
         /**
          * ***************************************************************************
          */
+        menuCarregamentoFlexãoCompostaJComboBox.addItemListener(
+                new ItemListener() {
+            public void itemStateChanged(ItemEvent event) {
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    if (menuCarregamentoFlexãoCompostaJComboBox.getSelectedIndex() == 0) {
+                        painelCarregamento[0].setVisible(false);
+                        painelCarregamento[1].setVisible(false);
+                        painelCarregamento[2].setVisible(false);
+                        painelCarregamento[3].setVisible(false);
+                        painelCarregamento[4].setVisible(false);
+                        painelCarregamento[5].setVisible(false);
+                        painelCarregamento[6].setVisible(false);
+                        painelCarregamentoFlexãoCompostaJComboBox.setVisible(false);
+                        BotãoCalcExcentricidade.setText("Calcular excentricidade e µsd");
+                        CampoCarregamento[6].setText("");
+                        BotãoCalcExcentricidade.setVisible(false);
 
+                    } else if (menuCarregamentoFlexãoCompostaJComboBox.getSelectedIndex() == 1) {
+                        painelCarregamento[0].setVisible(true);
+                        painelCarregamento[1].setVisible(false);
+                        painelCarregamento[2].setVisible(true);
+                        painelCarregamento[3].setVisible(true);
+                        painelCarregamento[4].setVisible(true);
+                        painelCarregamento[5].setVisible(true);
+                        painelCarregamento[6].setVisible(true);
+                        painelCarregamentoFlexãoCompostaJComboBox.setVisible(true);
+                        BotãoCalcExcentricidade.setText("Calcular excentricidade e µsd");
+                        CampoCarregamento[6].setText("");
+                        BotãoCalcExcentricidade.setVisible(true);
+
+                    } else {
+                        painelCarregamento[0].setVisible(true);
+                        painelCarregamento[1].setVisible(false);
+                        painelCarregamento[2].setVisible(true);
+                        painelCarregamento[3].setVisible(true);
+                        painelCarregamento[4].setVisible(true);
+                        painelCarregamento[5].setVisible(true);
+                        painelCarregamento[6].setVisible(true);
+                        painelCarregamentoFlexãoCompostaJComboBox.setVisible(true);
+                        BotãoCalcExcentricidade.setText("Calcular excentricidade e µsd");
+                        CampoCarregamento[6].setText("");
+                        BotãoCalcExcentricidade.setVisible(true);
+
+                    }
+                }
+            }
+        });
 
         menuCarregamentoFlexãoJComboBox.addItemListener(
                 new ItemListener() {
-                    public void itemStateChanged(ItemEvent event) {
-                        CampoSolicitação[0].setEditable(true);
-                        CampoSolicitação[1].setEditable(true);
-                        CampoSolicitação[2].setEditable(true);
-                        BotãoCalcExcentricidade.setEnabled(true);
-                        if (event.getStateChange() == ItemEvent.SELECTED) {
-                            //labelMenuDetalhamento.setIcon(icons[menuCarregamentoFlexãoJComboBox.getSelectedIndex()]);
-                            if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1) {
-                                painelSolicitação[0].setVisible(false);
-                                painelSolicitação[1].setVisible(false);
-                                painelSolicitação[3].setVisible(false);
+            public void itemStateChanged(ItemEvent event) {
+                CampoCarregamento[0].setEditable(true);
+                CampoCarregamento[1].setEditable(true);
+                CampoCarregamento[2].setEditable(true);
+                CampoCarregamento[3].setEditable(true);
+                CampoCarregamento[4].setEditable(false);
+                CampoCarregamento[5].setEditable(false);
+                CampoCarregamento[6].setEditable(false);
+//                painelCarregamento[4].setVisible(false);
+//                painelCarregamento[5].setVisible(false);
+//                painelCarregamento[6].setVisible(false);
+                BotãoCalcExcentricidade.setEnabled(true);
+                BotãoCalcExcentricidade.setVisible(true);
 
-                                painelSolicitação[2].setVisible(true);
-                                painelSolicitação[4].setVisible(true);
-                                BotãoCalcExcentricidade.setText("Calcular µsd");
-                                CampoSolicitação[4].setText("");
-                            } else if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 2) {
-                                painelSolicitação[0].setVisible(true);
-                                painelSolicitação[1].setVisible(true);
-                                painelSolicitação[2].setVisible(false);
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    //labelMenuDetalhamento.setIcon(icons[menuCarregamentoFlexãoJComboBox.getSelectedIndex()]);
+                    if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1) {
+                        painelCarregamento[0].setVisible(false);
+                        painelCarregamento[1].setVisible(false);
+                        painelCarregamento[2].setVisible(true);
+                        painelCarregamento[3].setVisible(false);
+                        painelCarregamento[4].setVisible(false);
+                        painelCarregamento[5].setVisible(false);
+                        painelCarregamento[6].setVisible(true);
+                        BotãoCalcExcentricidade.setText("Calcular µsd");
+                        CampoCarregamento[6].setText("");
+                        painelCarregamentoFlexãoCompostaJComboBox.setVisible(false);
 
-                                painelSolicitação[3].setVisible(true);
-                                painelSolicitação[4].setVisible(true);
-                                BotãoCalcExcentricidade.setText("Calcular excentricidade e µsd");
-                                CampoSolicitação[4].setText("");
-                            } else {
-                                CampoSolicitação[0].setEditable(false);
-                                CampoSolicitação[1].setEditable(false);
-                                CampoSolicitação[2].setEditable(false);
-                                CampoSolicitação[3].setEditable(false);
-                                CampoSolicitação[4].setEditable(false);
+                    } else if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 2) {
+//                        painelCarregamento[0].setVisible(true);
+//                        painelCarregamento[1].setVisible(false);
+                        painelCarregamento[2].setVisible(false);
+//                        painelCarregamento[3].setVisible(true);
+//                        painelCarregamento[4].setVisible(true);
+//                        painelCarregamento[5].setVisible(true);
+                        painelCarregamento[6].setVisible(false);
+                        BotãoCalcExcentricidade.setVisible(false);
+                        painelCarregamentoFlexãoCompostaJComboBox.setVisible(true);
+                        //BotãoCalcExcentricidade.setText("Calcular excentricidade e µsd");
+                        CampoCarregamento[6].setText("");
 
-                                painelSolicitação[0].setVisible(true);
-                                painelSolicitação[1].setVisible(true);
-                                painelSolicitação[2].setVisible(true);
-                                painelSolicitação[3].setVisible(true);
-                                painelSolicitação[4].setVisible(true);
-                                BotãoCalcExcentricidade.setText("Selecione uma flexão");
-                                CampoSolicitação[4].setText("");
-                            }
+                    } else {
+                        painelCarregamento[0].setVisible(false);
+                        painelCarregamento[1].setVisible(false);
+                        painelCarregamento[2].setVisible(false);
+                        painelCarregamento[3].setVisible(false);
+                        painelCarregamento[4].setVisible(false);
+                        painelCarregamento[5].setVisible(false);
+                        painelCarregamento[6].setVisible(false);
+                        painelCarregamentoFlexãoCompostaJComboBox.setVisible(false);
 
-                        }
+                        BotãoCalcExcentricidade.setText("Selecione uma flexão");
+                        CampoCarregamento[6].setText("");
                     }
+
                 }
+            }
+        }
         );
 
         //******************* FIM DO painelBoxSolicitação na esquerda (west)
@@ -1550,100 +1626,100 @@ public class ProjConcretoB_Interface extends JFrame {
          */
         menuDetalhamentoJComboBox.addItemListener(
                 new ItemListener() {
-                    public void itemStateChanged(ItemEvent event) {
-                        if (event.getStateChange() == ItemEvent.SELECTED) {
-                            labelMenuDetalhamento.setIcon(iconsDetalhamento[menuDetalhamentoJComboBox.getSelectedIndex()]);
-                            for (int i = 0; i <= 4; i++) {
-                                painelDetalhamento[i].setVisible(false);
+            public void itemStateChanged(ItemEvent event) {
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    labelMenuDetalhamento.setIcon(iconsDetalhamento[menuDetalhamentoJComboBox.getSelectedIndex()]);
+                    for (int i = 0; i <= 4; i++) {
+                        painelDetalhamento[i].setVisible(false);
+                    }
+
+                    switch (menuDetalhamentoJComboBox.getSelectedIndex()) {
+                        case 0:
+                            painelDetalhamentolabelMenuDetalhamento.setVisible(true);
+                            // Definição do tipo de Detalhamento
+                            nomeDetalhamentoInterface = "";
+                            painelDetalhamento[7].setVisible(false);
+                            painelDetalhamento[8].setVisible(false);
+                            for (int i = 0; i <= 2; i++) {
+                                CampoDetalhamento[i].setText(String.format(""));
                             }
 
-                            switch (menuDetalhamentoJComboBox.getSelectedIndex()) {
-                                case 0:
-                                    painelDetalhamentolabelMenuDetalhamento.setVisible(true);
-                                    // Definição do tipo de Detalhamento
-                                    nomeDetalhamentoInterface = "";
-                                    painelDetalhamento[7].setVisible(false);
-                                    painelDetalhamento[8].setVisible(false);
-                                    for (int i = 0; i <= 2; i++) {
-                                        CampoDetalhamento[i].setText(String.format(""));
-                                    }
+                            painelDetalhamentoBotãoDesDetalhamento.setVisible(false);
+                            painelDetalhamentoBotãoCalcDist.setVisible(false);
 
-                                    painelDetalhamentoBotãoDesDetalhamento.setVisible(false);
-                                    painelDetalhamentoBotãoCalcDist.setVisible(false);
+                            CampoDetalhamento[3].setText(String.format(""));
+                            CampoDetalhamento[4].setText(String.format(""));
 
-                                    CampoDetalhamento[3].setText(String.format(""));
-                                    CampoDetalhamento[4].setText(String.format(""));
-
-                                    break;
-                                case 1:
-                                    // Caso o tipo de seção selecionado seja diferente do atual
-                                    // Os campos de texto são limpos
-                                    if (!"ARMADURA SIMPLES".equals(nomeDetalhamentoInterface)) {
-                                        for (int i = 0; i <= 2; i++) {
-                                            CampoDetalhamento[i].setText(String.format(""));
-                                            painelDetalhamento[i].setVisible(false);
-                                        }
-                                    }
-
-                                    painelDetalhamentolabelMenuDetalhamento.setVisible(true);
-
-                                    nomeDetalhamentoInterface = "ARMADURA SIMPLES";
-                                    painelDetalhamento[0].setVisible(true);
-                                    painelDetalhamento[1].setVisible(true);
-                                    painelDetalhamento[2].setVisible(true);
-                                    painelDetalhamento[3].setVisible(true);
-                                    painelDetalhamento[4].setVisible(true);
-                                    painelDetalhamento[7].setVisible(true);
-                                    painelDetalhamento[8].setVisible(true);
-
-                                    painelDetalhamentoBotãoDesDetalhamento.setVisible(true);
-                                    painelDetalhamentoBotãoCalcDist.setVisible(true);
-
-                                    for (int i = 3; i <= 4; i++) {
-                                        painelDetalhamento[i].setVisible(true);
-                                    }
-
-                                    CampoDetalhamento[3].setText(String.format(""));
-                                    CampoDetalhamento[4].setText(String.format(""));
-
-                                    break;
-
-                                case 2:
-                                    if (!"ARMADURA DUPLA".equals(nomeDetalhamentoInterface)) {
-                                        for (int i = 0; i <= 2; i++) {
-                                            CampoDetalhamento[i].setText(String.format(""));
-                                            painelDetalhamento[i].setVisible(false);
-                                        }
-                                    }
-
-                                    painelDetalhamentolabelMenuDetalhamento.setVisible(true);
-
-                                    nomeDetalhamentoInterface = "ARMADURA DUPLA";
-                                    painelDetalhamento[0].setVisible(true);
-                                    painelDetalhamento[1].setVisible(true);
-                                    painelDetalhamento[2].setVisible(true);
-                                    painelDetalhamento[3].setVisible(true);
-                                    painelDetalhamento[4].setVisible(true);
-                                    painelDetalhamento[7].setVisible(true);
-                                    painelDetalhamento[8].setVisible(true);
-
-                                    painelDetalhamentoBotãoCalcDist.setVisible(true);
-
-                                    for (int i = 3; i <= 4; i++) {
-                                        painelDetalhamento[i].setVisible(true);
-                                    }
-
-                                    painelDetalhamentoBotãoDesDetalhamento.setVisible(true);
-                                    painelDetalhamentoBotãoCalcDist.setVisible(true);
-
-                                    CampoDetalhamento[3].setText(String.format(""));
-                                    CampoDetalhamento[4].setText(String.format(""));
-
-                                    break;
+                            break;
+                        case 1:
+                            // Caso o tipo de seção selecionado seja diferente do atual
+                            // Os campos de texto são limpos
+                            if (!"ARMADURA SIMPLES".equals(nomeDetalhamentoInterface)) {
+                                for (int i = 0; i <= 2; i++) {
+                                    CampoDetalhamento[i].setText(String.format(""));
+                                    painelDetalhamento[i].setVisible(false);
+                                }
                             }
-                        }
+
+                            painelDetalhamentolabelMenuDetalhamento.setVisible(true);
+
+                            nomeDetalhamentoInterface = "ARMADURA SIMPLES";
+                            painelDetalhamento[0].setVisible(true);
+                            painelDetalhamento[1].setVisible(true);
+                            painelDetalhamento[2].setVisible(true);
+                            painelDetalhamento[3].setVisible(true);
+                            painelDetalhamento[4].setVisible(true);
+                            painelDetalhamento[7].setVisible(true);
+                            painelDetalhamento[8].setVisible(true);
+
+                            painelDetalhamentoBotãoDesDetalhamento.setVisible(true);
+                            painelDetalhamentoBotãoCalcDist.setVisible(true);
+
+                            for (int i = 3; i <= 4; i++) {
+                                painelDetalhamento[i].setVisible(true);
+                            }
+
+                            CampoDetalhamento[3].setText(String.format(""));
+                            CampoDetalhamento[4].setText(String.format(""));
+
+                            break;
+
+                        case 2:
+                            if (!"ARMADURA DUPLA".equals(nomeDetalhamentoInterface)) {
+                                for (int i = 0; i <= 2; i++) {
+                                    CampoDetalhamento[i].setText(String.format(""));
+                                    painelDetalhamento[i].setVisible(false);
+                                }
+                            }
+
+                            painelDetalhamentolabelMenuDetalhamento.setVisible(true);
+
+                            nomeDetalhamentoInterface = "ARMADURA DUPLA";
+                            painelDetalhamento[0].setVisible(true);
+                            painelDetalhamento[1].setVisible(true);
+                            painelDetalhamento[2].setVisible(true);
+                            painelDetalhamento[3].setVisible(true);
+                            painelDetalhamento[4].setVisible(true);
+                            painelDetalhamento[7].setVisible(true);
+                            painelDetalhamento[8].setVisible(true);
+
+                            painelDetalhamentoBotãoCalcDist.setVisible(true);
+
+                            for (int i = 3; i <= 4; i++) {
+                                painelDetalhamento[i].setVisible(true);
+                            }
+
+                            painelDetalhamentoBotãoDesDetalhamento.setVisible(true);
+                            painelDetalhamentoBotãoCalcDist.setVisible(true);
+
+                            CampoDetalhamento[3].setText(String.format(""));
+                            CampoDetalhamento[4].setText(String.format(""));
+
+                            break;
                     }
                 }
+            }
+        }
         );
 
         /**
@@ -1871,153 +1947,151 @@ public class ProjConcretoB_Interface extends JFrame {
         for (int i = 0; i < botão.length; i++) {
             botão[i].addActionListener(
                     new ActionListener() {
-                        public void actionPerformed(ActionEvent event) {
-                            if (event.getSource() == botão[0]) // Seção
-                            {
-                                painelBoxMaterial.setVisible(false);
-                                add(painelBoxSeção, BorderLayout.EAST);
-                                painelBoxSeção.setVisible(true);
-                                painelBoxSolicitação.setVisible(false);
-                                painelBoxDetalhamento.setVisible(false);
-                                painelBoxFlexão.setVisible(false);
-                                //**************************************************************
-                                // Ação de evento das caixas de texto (campo de texto)
-                                for (int i = 0; i < CampoSeção.length; i++) {
-                                    CampoSeção[i].addActionListener(
-                                            new ActionListener() {
-                                                public void actionPerformed(ActionEvent event) {
-                                                    if (event.getSource() == CampoSeção[0]) // bw
-                                                    {  // Está na classe Dados
-                                                        SEÇÃO[0] = Double.parseDouble(event.getActionCommand());
-                                                        dados.setbw(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoSeção[1]) // h
-                                                    {
-                                                        SEÇÃO[1] = Double.parseDouble(event.getActionCommand());
-                                                        dados.seth(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoSeção[2]) // bf
-                                                    {
-                                                        SEÇÃO[2] = Double.parseDouble(event.getActionCommand());
-                                                        dados.setbf(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoSeção[3]) //hf
-                                                    {
-                                                        SEÇÃO[3] = Double.parseDouble(event.getActionCommand());
-                                                        dados.sethf(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoSeção[4]) // bfs
-                                                    {
-                                                        SEÇÃO[4] = Double.parseDouble(event.getActionCommand());
-                                                        dados.setbfs(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoSeção[5]) // hfs
-                                                    {
-                                                        SEÇÃO[5] = Double.parseDouble(event.getActionCommand());
-                                                        dados.sethfs(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoSeção[6]) // bfi
-                                                    {
-                                                        SEÇÃO[6] = Double.parseDouble(event.getActionCommand());
-                                                        dados.setbfi(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoSeção[7]) // hfi
-                                                    {
-                                                        SEÇÃO[7] = Double.parseDouble(event.getActionCommand());
-                                                        dados.sethfi(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    //********************************************************
-                                                } // Fim do método actionPerformed
-                                            } // Fim da classe interna anônima
-                                    ); // Fim do ActionListener CampoSeção[i]
-                                } // Fim do for
-                            }// Fim if dos eventos do botão[0] // Seção
-                            //******************************************************************
+                public void actionPerformed(ActionEvent event) {
+                    if (event.getSource() == botão[0]) // Seção
+                    {
+                        painelBoxMaterial.setVisible(false);
+                        add(painelBoxSeção, BorderLayout.EAST);
+                        painelBoxSeção.setVisible(true);
+                        painelBoxCarregameto.setVisible(false);
+                        painelBoxDetalhamento.setVisible(false);
+                        painelBoxFlexão.setVisible(false);
+                        //**************************************************************
+                        // Ação de evento das caixas de texto (campo de texto)
+                        for (int i = 0; i < CampoSeção.length; i++) {
+                            CampoSeção[i].addActionListener(
+                                    new ActionListener() {
+                                public void actionPerformed(ActionEvent event) {
+                                    if (event.getSource() == CampoSeção[0]) // bw
+                                    {  // Está na classe Dados
+                                        SEÇÃO[0] = Double.parseDouble(event.getActionCommand());
+                                        dados.setbw(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoSeção[1]) // h
+                                    {
+                                        SEÇÃO[1] = Double.parseDouble(event.getActionCommand());
+                                        dados.seth(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoSeção[2]) // bf
+                                    {
+                                        SEÇÃO[2] = Double.parseDouble(event.getActionCommand());
+                                        dados.setbf(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoSeção[3]) //hf
+                                    {
+                                        SEÇÃO[3] = Double.parseDouble(event.getActionCommand());
+                                        dados.sethf(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoSeção[4]) // bfs
+                                    {
+                                        SEÇÃO[4] = Double.parseDouble(event.getActionCommand());
+                                        dados.setbfs(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoSeção[5]) // hfs
+                                    {
+                                        SEÇÃO[5] = Double.parseDouble(event.getActionCommand());
+                                        dados.sethfs(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoSeção[6]) // bfi
+                                    {
+                                        SEÇÃO[6] = Double.parseDouble(event.getActionCommand());
+                                        dados.setbfi(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoSeção[7]) // hfi
+                                    {
+                                        SEÇÃO[7] = Double.parseDouble(event.getActionCommand());
+                                        dados.sethfi(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    //********************************************************
+                                } // Fim do método actionPerformed
+                            } // Fim da classe interna anônima
+                            ); // Fim do ActionListener CampoSeção[i]
+                        } // Fim do for
+                    }// Fim if dos eventos do botão[0] // Seção
+                    //******************************************************************
 
-                            //******************************************************************
-                            if (event.getSource() == botão[1]) // Material
-                            {
-                                //painelBoxSeção.setVisible(false);
-                                painelBoxMaterial.setVisible(true);
-                                add(painelBoxMaterial, BorderLayout.EAST);
-                                painelBoxSeção.setVisible(false);
-                                painelBoxSolicitação.setVisible(false);
-                                painelBoxDetalhamento.setVisible(false);
-                                painelBoxFlexão.setVisible(false);
-                                //**************************************************************
-                                // Ação de evento das caixas de texto (campo de texto)
-                                for (int i = 0; i < CampoMaterial.length; i++) {
-                                    CampoMaterial[i].addActionListener(
-                                            new ActionListener() {
-                                                public void actionPerformed(ActionEvent event) {
-                                                    if (event.getSource() == CampoMaterial[0]) {
-                                                        //bDados.getMaterial()[0] = Double.parseDouble(event.getActionCommand());
-                                                        bDados.setfck(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoMaterial[1]) {
-                                                        //bDados.getMaterial()[2] = Double.parseDouble(event.getActionCommand());
+                    //******************************************************************
+                    if (event.getSource() == botão[1]) // Material
+                    {
+                        //painelBoxSeção.setVisible(false);
+                        painelBoxMaterial.setVisible(true);
+                        add(painelBoxMaterial, BorderLayout.EAST);
+                        painelBoxSeção.setVisible(false);
+                        painelBoxCarregameto.setVisible(false);
+                        painelBoxDetalhamento.setVisible(false);
+                        painelBoxFlexão.setVisible(false);
+                        //**************************************************************
+                        // Ação de evento das caixas de texto (campo de texto)
+                        for (int i = 0; i < CampoMaterial.length; i++) {
+                            CampoMaterial[i].addActionListener(
+                                    new ActionListener() {
+                                public void actionPerformed(ActionEvent event) {
+                                    if (event.getSource() == CampoMaterial[0]) {
+                                        //bDados.getMaterial()[0] = Double.parseDouble(event.getActionCommand());
+                                        bDados.setfck(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoMaterial[1]) {
+                                        //bDados.getMaterial()[2] = Double.parseDouble(event.getActionCommand());
 
-                                                        bDados.setfyk(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                }
-                                            }
-                                    ); // Fim do ActionListener
-                                } // Fim do for das caixas de texto
-                                //************************************************************
-                            }// Fim dos eventos do botão[1] // Material
-                            //******************************************************************
+                                        bDados.setfyk(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                }
+                            }
+                            ); // Fim do ActionListener
+                        } // Fim do for das caixas de texto
+                        //************************************************************
+                    }// Fim dos eventos do botão[1] // Material
+                    //******************************************************************
 
+                    if (event.getSource() == botão[2]) // Detalhamento
+                    {
+                        painelBoxMaterial.setVisible(false);
+                        painelBoxSeção.setVisible(false);
+                        painelBoxCarregameto.setVisible(false);
+                        add(painelBoxDetalhamento, BorderLayout.EAST);
+                        painelBoxDetalhamento.setVisible(true);
+                        painelBoxFlexão.setVisible(false);
+                        //**************************************************************
+                        // Ação de evento das caixas de texto (campo de texto)
+                        for (int i = 0; i < CampoDetalhamento.length; i++) {
+                            CampoDetalhamento[i].addActionListener(
+                                    new ActionListener() {
+                                public void actionPerformed(ActionEvent event) {
+                                    if (event.getSource() == CampoDetalhamento[0]) // c nom
+                                    {  // Está na classe Dados
+                                        dados.setcNom(Double.parseDouble(event.getActionCommand()));
+                                    }
 
-                            if (event.getSource() == botão[2]) // Detalhamento
-                            {
-                                painelBoxMaterial.setVisible(false);
-                                painelBoxSeção.setVisible(false);
-                                painelBoxSolicitação.setVisible(false);
-                                add(painelBoxDetalhamento, BorderLayout.EAST);
-                                painelBoxDetalhamento.setVisible(true);
-                                painelBoxFlexão.setVisible(false);
-                                //**************************************************************
-                                // Ação de evento das caixas de texto (campo de texto)
-                                for (int i = 0; i < CampoDetalhamento.length; i++) {
-                                    CampoDetalhamento[i].addActionListener(
-                                            new ActionListener() {
-                                                public void actionPerformed(ActionEvent event) {
-                                                    if (event.getSource() == CampoDetalhamento[0]) // c nom
-                                                    {  // Está na classe Dados
-                                                        dados.setcNom(Double.parseDouble(event.getActionCommand()));
-                                                    }
+                                    if (event.getSource() == CampoDetalhamento[1]) // ϕt
+                                    {
+                                        dados.setfiT(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoDetalhamento[2]) // ϕ
+                                    {
+                                        dados.setfi(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    //********************************************************
+                                } // Fim do método actionPerformed
+                            } // Fim da classe interna anônima
+                            ); // Fim do ActionListener CampoDetalhamento[i]
+                        } // Fim do for
+                    }// Fim if dos eventos do botão[4] // Detalhamento
 
-                                                    if (event.getSource() == CampoDetalhamento[1]) // ϕt
-                                                    {
-                                                        dados.setfiT(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoDetalhamento[2]) // ϕ
-                                                    {
-                                                        dados.setfi(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    //********************************************************
-                                                } // Fim do método actionPerformed
-                                            } // Fim da classe interna anônima
-                                    ); // Fim do ActionListener CampoDetalhamento[i]
-                                } // Fim do for
-                            }// Fim if dos eventos do botão[4] // Detalhamento
-
-
-                            //************************************************************************
-                            if (event.getSource() == botão[3]) // Solicitação
-                            {
-                                painelBoxSeção.setVisible(false);
-                                painelBoxMaterial.setVisible(false);
-                                add(painelBoxSolicitação, BorderLayout.EAST);
-                                painelBoxSolicitação.setVisible(true);
-                                painelBoxDetalhamento.setVisible(false);
-                                painelBoxFlexão.setVisible(false);
-                                //**************************************************************
-                                // Ação de evento das caixas de texto (campo de texto)
-                                for (int i = 0; i < CampoSolicitação.length; i++) {
-                                    CampoSolicitação[i].addActionListener(
-                                            new ActionListener() {
-                                                public void actionPerformed(ActionEvent event) {
+                    //************************************************************************
+                    if (event.getSource() == botão[3]) // Solicitação
+                    {
+                        painelBoxSeção.setVisible(false);
+                        painelBoxMaterial.setVisible(false);
+                        add(painelBoxCarregameto, BorderLayout.EAST);
+                        painelBoxCarregameto.setVisible(true);
+                        painelBoxDetalhamento.setVisible(false);
+                        painelBoxFlexão.setVisible(false);
+                        //**************************************************************
+                        // Ação de evento das caixas de texto (campo de texto)
+                        for (int i = 0; i < CampoCarregamento.length; i++) {
+                            CampoCarregamento[i].addActionListener(
+                                    new ActionListener() {
+                                public void actionPerformed(ActionEvent event) {
 //                                    if (event.getSource() == CampoMaterial[0]) {
 //                                        //bDados.getMaterial()[0] = Double.parseDouble(event.getActionCommand());
 //                                        bDados.setfck(Double.parseDouble(event.getActionCommand()));
@@ -2027,51 +2101,50 @@ public class ProjConcretoB_Interface extends JFrame {
 //
 //                                        bDados.setfyk(Double.parseDouble(event.getActionCommand()));
 //                                    }
-                                                }
-                                            }
-                                    ); // Fim do ActionListener
-                                } // Fim do for das caixas de texto
-                                //************************************************************
-                            }// Fim dos eventos do botão[2] // Solicitação
-                            //***********************************************************
+                                }
+                            }
+                            ); // Fim do ActionListener
+                        } // Fim do for das caixas de texto
+                        //************************************************************
+                    }// Fim dos eventos do botão[2] // Solicitação
+                    //***********************************************************
 
+                    if (event.getSource() == botão[4]) // ELU - FLEXÃO
+                    {
+                        painelBoxMaterial.setVisible(false);
+                        painelBoxSeção.setVisible(false);
+                        painelBoxCarregameto.setVisible(false);
+                        painelBoxDetalhamento.setVisible(false);
+                        painelBoxFlexão.setVisible(true);
+                        add(painelBoxFlexão, BorderLayout.EAST);
+                        //**************************************************************
+                        // Ação de evento das caixas de texto (campo de texto)
+                        for (int i = 0; i < CampoFlexão.length; i++) {
+                            CampoFlexão[i].addActionListener(
+                                    new ActionListener() {
+                                public void actionPerformed(ActionEvent event) {
+                                    if (event.getSource() == CampoFlexão[0]) // c nom
+                                    {  // Está na classe Dados
+                                        dados.setcNom(Double.parseDouble(event.getActionCommand()));
+                                    }
 
-                            if (event.getSource() == botão[4]) // ELU - FLEXÃO
-                            {
-                                painelBoxMaterial.setVisible(false);
-                                painelBoxSeção.setVisible(false);
-                                painelBoxSolicitação.setVisible(false);
-                                painelBoxDetalhamento.setVisible(false);
-                                painelBoxFlexão.setVisible(true);
-                                add(painelBoxFlexão, BorderLayout.EAST);
-                                //**************************************************************
-                                // Ação de evento das caixas de texto (campo de texto)
-                                for (int i = 0; i < CampoFlexão.length; i++) {
-                                    CampoFlexão[i].addActionListener(
-                                            new ActionListener() {
-                                                public void actionPerformed(ActionEvent event) {
-                                                    if (event.getSource() == CampoFlexão[0]) // c nom
-                                                    {  // Está na classe Dados
-                                                        dados.setcNom(Double.parseDouble(event.getActionCommand()));
-                                                    }
+                                    if (event.getSource() == CampoDetalhamento[1]) // ϕt
+                                    {
+                                        dados.setfiT(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    if (event.getSource() == CampoDetalhamento[2]) // ϕ
+                                    {
+                                        dados.setfi(Double.parseDouble(event.getActionCommand()));
+                                    }
+                                    //********************************************************
+                                } // Fim do método actionPerformed
+                            } // Fim da classe interna anônima
+                            ); // Fim do ActionListener CampoDetalhamento[i]
+                        } // Fim do for
+                    }// Fim if dos eventos do botão[4] // ELU – FLEXÃO
 
-                                                    if (event.getSource() == CampoDetalhamento[1]) // ϕt
-                                                    {
-                                                        dados.setfiT(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    if (event.getSource() == CampoDetalhamento[2]) // ϕ
-                                                    {
-                                                        dados.setfi(Double.parseDouble(event.getActionCommand()));
-                                                    }
-                                                    //********************************************************
-                                                } // Fim do método actionPerformed
-                                            } // Fim da classe interna anônima
-                                    ); // Fim do ActionListener CampoDetalhamento[i]
-                                } // Fim do for
-                            }// Fim if dos eventos do botão[4] // ELU – FLEXÃO
-
-                        }
-                    }
+                }
+            }
             );
         }
 //*************************************************************
@@ -2080,58 +2153,58 @@ public class ProjConcretoB_Interface extends JFrame {
 // Colocar um botão para desenhar a seção 
         BotãoDesSeção.addActionListener(
                 new ActionListener() {
-                    public void actionPerformed(ActionEvent event) {
-                        //****************************************************************
-                        if (nomeSeçãoInterface.equals("SEÇÃO RETANGULAR")) {
-                            if ((SEÇÃO[0] != 0.0) && (SEÇÃO[1] != 0.0)) {
-                                dados.setNomeSeção(nomeSeçãoInterface);// Na classe DADOS
-                                dados.setnSec(); // Na classe PropGeomGAUSS
-                                dados.setPoligonalGAUSS();// Na classe PropGeomGAUSS
-                                dados.setPropGeométricas();// Na classe PropGeomGAUSS
-                                dados.setPoligonalCG();// Na classe PropGeomGAUSS
+            public void actionPerformed(ActionEvent event) {
+                //****************************************************************
+                if (nomeSeçãoInterface.equals("SEÇÃO RETANGULAR")) {
+                    if ((SEÇÃO[0] != 0.0) && (SEÇÃO[1] != 0.0)) {
+                        dados.setNomeSeção(nomeSeçãoInterface);// Na classe DADOS
+                        dados.setnSec(); // Na classe PropGeomGAUSS
+                        dados.setPoligonalGAUSS();// Na classe PropGeomGAUSS
+                        dados.setPropGeométricas();// Na classe PropGeomGAUSS
+                        dados.setPoligonalCG();// Na classe PropGeomGAUSS
 
-                                desenhar.DesenharPoligonal();   // Na classe Desenho
-                                desenhar.DesenharDeformação();
-                                desenhar.DesenharBarrasAço();
-                            }
-                        }
-                        //****************************************************************
-                        if (nomeSeçãoInterface.equals("SEÇÃO T")) {
-                            if ((SEÇÃO[0] != 0.0) && (SEÇÃO[1] != 0.0) && (SEÇÃO[2] != 0.0) && (SEÇÃO[3] != 0.0)) {
-                                dados.setNomeSeção(nomeSeçãoInterface);
-                                dados.setnSec();
-                                dados.setPoligonalGAUSS();
-                                dados.setPropGeométricas();
-                                dados.setPoligonalCG();
-                                // desenhar.DesenharPoligonal();
-                            } // Fim do if para desenhar
-                        }
-                        //****************************************************************
-                        if (nomeSeçãoInterface.equals("SEÇÃO I")) {
-                            if ((SEÇÃO[0] != 0.0) && (SEÇÃO[1] != 0.0)
-                                    && (SEÇÃO[4] != 0.0) && (SEÇÃO[5] != 0.0 && (SEÇÃO[6] != 0.0) && (SEÇÃO[7] != 0.0))) {
-                                dados.setNomeSeção(nomeSeçãoInterface);
-                                dados.setnSec();
-                                dados.setPoligonalGAUSS();
-                                dados.setPropGeométricas();
-                                dados.setPoligonalCG();
-                                // desenhar.DesenharPoligonal();
-                            } // Fim do if para desenhar
-                        }
-                        //****************************************************************
-                        if (nomeSeçãoInterface.equals("SEÇÃO L")) {
-                            if ((SEÇÃO[0] != 0.0) && (SEÇÃO[1] != 0.0) && (SEÇÃO[2] != 0.0) && (SEÇÃO[3] != 0.0)) {
-                                dados.setNomeSeção(nomeSeçãoInterface);
-                                dados.setnSec();
-                                dados.setPoligonalGAUSS();
-                                dados.setPropGeométricas();
-                                dados.setPoligonalCG();
-                                // desenhar.DesenharPoligonal();
-                            } // Fim do if para desenhar
-                        }
-                        //***************************************************************
-                    }// Fim do actionPerformed
-                }// Fim do ActionListener
+                        desenhar.DesenharPoligonal();   // Na classe Desenho
+                        desenhar.DesenharDeformação();
+                        desenhar.DesenharBarrasAço();
+                    }
+                }
+                //****************************************************************
+                if (nomeSeçãoInterface.equals("SEÇÃO T")) {
+                    if ((SEÇÃO[0] != 0.0) && (SEÇÃO[1] != 0.0) && (SEÇÃO[2] != 0.0) && (SEÇÃO[3] != 0.0)) {
+                        dados.setNomeSeção(nomeSeçãoInterface);
+                        dados.setnSec();
+                        dados.setPoligonalGAUSS();
+                        dados.setPropGeométricas();
+                        dados.setPoligonalCG();
+                        // desenhar.DesenharPoligonal();
+                    } // Fim do if para desenhar
+                }
+                //****************************************************************
+                if (nomeSeçãoInterface.equals("SEÇÃO I")) {
+                    if ((SEÇÃO[0] != 0.0) && (SEÇÃO[1] != 0.0)
+                            && (SEÇÃO[4] != 0.0) && (SEÇÃO[5] != 0.0 && (SEÇÃO[6] != 0.0) && (SEÇÃO[7] != 0.0))) {
+                        dados.setNomeSeção(nomeSeçãoInterface);
+                        dados.setnSec();
+                        dados.setPoligonalGAUSS();
+                        dados.setPropGeométricas();
+                        dados.setPoligonalCG();
+                        // desenhar.DesenharPoligonal();
+                    } // Fim do if para desenhar
+                }
+                //****************************************************************
+                if (nomeSeçãoInterface.equals("SEÇÃO L")) {
+                    if ((SEÇÃO[0] != 0.0) && (SEÇÃO[1] != 0.0) && (SEÇÃO[2] != 0.0) && (SEÇÃO[3] != 0.0)) {
+                        dados.setNomeSeção(nomeSeçãoInterface);
+                        dados.setnSec();
+                        dados.setPoligonalGAUSS();
+                        dados.setPropGeométricas();
+                        dados.setPoligonalCG();
+                        // desenhar.DesenharPoligonal();
+                    } // Fim do if para desenhar
+                }
+                //***************************************************************
+            }// Fim do actionPerformed
+        }// Fim do ActionListener
         );// Fim do addActionListener
 //**************************************************************************************
 
@@ -2143,108 +2216,106 @@ public class ProjConcretoB_Interface extends JFrame {
 
         BotãoPropGeom.addActionListener(
                 new ActionListener() {
-                    public void actionPerformed(ActionEvent event) {
-                        dados.setbw(Double.parseDouble(CampoSeção[0].getText()));
-                        SEÇÃO[0] = Double.parseDouble(CampoSeção[0].getText());
-                        dados.seth(Double.parseDouble(CampoSeção[1].getText()));
-                        SEÇÃO[1] = Double.parseDouble(CampoSeção[1].getText());
-                        if (dados != null) {
-                            // Calcula as propriedades geométricas
-                            // Está na classe de PropGeomGAUSS
-                            dados.setNomeSeção(nomeSeçãoInterface);
-                            dados.setnSec();
-                            dados.setPoligonalGAUSS();
-                            dados.setPropGeométricas();
-                            double[] PropSeção = dados.getPropGeom();
-                            // COLOCAR NAS aussCAIXAS DE TEXTO - PROPRIEDADES GEOMÉTRICAS
-                            CampoSeção[8].setText(String.format("%.2f", PropSeção[0]));
-                            CampoSeção[9].setText(String.format("%.2f", PropSeção[1]));
-                            CampoSeção[10].setText(String.format("%.2f", PropSeção[2]));
-                            CampoSeção[11].setText(String.format("%.2f", PropSeção[3]));
-                            CampoSeção[12].setText(String.format("%.2f", PropSeção[4]));
-                            CampoSeção[13].setText(String.format("%.2f", PropSeção[5]));
+            public void actionPerformed(ActionEvent event) {
+                dados.setbw(Double.parseDouble(CampoSeção[0].getText()));
+                SEÇÃO[0] = Double.parseDouble(CampoSeção[0].getText());
+                dados.seth(Double.parseDouble(CampoSeção[1].getText()));
+                SEÇÃO[1] = Double.parseDouble(CampoSeção[1].getText());
+                if (dados != null) {
+                    // Calcula as propriedades geométricas
+                    // Está na classe de PropGeomGAUSS
+                    dados.setNomeSeção(nomeSeçãoInterface);
+                    dados.setnSec();
+                    dados.setPoligonalGAUSS();
+                    dados.setPropGeométricas();
+                    double[] PropSeção = dados.getPropGeom();
+                    // COLOCAR NAS aussCAIXAS DE TEXTO - PROPRIEDADES GEOMÉTRICAS
+                    CampoSeção[8].setText(String.format("%.2f", PropSeção[0]));
+                    CampoSeção[9].setText(String.format("%.2f", PropSeção[1]));
+                    CampoSeção[10].setText(String.format("%.2f", PropSeção[2]));
+                    CampoSeção[11].setText(String.format("%.2f", PropSeção[3]));
+                    CampoSeção[12].setText(String.format("%.2f", PropSeção[4]));
+                    CampoSeção[13].setText(String.format("%.2f", PropSeção[5]));
 
-                        }
-
-                    }
                 }
+
+            }
+        }
         );
         //*********************************************************************/
 
         BotãoPropMaterial.addActionListener(
                 new ActionListener() {
-                    public void actionPerformed(ActionEvent event) {
-                        if (bDados != null) {
-                            bDados.setfck(Double.parseDouble(CampoMaterial[0].getText()));
-                            bDados.setfyk(Double.parseDouble(CampoMaterial[1].getText()));
+            public void actionPerformed(ActionEvent event) {
+                if (bDados != null) {
+                    bDados.setfck(Double.parseDouble(CampoMaterial[0].getText()));
+                    bDados.setfyk(Double.parseDouble(CampoMaterial[1].getText()));
 
-                            CampoMaterial[2].setText(String.format("%.3f", bDados.getMaterial()[1]));
-                            CampoMaterial[3].setText(String.format("%.3f", bDados.getMaterial()[3]));
-                        }
-                    }
+                    CampoMaterial[2].setText(String.format("%.3f", bDados.getMaterial()[1]));
+                    CampoMaterial[3].setText(String.format("%.3f", bDados.getMaterial()[3]));
                 }
+            }
+        }
         );
 
         BotãoCalcDist.addActionListener(
                 new ActionListener() {
-                    public void actionPerformed(ActionEvent event) {
-                        if (detalhamento != null) {
-                            detalhamento.calculaDLinha(
-                                    Double.parseDouble(CampoDetalhamento[0].getText()),
-                                    Double.parseDouble(CampoDetalhamento[1].getText()),
-                                    Double.parseDouble(CampoDetalhamento[2].getText())
-                            );
-                            CampoDetalhamento[3].setText(String.format("%.3f", detalhamento.dLinha));
+            public void actionPerformed(ActionEvent event) {
+                if (detalhamento != null) {
+                    detalhamento.calculaDLinha(
+                            Double.parseDouble(CampoDetalhamento[0].getText()),
+                            Double.parseDouble(CampoDetalhamento[1].getText()),
+                            Double.parseDouble(CampoDetalhamento[2].getText())
+                    );
+                    CampoDetalhamento[3].setText(String.format("%.3f", detalhamento.dLinha));
 
-                            detalhamento.calculaD(Double.parseDouble(CampoSeção[1].getText()));
+                    detalhamento.calculaD(Double.parseDouble(CampoSeção[1].getText()));
 
-                            CampoDetalhamento[4].setText(String.format("%.3f", detalhamento.d));
-                        }
-                    }
+                    CampoDetalhamento[4].setText(String.format("%.3f", detalhamento.d));
                 }
+            }
+        }
         );
 
         BotãoCalcExcentricidade.addActionListener(
                 new ActionListener() {
-                    public void actionPerformed(ActionEvent event) {
-                        if (carregamento != null && menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 2) {
-                            //Calculo exentricidade
+            public void actionPerformed(ActionEvent event) {
+                if (carregamento != null && menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 2) {
+                    //Calculo exentricidade
 
-                            carregamento.calculaExentricidade(
-                                    Double.parseDouble(CampoSolicitação[0].getText()),
-                                    Double.parseDouble(CampoSolicitação[1].getText())
-                            );
-                            CampoSolicitação[3].setText(String.format("%.3f", carregamento.e));
+                    carregamento.calculaExentricidade(
+                            Double.parseDouble(CampoCarregamento[0].getText()),
+                            Double.parseDouble(CampoCarregamento[1].getText())
+                    );
+                    CampoCarregamento[3].setText(String.format("%.3f", carregamento.e));
 
-                            //Calculo microSD
+                    //Calculo microSD
+                    Double microSd = carregamento.calculaMicroSD(
+                            Double.parseDouble(CampoCarregamento[0].getText()), //md
+                            SEÇÃO[0],
+                            detalhamento.d,
+                            Double.parseDouble(CampoMaterial[2].getText().replace(",", ".")));
 
-                            Double microSd = carregamento.calculaMicroSD(
-                                    Double.parseDouble(CampoSolicitação[0].getText()), //md
-                                    SEÇÃO[0],
-                                    detalhamento.d,
-                                    Double.parseDouble(CampoMaterial[2].getText().replace(",", ".")));
+                    String resutadoFinal = String.format(microSd.toString());
+                    CampoCarregamento[4].setText(String.format("%.3f", microSd));
 
-                            String resutadoFinal = String.format(microSd.toString());
-                            CampoSolicitação[4].setText(String.format("%.3f", microSd));
+                } else if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1) {
+                    Double microSd = carregamento.calculaMicroSD(
+                            Double.parseDouble(CampoCarregamento[2].getText()), //msd
+                            SEÇÃO[0],
+                            detalhamento.d,
+                            Double.parseDouble(CampoMaterial[2].getText().replace(",", ".")));
 
-                        } else if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1) {
-                            Double microSd = carregamento.calculaMicroSD(
-                                    Double.parseDouble(CampoSolicitação[2].getText()), //msd
-                                    SEÇÃO[0],
-                                    detalhamento.d,
-                                    Double.parseDouble(CampoMaterial[2].getText().replace(",", ".")));
-
-                            /*System.out.println(CampoSolicitação[3].getText());
+                    /*System.out.println(CampoSolicitação[3].getText());
                             System.out.println(SEÇÃO[0]);
                             System.out.println(detalhamento.d);
                             System.out.println(Double.parseDouble(CampoMaterial[2].getText()));
                             System.out.println(carregamento.microSD);*/
-
-                            String resutadoFinal = String.format(microSd.toString());
-                            CampoSolicitação[4].setText(String.format("%.3f", microSd));
-                        }
-                    }
+                    String resutadoFinal = String.format(microSd.toString());
+                    CampoCarregamento[4].setText(String.format("%.3f", microSd));
                 }
+            }
+        }
         );
 
     }// Fim do 1* método CONSTRUTOR
