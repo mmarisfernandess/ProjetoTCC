@@ -1331,8 +1331,8 @@ public class ProjConcretoB_Interface extends JFrame {
         verticalCarregamento.add(painelCarregamento[0]);// Material
         verticalCarregamento.add(painelCarregamento[1]);
         verticalCarregamento.add(painelCarregamento[2]);// Tipo de Seção
-        verticalCarregamento.add(painelCarregamento[3]);
         verticalCarregamento.add(painelCarregamentoBotãoCalcExcentricidade);   // Botão = Calcula as propriedades do material         
+        verticalCarregamento.add(painelCarregamento[3]);
         verticalCarregamento.add(painelCarregamento[4]);
         verticalCarregamento.add(painelCarregamento[5]);
         verticalCarregamento.add(painelCarregamento[6]);
@@ -1372,15 +1372,15 @@ public class ProjConcretoB_Interface extends JFrame {
                         painelCarregamento[4].setVisible(false);
                         painelCarregamento[5].setVisible(false);
                         painelCarregamento[6].setVisible(false);
-                        painelCarregamentoFlexãoCompostaJComboBox.setVisible(false);
                         BotãoCalcExcentricidade.setText("Calcular excentricidade e µsd");
+                        CampoCarregamento[5].setText("");
                         CampoCarregamento[6].setText("");
                         BotãoCalcExcentricidade.setVisible(false);
 
                     } else if (menuCarregamentoFlexãoCompostaJComboBox.getSelectedIndex() == 1) {
                         painelCarregamento[0].setVisible(true);
-                        painelCarregamento[1].setVisible(false);
-                        painelCarregamento[2].setVisible(true);
+                        painelCarregamento[1].setVisible(true);
+                        painelCarregamento[2].setVisible(false);
                         painelCarregamento[3].setVisible(true);
                         painelCarregamento[4].setVisible(true);
                         painelCarregamento[5].setVisible(true);
@@ -1389,17 +1389,19 @@ public class ProjConcretoB_Interface extends JFrame {
                         BotãoCalcExcentricidade.setText("Calcular excentricidade e µsd");
                         CampoCarregamento[6].setText("");
                         BotãoCalcExcentricidade.setVisible(true);
+                        CampoCarregamento[5].setText("");
 
                     } else {
                         painelCarregamento[0].setVisible(true);
-                        painelCarregamento[1].setVisible(false);
-                        painelCarregamento[2].setVisible(true);
+                        painelCarregamento[1].setVisible(true);
+                        painelCarregamento[2].setVisible(false);
                         painelCarregamento[3].setVisible(true);
                         painelCarregamento[4].setVisible(true);
                         painelCarregamento[5].setVisible(true);
                         painelCarregamento[6].setVisible(true);
                         painelCarregamentoFlexãoCompostaJComboBox.setVisible(true);
                         BotãoCalcExcentricidade.setText("Calcular excentricidade e µsd");
+                        CampoCarregamento[5].setText("");
                         CampoCarregamento[6].setText("");
                         BotãoCalcExcentricidade.setVisible(true);
 
@@ -1414,7 +1416,7 @@ public class ProjConcretoB_Interface extends JFrame {
                 CampoCarregamento[0].setEditable(true);
                 CampoCarregamento[1].setEditable(true);
                 CampoCarregamento[2].setEditable(true);
-                CampoCarregamento[3].setEditable(true);
+                CampoCarregamento[3].setEditable(false);
                 CampoCarregamento[4].setEditable(false);
                 CampoCarregamento[5].setEditable(false);
                 CampoCarregamento[6].setEditable(false);
@@ -1427,6 +1429,8 @@ public class ProjConcretoB_Interface extends JFrame {
                 if (event.getStateChange() == ItemEvent.SELECTED) {
                     //labelMenuDetalhamento.setIcon(icons[menuCarregamentoFlexãoJComboBox.getSelectedIndex()]);
                     if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1) {
+                        menuCarregamentoFlexãoCompostaJComboBox.setSelectedIndex(0);
+                        BotãoCalcExcentricidade.setVisible(true);
                         painelCarregamento[0].setVisible(false);
                         painelCarregamento[1].setVisible(false);
                         painelCarregamento[2].setVisible(true);
@@ -1441,8 +1445,8 @@ public class ProjConcretoB_Interface extends JFrame {
                     } else if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 2) {
 //                        painelCarregamento[0].setVisible(true);
 //                        painelCarregamento[1].setVisible(false);
+//                        painelCarregamento[2].setVisible(true);
                         painelCarregamento[2].setVisible(false);
-//                        painelCarregamento[3].setVisible(true);
 //                        painelCarregamento[4].setVisible(true);
 //                        painelCarregamento[5].setVisible(true);
                         painelCarregamento[6].setVisible(false);
@@ -1452,6 +1456,7 @@ public class ProjConcretoB_Interface extends JFrame {
                         CampoCarregamento[6].setText("");
 
                     } else {
+                        painelCarregamentoFlexãoCompostaJComboBox.setVisible(false);
                         painelCarregamento[0].setVisible(false);
                         painelCarregamento[1].setVisible(false);
                         painelCarregamento[2].setVisible(false);
@@ -1460,7 +1465,8 @@ public class ProjConcretoB_Interface extends JFrame {
                         painelCarregamento[5].setVisible(false);
                         painelCarregamento[6].setVisible(false);
                         painelCarregamentoFlexãoCompostaJComboBox.setVisible(false);
-
+                        menuCarregamentoFlexãoCompostaJComboBox.setSelectedIndex(0);
+                        BotãoCalcExcentricidade.setVisible(false);
                         BotãoCalcExcentricidade.setText("Selecione uma flexão");
                         CampoCarregamento[6].setText("");
                     }
@@ -2282,22 +2288,37 @@ public class ProjConcretoB_Interface extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 if (carregamento != null && menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 2) {
                     //Calculo exentricidade
-
                     carregamento.calculaExentricidade(
                             Double.parseDouble(CampoCarregamento[0].getText()),
                             Double.parseDouble(CampoCarregamento[1].getText())
                     );
-                    CampoCarregamento[3].setText(String.format("%.3f", carregamento.e));
+                    carregamento.calcularX(SEÇÃO[1], detalhamento.dLinha);
+                    CampoCarregamento[4].setText(String.format("%.6f", carregamento.e));
+                    CampoCarregamento[3].setText(String.format("%.6f", carregamento.x));
+                    if (menuCarregamentoFlexãoCompostaJComboBox.getSelectedIndex() == 1) {
 
-                    //Calculo microSD
-                    Double microSd = carregamento.calculaMicroSD(
-                            Double.parseDouble(CampoCarregamento[0].getText()), //md
-                            SEÇÃO[0],
-                            detalhamento.d,
-                            Double.parseDouble(CampoMaterial[2].getText().replace(",", ".")));
+                        //Calculo microSD
+                        Double microSd = carregamento.calculaMicroSD(
+                                carregamento.calculaExentricidadeTracao(carregamento.e, carregamento.x), //md
+                                SEÇÃO[0],
+                                detalhamento.d,
+                                Double.parseDouble(CampoMaterial[2].getText().replace(",", ".")));
+                        CampoCarregamento[5].setText(String.format("%.6f", carregamento.es));
+                        String resutadoFinal = String.format(microSd.toString());
+                        CampoCarregamento[6].setText(String.format("%.6f", microSd));
+                    } else {
+                        //Calculo microSD
+                        Double microSd = carregamento.calculaMicroSD(
+                                carregamento.calculaExentricidadeCompressao(carregamento.e, carregamento.x), //md
+                                SEÇÃO[0],
+                                detalhamento.d,
+                                Double.parseDouble(CampoMaterial[2].getText().replace(",", ".")));
 
-                    String resutadoFinal = String.format(microSd.toString());
-                    CampoCarregamento[4].setText(String.format("%.3f", microSd));
+                        String resutadoFinal = String.format(microSd.toString());
+                        CampoCarregamento[5].setText(String.format("%.6f", carregamento.es));
+                        CampoCarregamento[6].setText(String.format("%.6f", microSd));
+
+                    }
 
                 } else if (menuCarregamentoFlexãoJComboBox.getSelectedIndex() == 1) {
                     Double microSd = carregamento.calculaMicroSD(
@@ -2312,7 +2333,7 @@ public class ProjConcretoB_Interface extends JFrame {
                             System.out.println(Double.parseDouble(CampoMaterial[2].getText()));
                             System.out.println(carregamento.microSD);*/
                     String resutadoFinal = String.format(microSd.toString());
-                    CampoCarregamento[4].setText(String.format("%.3f", microSd));
+                    CampoCarregamento[6].setText(String.format("%.3f", microSd));
                 }
             }
         }
