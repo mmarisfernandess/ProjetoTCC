@@ -590,7 +590,7 @@ public class ProjConcretoB_Desenho extends JPanel implements MouseListener, Mous
     {     }    
     // Trata evento quando o mouse entra em certa área especificada
     public void mouseEntered( MouseEvent event)
-    {  this.setBackground(Color.MAGENTA);
+    {  
     }        
     // Trata evento quando o mouse sai da área especificada
     public void mouseExited( MouseEvent event)

@@ -129,7 +129,7 @@ public class ProjConcretoB_Interface extends JFrame {
         new ImageIcon(getClass().getResource(nomesImagensDet[2]))};
 
     private static final String[] nomesDetalhamento = {"Selecione uma disposição de armadura",
-        "Armadura simples (1 camada)",
+        "Armadura simples",
         "Armadura dupla"};
 
     private static final String[] nomesCarregamentoFlexão = {"Selecione um tipo de flexão", "Flexão simples",
