@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Vector;
 
 import javax.swing.border.LineBorder; // Linhas de borda
 import javax.swing.border.TitledBorder;
@@ -92,6 +93,7 @@ public class ProjConcretoB_Interface extends JFrame {
     // Caixa de combinação para armazenar nomes de ícones(figuras = fotos = imagens)
     private JComboBox menuSeçãoJComboBox;
     private JComboBox menuDetalhamentoJComboBox;
+    private JComboBox menuDetalhamentoCamadasJComboBox;
     private JComboBox menuCarregamentoFlexãoJComboBox;
     private JComboBox menuCarregamentoFlexãoCompostaJComboBox;
 
@@ -110,6 +112,13 @@ public class ProjConcretoB_Interface extends JFrame {
         "Seção Retangular",
         "Seção T", "Seção I",
         "Seção L"};
+    private static final String[] nomesCamadasDupla = {"Selecione um nº de camadas",
+        "1 camada (tração)",
+        "2 camadas (tração)", "1 camada (compressão)",
+        "2 camadas (compressão)"};
+    private static final String[] nomesCamadasSimple = {"Selecione um nº de camadas",
+        "1 camada (tração)",
+        "2 camadas (tração)"};
 
     /* private String nomesImagensDet[]= { "  Detalhamento_viga.jpg ",
                                         "Armadura_simples.jpg",
@@ -152,6 +161,9 @@ public class ProjConcretoB_Interface extends JFrame {
         carregamento = new Carregamento();
         detalhamento = new Detalhamento();
 
+//        nomesCamadasDupla = new Vector();
+//        nomesCamadasSimple = new Vector();
+//        nomesCamadasDupla.add("");
         //--->>> 1o PASSO = BARRA DE MENU -------<<<<<<<
         /**
          * *******************************************
@@ -186,27 +198,23 @@ public class ProjConcretoB_Interface extends JFrame {
          */
 
         // 2o Menu - RELATÓRIO
-        JMenu relatórioMenu = new JMenu("Relatório"); // Cria o Menu Relatório
-        relatórioMenu.setMnemonic('R'); // Se quiser clicar pelo teclado R --> atalho pelo teclado
-
+        //JMenu relatórioMenu = new JMenu("Relatório"); // Cria o Menu Relatório
+        //relatórioMenu.setMnemonic('R'); // Se quiser clicar pelo teclado R --> atalho pelo teclado
         // 3o Menu - AJUDA
-        JMenu ajudaMenu = new JMenu("Ajuda"); // Cria o Menu Ajuda
-        ajudaMenu.setMnemonic('H'); // Se quiser clicar pelo teclado H --> atalho pelo teclado
-
+        // JMenu ajudaMenu = new JMenu("Ajuda"); // Cria o Menu Ajuda
+        //ajudaMenu.setMnemonic('H'); // Se quiser clicar pelo teclado H --> atalho pelo teclado
         //****** ITEM DE MENU (3o Menu - Menu Ajuda) - FORMULÁRIO
-        JMenuItem formulárioItem = new JMenuItem("Formulário");
-        ajudaMenu.add(formulárioItem);
-
+        // JMenuItem formulárioItem = new JMenuItem("Formulário");
+        // ajudaMenu.add(formulárioItem);
         //****** ITEM DE MENU (3o Menu - Menu Ajuda) - SOBRE O PROGRAMA
-        JMenuItem programaItem = new JMenuItem("Sobre o Programa");
-        ajudaMenu.add(programaItem);
-
+        //JMenuItem programaItem = new JMenuItem("Sobre o Programa");
+        //ajudaMenu.add(programaItem);
         // ****************************************************/
         // Cria uma barra de Menus para adicionar o Menu Arquivo, Relatório e Ajuda
         JMenuBar barra = new JMenuBar();
         barra.add(arquivoMenu); // Adiciona o Menu Arquivo à barra de menus
-        barra.add(relatórioMenu); // Adiciona o Menu Relatório à barra de menus
-        barra.add(ajudaMenu); // Adiciona o Menu Ajuda à barra de menus
+        //barra.add(relatórioMenu); // Adiciona o Menu Relatório à barra de menus
+        //barra.add(ajudaMenu); // Adiciona o Menu Ajuda à barra de menus
 
         // final Color azulClaro = new Color(115,149,233);
         // barra.setBackground(azulClaro);
@@ -754,7 +762,7 @@ public class ProjConcretoB_Interface extends JFrame {
          * **** BOTÃO para Calcular Propriedades Geométricas
          * ***************************************************
          */
-        JButton BotãoPropGeom = new JButton("Propriedades Geométricas ");
+        JButton BotãoPropGeom = new JButton("Calcular propriedades geométricas");
         JPanel painelSeçãoBotãoPropGeom = new JPanel();
 
         painelSeçãoBotãoPropGeom.add(BotãoPropGeom);
@@ -771,7 +779,7 @@ public class ProjConcretoB_Interface extends JFrame {
          * **** BOTÃO para Desenhar a SEÇÂO
          * ********************************************
          */
-        JButton BotãoDesSeção = new JButton("Desenhar a Seção ");
+        JButton BotãoDesSeção = new JButton("Desenhar a seção ");
         JPanel painelSeçãoBotãoDesSeção = new JPanel();
 
         painelSeçãoBotãoDesSeção.add(BotãoDesSeção);
@@ -1029,12 +1037,12 @@ public class ProjConcretoB_Interface extends JFrame {
         }
 
         verticalSeção.setMaximumSize(new Dimension(298, 800));
-        verticalSeção.setBackground(new java.awt.Color(178, 199, 224));
-        DrawingPanel painelSecaoScroll = new DrawingPanel(verticalSeção);
+        verticalSeção.setBackground(new java.awt.Color(231, 234, 240));
+        DrawingPanel painelSecaoScroll = new DrawingPanel(verticalSeção, 800, 238);
         painelSecaoScroll.setBackground(new java.awt.Color(231, 234, 240));
 
         final JScrollPane scroll = new JScrollPane(painelSecaoScroll);
-        scroll.setBackground(new java.awt.Color(19, 20, 21));
+        scroll.setBackground(new java.awt.Color(231, 234, 240));
         scroll.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
         scroll.setVisible(true);
         painelBoxSeção.add(scroll);
@@ -1483,34 +1491,48 @@ public class ProjConcretoB_Interface extends JFrame {
          * *******************************
          */
         // Criação dos paineis de propriedades com os campos de Texto
-        JLabel LabelDetalhamento[] = new JLabel[14];
+        JLabel LabelDetalhamento[] = new JLabel[29];
 
-        LabelDetalhamento[0] = new JLabel("c nom = ");
-        LabelDetalhamento[1] = new JLabel("ϕt =       ");
-        LabelDetalhamento[2] = new JLabel("ϕ =        ");
+        LabelDetalhamento[0] = new JLabel("    c nom =  ");
+        LabelDetalhamento[1] = new JLabel("       ϕt =    ");
+        LabelDetalhamento[2] = new JLabel("ϕ (compressão) = ");
+        LabelDetalhamento[3] = new JLabel("ϕ (tração) =  ");
+        LabelDetalhamento[4] = new JLabel("ϕ (agregado) = ");
+        LabelDetalhamento[5] = new JLabel("aH (tração) = ");
+        LabelDetalhamento[6] = new JLabel("aV (tração) = ");
+        LabelDetalhamento[7] = new JLabel("aH (compressão) =");
+        LabelDetalhamento[8] = new JLabel("aV (compressão) =");
 
         // Não editáveis - será calculado e fornecido
-        LabelDetalhamento[3] = new JLabel("d' =        ");
-        LabelDetalhamento[4] = new JLabel("d =         ");
+        LabelDetalhamento[9] = new JLabel("         d' =   ");
+        LabelDetalhamento[10] = new JLabel("        d =    ");
+        LabelDetalhamento[11] = new JLabel("        d\" =  ");
 
-        JTextField CampoDetalhamento[] = new JTextField[5];
+        JTextField CampoDetalhamento[] = new JTextField[12];
 
-        LabelDetalhamento[5] = new JLabel("cm ");
-        LabelDetalhamento[6] = new JLabel("cm ");
-        LabelDetalhamento[7] = new JLabel("cm ");
-        LabelDetalhamento[8] = new JLabel("cm ");
-        LabelDetalhamento[9] = new JLabel("cm ");
+        LabelDetalhamento[12] = new JLabel("cm   ");
+        LabelDetalhamento[13] = new JLabel("cm ");
+        LabelDetalhamento[14] = new JLabel("cm               ");
+        LabelDetalhamento[15] = new JLabel("cm      ");
+        LabelDetalhamento[16] = new JLabel("cm          ");
+        LabelDetalhamento[17] = new JLabel("cm      ");
+        LabelDetalhamento[18] = new JLabel("cm      ");
+        LabelDetalhamento[19] = new JLabel("cm                ");
+        LabelDetalhamento[20] = new JLabel("cm                ");
+        LabelDetalhamento[21] = new JLabel("cm   ");
+        LabelDetalhamento[22] = new JLabel("cm   ");
+        LabelDetalhamento[23] = new JLabel("cm   ");
 
-        JPanel painelDetalhamento[] = new JPanel[10];
-        FlowLayout layoutPainelDetalhamento[] = new FlowLayout[10];
+        JPanel painelDetalhamento[] = new JPanel[16];
+        FlowLayout layoutPainelDetalhamento[] = new FlowLayout[16];
 
-        for (int i = 0; i <= 4; i++) {
-            CampoDetalhamento[i] = new JTextField("", 4);
+        for (int i = 0; i <= 11; i++) {
+            CampoDetalhamento[i] = new JTextField("", 6);
             painelDetalhamento[i] = new JPanel();
 
             painelDetalhamento[i].add(LabelDetalhamento[i]);
             painelDetalhamento[i].add(CampoDetalhamento[i]);
-            painelDetalhamento[i].add(LabelDetalhamento[i + 5]);
+            painelDetalhamento[i].add(LabelDetalhamento[i + 12]);
 
             layoutPainelDetalhamento[i] = new FlowLayout();
             layoutPainelDetalhamento[i].setAlignment(FlowLayout.CENTER);
@@ -1522,30 +1544,30 @@ public class ProjConcretoB_Interface extends JFrame {
          * **** ESTRUTURAÇÃO DOS PAINÉIS *****************************
          */
         // TÍTULOS DOS GRUPOS DE PAINÉIS
-        LabelDetalhamento[10] = new JLabel("DETALHAMENTO");
-        LabelDetalhamento[11] = new JLabel("Disposição da Armadura:");
-        LabelDetalhamento[12] = new JLabel("Parâmetros de cálculo:");
+        LabelDetalhamento[24] = new JLabel("DETALHAMENTO");
+        LabelDetalhamento[25] = new JLabel("Disposição da Armadura:");
+        LabelDetalhamento[26] = new JLabel("Parâmetros de cálculo:");
 
-        for (int i = 5; i <= 7; i++) // 3 PAINEIS 
+        for (int i = 12; i <= 14; i++) // 3 PAINEIS 
         {
             painelDetalhamento[i] = new JPanel();
-            painelDetalhamento[i].add(LabelDetalhamento[i + 5]); // 
+            painelDetalhamento[i].add(LabelDetalhamento[i + 12]); // 
             painelDetalhamento[i].setBackground(new java.awt.Color(231, 234, 240));
         }
 
         // Painel dos cálculos fornecidos
-        LabelDetalhamento[13] = new JLabel("");
-        painelDetalhamento[8] = new JPanel();
-        painelDetalhamento[8].add(LabelDetalhamento[13]);
-        painelDetalhamento[8].setBackground(new java.awt.Color(231, 234, 240));
+        LabelDetalhamento[28] = new JLabel("");
+        painelDetalhamento[15] = new JPanel();
+        painelDetalhamento[15].add(LabelDetalhamento[28]);
+        painelDetalhamento[15].setBackground(new java.awt.Color(231, 234, 240));
 
         /**
          * ********************************************************************
          */
         //PAINEIS NÃO VISÍVEIS
-        for (int i = 0; i <= 4; i++) //  4 painéis
+        for (int i = 0; i <= 15; i++) //  4 painéis
         {
-            painelDetalhamento[i].setVisible(false);
+            painelDetalhamento[i].setVisible(true);
         }
         painelDetalhamento[7].setVisible(false);
         painelDetalhamento[8].setVisible(false); // False nas Prop. Geométricas 
@@ -1564,6 +1586,14 @@ public class ProjConcretoB_Interface extends JFrame {
         painelDetalhamentoJComboBox.setBackground(new java.awt.Color(231, 234, 240));
         // Coloca em um painel 
         painelDetalhamentoJComboBox.add(menuDetalhamentoJComboBox);
+
+        menuDetalhamentoCamadasJComboBox = new JComboBox(nomesCamadasSimple);
+        menuDetalhamentoCamadasJComboBox.setMaximumRowCount(5); // Exibe 5 linhas (4 seções)
+
+        JPanel painelDetalhamentoCamadasJComboBox = new JPanel();
+        painelDetalhamentoCamadasJComboBox.setBackground(new java.awt.Color(231, 234, 240));
+        // Coloca em um painel 
+        painelDetalhamentoCamadasJComboBox.add(menuDetalhamentoCamadasJComboBox);
         /**
          * ***************************************************************************
          */
@@ -1586,7 +1616,7 @@ public class ProjConcretoB_Interface extends JFrame {
          */
 
         //****************** BOTÃO para Calcular as distâncias d' e d
-        JButton BotãoCalcDist = new JButton("Calcular d' e d");
+        JButton BotãoCalcDist = new JButton("Calcular distâncias");
         JPanel painelDetalhamentoBotãoCalcDist = new JPanel();
 
         painelDetalhamentoBotãoCalcDist.add(BotãoCalcDist);
@@ -1600,15 +1630,15 @@ public class ProjConcretoB_Interface extends JFrame {
          * **** BOTÃO para Desenhar o DETALHAMENTO
          * ********************************************
          */
-        JButton BotãoDesDetalhamento = new JButton("Desenhar o Detalhamento");
-        JPanel painelDetalhamentoBotãoDesDetalhamento = new JPanel();
+        JButton BotãoEspacamentoDetalhamento = new JButton("Verificação espaçamentos norma");
+        JPanel painelDetalhamentoBotãoEspacamentoDetalhamento = new JPanel();
 
-        painelDetalhamentoBotãoDesDetalhamento.add(BotãoDesDetalhamento);
+        painelDetalhamentoBotãoEspacamentoDetalhamento.add(BotãoEspacamentoDetalhamento);
 
-        painelDetalhamentoBotãoDesDetalhamento.setVisible(false);
-        painelDetalhamentoBotãoDesDetalhamento.setBackground(new java.awt.Color(231, 234, 240));
-        painelDetalhamentoBotãoDesDetalhamento.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
-        painelDetalhamentoBotãoDesDetalhamento.setLayout(new FlowLayout());
+        painelDetalhamentoBotãoEspacamentoDetalhamento.setVisible(false);
+        painelDetalhamentoBotãoEspacamentoDetalhamento.setBackground(new java.awt.Color(231, 234, 240));
+        painelDetalhamentoBotãoEspacamentoDetalhamento.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+        painelDetalhamentoBotãoEspacamentoDetalhamento.setLayout(new FlowLayout());
         /**
          * ***************************************************************************
          */
@@ -1630,103 +1660,103 @@ public class ProjConcretoB_Interface extends JFrame {
          * **** TRATAMENTO DE EVENTO: MENU DE ESCOLHA DAS SEÇÕES
          * *********************
          */
+        for (int i = 0; i <= 15; i++) {
+            painelDetalhamento[i].setVisible(false);
+        }
+        painelDetalhamento[12].setVisible(true);
+        painelDetalhamento[13].setVisible(true);
+        painelDetalhamentoBotãoEspacamentoDetalhamento.setVisible(false);
+        painelDetalhamentoBotãoCalcDist.setVisible(false);
+        menuDetalhamentoCamadasJComboBox.setVisible(false);
         menuDetalhamentoJComboBox.addItemListener(
                 new ItemListener() {
             public void itemStateChanged(ItemEvent event) {
                 if (event.getStateChange() == ItemEvent.SELECTED) {
                     labelMenuDetalhamento.setIcon(iconsDetalhamento[menuDetalhamentoJComboBox.getSelectedIndex()]);
-                    for (int i = 0; i <= 4; i++) {
-                        painelDetalhamento[i].setVisible(false);
-                    }
 
                     switch (menuDetalhamentoJComboBox.getSelectedIndex()) {
                         case 0:
                             painelDetalhamentolabelMenuDetalhamento.setVisible(true);
                             // Definição do tipo de Detalhamento
                             nomeDetalhamentoInterface = "";
-                            painelDetalhamento[7].setVisible(false);
-                            painelDetalhamento[8].setVisible(false);
-                            for (int i = 0; i <= 2; i++) {
-                                CampoDetalhamento[i].setText(String.format(""));
+                            for (int i = 0; i <= 15; i++) {
+                                painelDetalhamento[i].setVisible(false);
                             }
+                            painelDetalhamento[12].setVisible(true);
+                            painelDetalhamento[13].setVisible(true);
+                            painelDetalhamentoBotãoEspacamentoDetalhamento.setVisible(false);
 
-                            painelDetalhamentoBotãoDesDetalhamento.setVisible(false);
                             painelDetalhamentoBotãoCalcDist.setVisible(false);
+                            menuDetalhamentoCamadasJComboBox.setVisible(false);
 
                             CampoDetalhamento[3].setText(String.format(""));
                             CampoDetalhamento[4].setText(String.format(""));
 
                             break;
                         case 1:
-                            // Caso o tipo de seção selecionado seja diferente do atual
-                            // Os campos de texto são limpos
-                            if (!"ARMADURA SIMPLES".equals(nomeDetalhamentoInterface)) {
-                                for (int i = 0; i <= 2; i++) {
-                                    CampoDetalhamento[i].setText(String.format(""));
-                                    painelDetalhamento[i].setVisible(false);
+                            //menuDetalhamentoCamadasJComboBox = new JComboBox(nomesCamadasSimples);
+                            //menuDetalhamentoCamadasJComboBox.removeAllItems();
+                            //menuDetalhamentoCamadasJComboBox.addItem();
+                            //painelDetalhamentoCamadasJComboBox.add(menuDetalhamentoCamadasJComboBox);
+
+                            for (int i = 0; i <= 15; i++) {
+                                if (i != 2) {
+                                    painelDetalhamento[i].setVisible(true);
                                 }
                             }
 
-                            painelDetalhamentolabelMenuDetalhamento.setVisible(true);
-
-                            nomeDetalhamentoInterface = "ARMADURA SIMPLES";
-                            painelDetalhamento[0].setVisible(true);
-                            painelDetalhamento[1].setVisible(true);
-                            painelDetalhamento[2].setVisible(true);
-                            painelDetalhamento[3].setVisible(true);
-                            painelDetalhamento[4].setVisible(true);
-                            painelDetalhamento[7].setVisible(true);
-                            painelDetalhamento[8].setVisible(true);
-
-                            painelDetalhamentoBotãoDesDetalhamento.setVisible(true);
+                            painelDetalhamentoBotãoEspacamentoDetalhamento.setVisible(true);
                             painelDetalhamentoBotãoCalcDist.setVisible(true);
+                            menuDetalhamentoCamadasJComboBox.setVisible(true);
 
-                            for (int i = 3; i <= 4; i++) {
-                                painelDetalhamento[i].setVisible(true);
-                            }
-
-                            CampoDetalhamento[3].setText(String.format(""));
-                            CampoDetalhamento[4].setText(String.format(""));
+                            painelDetalhamento[2].setVisible(false);
+                            painelDetalhamento[7].setVisible(false);
+                            painelDetalhamento[8].setVisible(false);
+                            painelDetalhamento[11].setVisible(false);
+                            CampoDetalhamento[3].setEditable(true);
+                            CampoDetalhamento[4].setEditable(true);
+                            CampoDetalhamento[5].setEditable(false);
+                            CampoDetalhamento[6].setEditable(false);
+                            CampoDetalhamento[9].setEditable(false);
+                            CampoDetalhamento[10].setEditable(false);
 
                             break;
 
                         case 2:
-                            if (!"ARMADURA DUPLA".equals(nomeDetalhamentoInterface)) {
-                                for (int i = 0; i <= 2; i++) {
-                                    CampoDetalhamento[i].setText(String.format(""));
-                                    painelDetalhamento[i].setVisible(false);
-                                }
-                            }
-
-                            painelDetalhamentolabelMenuDetalhamento.setVisible(true);
-
-                            nomeDetalhamentoInterface = "ARMADURA DUPLA";
-                            painelDetalhamento[0].setVisible(true);
-                            painelDetalhamento[1].setVisible(true);
-                            painelDetalhamento[2].setVisible(true);
-                            painelDetalhamento[3].setVisible(true);
-                            painelDetalhamento[4].setVisible(true);
-                            painelDetalhamento[7].setVisible(true);
-                            painelDetalhamento[8].setVisible(true);
-
-                            painelDetalhamentoBotãoCalcDist.setVisible(true);
-
-                            for (int i = 3; i <= 4; i++) {
+                            for (int i = 0; i <= 15; i++) {
                                 painelDetalhamento[i].setVisible(true);
                             }
-
-                            painelDetalhamentoBotãoDesDetalhamento.setVisible(true);
-                            painelDetalhamentoBotãoCalcDist.setVisible(true);
-
-                            CampoDetalhamento[3].setText(String.format(""));
-                            CampoDetalhamento[4].setText(String.format(""));
-
                             break;
                     }
                 }
             }
         }
         );
+
+        menuDetalhamentoCamadasJComboBox.addItemListener(
+                new ItemListener() {
+            public void itemStateChanged(ItemEvent event) {
+                var itemSelecionado = menuDetalhamentoCamadasJComboBox.getSelectedIndex();
+                System.out.println(menuDetalhamentoCamadasJComboBox.getSelectedIndex());
+                CampoDetalhamento[5].setEditable(false);
+                CampoDetalhamento[6].setEditable(false);
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    if (itemSelecionado == 1) {
+                        painelDetalhamentoBotãoCalcDist.setVisible(true);
+                        //CampoDetalhamento[5].setEditable(true);
+                        painelDetalhamento[6].setVisible(false);
+                    } else if (itemSelecionado == 2) {
+                        //painelDetalhamento[5].setVisible(false);
+                        painelDetalhamento[6].setVisible(true);
+                    } else {
+                        CampoDetalhamento[5].setEditable(false);
+                        CampoDetalhamento[6].setEditable(false);
+                        painelDetalhamento[5].setVisible(true);
+                        painelDetalhamento[6].setVisible(true);
+                    }
+                }
+            }
+        });
 
         /**
          * **** PAINEL PRINCIPAL DE PROPRIEDADES DO DETALHAMENTO
@@ -1744,26 +1774,43 @@ public class ProjConcretoB_Interface extends JFrame {
          */
         Box verticalDetalhamento = Box.createVerticalBox();
         verticalDetalhamento.add(Box.createVerticalStrut(5));
-        verticalDetalhamento.add(painelDetalhamentoInv);// Espaçador para padronizar tamanho        
-        verticalDetalhamento.add(painelDetalhamento[5]);// SEÇÂO TRANSVERSAL
-        verticalDetalhamento.add(painelDetalhamento[6]);// Tipo de Seção
+        verticalDetalhamento.add(painelDetalhamentoInv);
+        verticalDetalhamento.add(painelDetalhamento[12]);
+        verticalDetalhamento.add(painelDetalhamento[13]);
+        verticalDetalhamento.add(painelDetalhamentoJComboBox);
+        verticalDetalhamento.add(painelDetalhamentolabelMenuDetalhamento);
+        verticalDetalhamento.add(painelDetalhamento[0]);
+        verticalDetalhamento.add(painelDetalhamento[1]);
+        verticalDetalhamento.add(painelDetalhamento[2]);
+        verticalDetalhamento.add(painelDetalhamento[3]);
+        verticalDetalhamento.add(painelDetalhamento[4]);
+        verticalDetalhamento.add(painelDetalhamentoCamadasJComboBox);
+        verticalDetalhamento.add(painelDetalhamentoBotãoEspacamentoDetalhamento);
+        verticalDetalhamento.add(painelDetalhamento[5]);
+        verticalDetalhamento.add(painelDetalhamento[6]);
+        verticalDetalhamento.add(painelDetalhamento[7]);
+        verticalDetalhamento.add(painelDetalhamento[8]);
+        verticalDetalhamento.add(painelDetalhamentoBotãoCalcDist);
+        verticalDetalhamento.add(painelDetalhamento[9]);
 
-        verticalDetalhamento.add(painelDetalhamentoJComboBox); // JComboBox menu       
-
-        verticalDetalhamento.add(painelDetalhamentolabelMenuDetalhamento); // Label Figuras das seções                        
-
-        verticalDetalhamento.add(painelDetalhamento[7]);//Dimensões das Seções        
-        for (int i = 0; i <= 2; i++) {
-            verticalDetalhamento.add(painelDetalhamento[i]); // Dimensões das seções
-        }
-        verticalDetalhamento.add(painelDetalhamentoBotãoDesDetalhamento); // Botão = Desenha o detalhamento        
-        verticalDetalhamento.add(painelDetalhamentoBotãoCalcDist); // Botão = Calcula as distâncias d' e d      
-        verticalDetalhamento.add(painelDetalhamento[8]); // Distâncias d' e d
+        verticalDetalhamento.add(painelDetalhamento[10]);
 
         for (int i = 3; i <= 4; i++) {
-            verticalDetalhamento.add(painelDetalhamento[i]);// Dados d' e d        
+            verticalDetalhamento.add(painelDetalhamento[11]);
         }
         painelBoxDetalhamento.add(verticalDetalhamento);
+
+        verticalDetalhamento.setMaximumSize(new Dimension(298, 800));
+        verticalDetalhamento.setBackground(new java.awt.Color(231, 234, 240));
+        DrawingPanel painelDetalhamentoScroll = new DrawingPanel(verticalDetalhamento, 800, 268);
+        painelDetalhamentoScroll.setBackground(new java.awt.Color(231, 234, 240));
+
+        final JScrollPane scrollDetalhamento = new JScrollPane(painelDetalhamentoScroll);
+        painelDetalhamentoScroll.setBackground(new java.awt.Color(231, 234, 240));
+        painelDetalhamentoScroll.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+        //painelDetalhamentoScroll.setBorder(null);
+        painelDetalhamentoScroll.setVisible(true);
+        painelBoxDetalhamento.add(scrollDetalhamento);
         /**
          * ***************************************************************************
          */
@@ -2227,6 +2274,12 @@ public class ProjConcretoB_Interface extends JFrame {
                 SEÇÃO[0] = Double.parseDouble(CampoSeção[0].getText());
                 dados.seth(Double.parseDouble(CampoSeção[1].getText()));
                 SEÇÃO[1] = Double.parseDouble(CampoSeção[1].getText());
+                
+                
+                dados.setbf(Double.parseDouble(CampoSeção[2].getText()));
+                SEÇÃO[2] = Double.parseDouble(CampoSeção[2].getText());
+                dados.sethf(Double.parseDouble(CampoSeção[3].getText()));
+                SEÇÃO[3] = Double.parseDouble(CampoSeção[3].getText());
                 if (dados != null) {
                     // Calcula as propriedades geométricas
                     // Está na classe de PropGeomGAUSS
@@ -2268,16 +2321,53 @@ public class ProjConcretoB_Interface extends JFrame {
                 new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 if (detalhamento != null) {
-                    detalhamento.calculaDLinha(
-                            Double.parseDouble(CampoDetalhamento[0].getText()),
-                            Double.parseDouble(CampoDetalhamento[1].getText()),
-                            Double.parseDouble(CampoDetalhamento[2].getText())
-                    );
-                    CampoDetalhamento[3].setText(String.format("%.3f", detalhamento.dLinha));
+                    if (menuDetalhamentoCamadasJComboBox.getSelectedIndex() == 1) {
+
+                        detalhamento.calculaDLinha(
+                                Double.parseDouble(CampoDetalhamento[0].getText()),
+                                Double.parseDouble(CampoDetalhamento[1].getText()),
+                                Double.parseDouble(CampoDetalhamento[2].getText())
+                        );
+
+                    } else if (menuDetalhamentoCamadasJComboBox.getSelectedIndex() == 2) {
+                        detalhamento.calculaDLinha2Camadas(
+                                Double.parseDouble(CampoDetalhamento[0].getText()),
+                                Double.parseDouble(CampoDetalhamento[1].getText()),
+                                Double.parseDouble(CampoDetalhamento[2].getText())
+                        );
+                    }
+
+                    CampoDetalhamento[9].setText(String.format("%.3f", detalhamento.dLinha));
 
                     detalhamento.calculaD(Double.parseDouble(CampoSeção[1].getText()));
 
-                    CampoDetalhamento[4].setText(String.format("%.3f", detalhamento.d));
+                    CampoDetalhamento[10].setText(String.format("%.3f", detalhamento.d));
+
+                }
+            }
+        }
+        );
+        BotãoEspacamentoDetalhamento.addActionListener(
+                new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                if (menuDetalhamentoCamadasJComboBox.getSelectedIndex() == 1) {
+                    Double aH = detalhamento.definirAH(
+                            Double.parseDouble(CampoDetalhamento[3].getText()),
+                            Double.parseDouble(CampoDetalhamento[4].getText())
+                    );
+                    CampoDetalhamento[5].setText(String.format("%.3f", aH));
+                } else if (menuDetalhamentoCamadasJComboBox.getSelectedIndex() == 2) {
+                    Double aH = detalhamento.definirAH(
+                            Double.parseDouble(CampoDetalhamento[3].getText()),
+                            Double.parseDouble(CampoDetalhamento[4].getText())
+                    );
+                    CampoDetalhamento[5].setText(String.format("%.3f", aH));
+
+                    Double aV = detalhamento.definirAV(
+                            Double.parseDouble(CampoDetalhamento[3].getText()),
+                            Double.parseDouble(CampoDetalhamento[4].getText())
+                    );
+                    CampoDetalhamento[6].setText(String.format("%.3f", aV));
                 }
             }
         }

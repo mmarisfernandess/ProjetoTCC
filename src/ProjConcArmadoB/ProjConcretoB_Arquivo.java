@@ -83,7 +83,7 @@ public void AbrirArquivoEntrada(File name)
     
       try 
       { // LerEntrada = objeto Scanner le do arquivo
-          System.out.printf("Passou pelo try antes de ler LerEntrada\n"); 
+          //System.out.printf("Passou pelo try antes de ler LerEntrada\n"); 
          // Se o arquivo for:  nomeArquivoEnt="null" 
          LerEntrada = new Scanner (new File(nomeArquivoEnt)); 
          // Ler os dados do Arquivo existente

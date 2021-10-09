@@ -553,7 +553,7 @@ public class ProjConcretoB_Desenho extends JPanel implements MouseListener, Mous
         {
          // System.out.printf("ylim[%d] = %d\n", i, ylim[i]);
         }
-        System.out.print("Antes de g2d.drawPolyline(xlim, ylim, 5) \n");
+        //System.out.print("Antes de g2d.drawPolyline(xlim, ylim, 5) \n");
         // Desenha o retangulo definido por Ximin,Ximax, Yimin, Yimax         
         g2d.setColor(Color.BLUE);
         g2d.drawPolyline(xlim, ylim, 5);

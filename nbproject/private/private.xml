@@ -4,19 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/ProjConcretoB_Interface.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/main/java/facade/DeformacaoFacade.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/main/java/model/deformacao.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/ProjConcretoB_Desenho.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/main/java/dao/GenericDAOImp.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/Carregamento.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/DrawingPanel.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/ProjConcretoB_Arquivo.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/main/java/dao/JPAMF.java</file>
             <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/ProjConcretoB_Dados.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/ProjConcretoB_PropGeomGAUSS.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/ProjConcretoB_Flexão.java</file>
-            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/ProjConcretoB_Test.java</file>
+            <file>file:/C:/Users/mmari/Documents/GitHub/ProjetoTCC/src/ProjConcArmadoB/Detalhamento.java</file>
         </group>
     </open-files>
 </project-private>

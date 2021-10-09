@@ -72,7 +72,7 @@ public class ProjConcretoB_Dados {
         SEÇÃO[1] = h;
     }
 
-    public void setbf(double bf) {
+    public void setbf(Double bf) {
         SEÇÃO[2] = bf;
     }
 

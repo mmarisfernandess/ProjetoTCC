@@ -2,6 +2,7 @@ package ProjConcArmadoB;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.border.LineBorder;
 
 public class DrawingPanel extends JPanel implements Scrollable {
 
@@ -10,9 +11,10 @@ public class DrawingPanel extends JPanel implements Scrollable {
     private int W;
     private int H;
 
-    public DrawingPanel(Component comp) {
-        this.H = 800;
-        this.W = 298;
+    public DrawingPanel(Component comp, int h, int w) {
+        this.setBorder(new LineBorder(new java.awt.Color(231, 234, 240)));
+        this.H = h;
+        this.W = w;
 
         this.comp = comp;
         add(this.comp);
@@ -29,7 +31,7 @@ public class DrawingPanel extends JPanel implements Scrollable {
     public Dimension getPreferredScrollableViewportSize() {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
-        return new Dimension(298, d.height - 198);
+        return new Dimension(this.W, d.height - 198);
     }
 
     @Override

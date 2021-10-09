@@ -20,6 +20,10 @@ public class Detalhamento {
         this.dLinha = cobrimento + diametroEstribo + (diametroBarra/2);
         return dLinha;
     }
+    public Double calculaDLinha2Camadas(Double cobrimento, Double diametroEstribo, Double diametroBarra){
+        this.dLinha = cobrimento + diametroEstribo + diametroBarra;
+        return dLinha;
+    }
     public Double calculaD(Double h){
         Long d = Math.round(h - this.dLinha);
         this.d = Double.parseDouble(d.toString());
@@ -29,5 +33,28 @@ public class Detalhamento {
         this.d = h - dLinha;
         return d;
     }  
+    
+    public Double definirAH(Double fiTracao, Double fiAgregado){
+        fiAgregado = 1.2 * fiAgregado;
+        Double doisCentimentros = 2.0;
+        if(doisCentimentros > fiAgregado && doisCentimentros > fiTracao){
+            return doisCentimentros;
+        }else if( fiAgregado > doisCentimentros &&  fiAgregado > fiTracao){
+            return fiAgregado;
+        }else{
+            return fiTracao;
+        }
+    }
+    public Double definirAV(Double fiTracao, Double fiAgregado){
+        fiAgregado = 0.5 * fiAgregado;
+        Double doisCentimentros = 2.0;
+        if(doisCentimentros > fiAgregado && doisCentimentros > fiTracao){
+            return doisCentimentros;
+        }else if( fiAgregado > doisCentimentros &&  fiAgregado > fiTracao){
+            return fiAgregado;
+        }else{
+            return fiTracao;
+        }
+    }
     
 }
